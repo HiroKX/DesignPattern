@@ -1,8 +1,6 @@
 package exodecorateur_angryballs.maladroit.modeleSolution;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
-import mesmaths.cinematique.Cinematique;
-import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
 import java.awt.*;
@@ -34,6 +32,20 @@ public abstract class DecorateurBille extends Bille {
 
     public double masse() {
         return this.bille.masse();
+    }
+
+    @Override
+    public void dessine(Graphics g) {
+        this.bille.dessine(g);
+    }
+
+    @Override
+    public Vecteur getAcceleration(){
+        return this.bille.getAcceleration();
+    }
+
+    public Vecteur getVitesse(){
+        return this.bille.getVitesse();
     }
 
     public Bille getBille() {

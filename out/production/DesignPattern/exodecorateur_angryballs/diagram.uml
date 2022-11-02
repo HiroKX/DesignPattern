@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1086.2379271425357" y="189.1303956369146">exodecorateur_angryballs.maladroit.modele.Bille</node>
+    <node x="563.4182224556546" y="721.094525921351">exodecorateur_angryballs.maladroit.modeleSolution.DecorateurPasseMuraille</node>
+    <node x="299.83547694659967" y="479.11711020723305">exodecorateur_angryballs.maladroit.modeleSolution.DecorateurFrottement</node>
+    <node x="-132.63394977910013" y="481.0263615171673">exodecorateur_angryballs.maladroit.modeleSolution.DecorateurCouleur</node>
+    <node x="998.5576546828577" y="719.7895868416331">exodecorateur_angryballs.maladroit.modele.BilleConcrete</node>
+    <node x="1358.0683231247956" y="701.4823622626977">exodecorateur_angryballs.maladroit.modele.OutilsBille</node>
+    <node x="1357.524663694838" y="884.7895868416331">exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBloqueBord</node>
+    <node x="105.19939635246905" y="703.6888472893468">exodecorateur_angryballs.maladroit.modeleSolution.DecorateurNewton</node>
+    <node x="1956.894491140955" y="229.7829725158544">exodecorateur_angryballs.maladroit.modeleSolution.DecorateurRU</node>
+    <node x="1814.5751911085868" y="427.5966069103977">exodecorateur_angryballs.maladroit.modeleSolution.DecorateurRebond</node>
+    <node x="765.1560146297182" y="355.0382131824332">exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille</node>
+    <node x="1766.801761733837" y="698.3042360204618">exodecorateur_angryballs.maladroit.modeleSolution.DecorateurHurlement</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurRebond" target="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille" relationship="GENERALIZATION">
+      <point x="-1.911085867050133E-4" y="49.500393089602255" />
+      <point x="1983.075" y="670.0" />
+      <point x="895.156" y="670.0" />
+      <point x="-1.462971829369053E-5" y="137.99978681756681" />
+    </edge>
+    <edge source="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurPasseMuraille" target="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille" relationship="GENERALIZATION">
+      <point x="-2.2245565457978955E-4" y="-38.49952592135094" />
+      <point x="731.918" y="670.0" />
+      <point x="895.156" y="670.0" />
+      <point x="-1.462971829369053E-5" y="137.99978681756681" />
+    </edge>
+    <edge source="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurHurlement" target="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille" relationship="GENERALIZATION">
+      <point x="2.3826616279620794E-4" y="-138.00023602046178" />
+      <point x="1935.302" y="670.0" />
+      <point x="895.156" y="670.0" />
+      <point x="-1.462971829369053E-5" y="137.99978681756681" />
+    </edge>
+    <edge source="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurRU" target="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille" relationship="GENERALIZATION">
+      <point x="43.68050885904495" y="38.50002748414559" />
+      <point x="2169.075" y="670.0" />
+      <point x="895.156" y="670.0" />
+      <point x="-1.462971829369053E-5" y="137.99978681756681" />
+    </edge>
+    <edge source="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurNewton" target="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille" relationship="GENERALIZATION">
+      <point x="-3.9635246905334043E-4" y="-49.4998472893468" />
+      <point x="273.699" y="670.0" />
+      <point x="895.156" y="670.0" />
+      <point x="-1.462971829369053E-5" y="137.99978681756681" />
+    </edge>
+    <edge source="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBloqueBord" target="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille" relationship="GENERALIZATION">
+      <point x="168.50033630516214" y="4.1315836688227137E-4" />
+      <point x="1722.568" y="923.29" />
+      <point x="1722.568" y="670.0" />
+      <point x="895.156" y="670.0" />
+      <point x="-1.462971829369053E-5" y="137.99978681756681" />
+    </edge>
+    <edge source="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille" target="exodecorateur_angryballs.maladroit.modele.Bille" relationship="GENERALIZATION">
+      <point x="129.9999853702817" y="-2.1318243318546592E-4" />
+      <point x="1056.0" y="493.038" />
+      <point x="1056.0" y="415.13" />
+      <point x="-168.49992714253563" y="-3.956369146180805E-4" />
+    </edge>
+    <edge source="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurCouleur" target="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille" relationship="GENERALIZATION">
+      <point x="-5.022089986539413E-5" y="60.99963848283272" />
+      <point x="35.866" y="670.0" />
+      <point x="895.156" y="670.0" />
+      <point x="-1.462971829369053E-5" y="137.99978681756681" />
+    </edge>
+    <edge source="exodecorateur_angryballs.maladroit.modele.BilleConcrete" target="exodecorateur_angryballs.maladroit.modele.Bille" relationship="GENERALIZATION">
+      <point x="-111.36068379673065" y="-82.50045098603073" />
+      <point x="1055.696970886127" y="648.538" />
+      <point x="1056.0" y="648.538" />
+      <point x="1056.0" y="415.13" />
+      <point x="-168.49992714253563" y="-3.956369146180805E-4" />
+    </edge>
+    <edge source="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurFrottement" target="exodecorateur_angryballs.maladroit.modeleSolution.DecorateurBille" relationship="GENERALIZATION">
+      <point x="-4.76946599690109E-4" y="49.499889792766965" />
+      <point x="468.335" y="670.0" />
+      <point x="895.156" y="670.0" />
+      <point x="-1.462971829369053E-5" y="137.99978681756681" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.8071107478545158" showDependencies="false" x="1118.9967088607596" y="592.0" />
+  <SelectedNodes>
+    <node>exodecorateur_angryballs.maladroit.modele.OutilsBille</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

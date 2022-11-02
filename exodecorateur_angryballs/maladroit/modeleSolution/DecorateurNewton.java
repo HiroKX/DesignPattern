@@ -13,8 +13,14 @@ public class DecorateurNewton extends DecorateurBille{
     @Override
     public void gestionAcceleration(Vector<Bille> billes)
     {
-        this.getAcceleration().ajoute(OutilsBille.gestionAccelerationNewton(this, billes));     // contribution de l'acceleration due à l'attraction des autres billes
+        System.out.println("Clef : "+ this.getClef()+"  "+ this.getAcceleration());
+        System.out.println("1"+this.getAcceleration());
         this.bille.gestionAcceleration(billes);
+        this.getAcceleration().set(OutilsBille.gestionAccelerationNewton(this.bille, billes));     // contribution de l'acceleration due à l'attraction des autres billes
+        System.out.println("2"+this.getAcceleration());
+        //this.bille.gestionAcceleration(billes);
+        System.out.println("3"+this.getAcceleration());
+
     }
 
     @Override

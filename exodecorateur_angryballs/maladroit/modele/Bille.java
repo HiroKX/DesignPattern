@@ -3,8 +3,6 @@ package exodecorateur_angryballs.maladroit.modele;
 import java.awt.*;
 import java.util.Vector;
 
-import mesmaths.cinematique.Cinematique;
-import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
 
@@ -22,60 +20,31 @@ import mesmaths.geometrie.base.Vecteur;
 public abstract class Bille {
 //----------------- classe Bille-------------------------------------
 
-    public Vecteur position;   // centre de la bille
-    public double rayon;            // rayon > 0
-    public Vecteur vitesse;
-    public Vecteur acceleration;
-    public int clef;                // identifiant unique de cette bille
-    protected static int prochaineClef = 0;
 
-    public static double ro = 1;        // masse volumique
-
-    /**
-     * @return the position
-     */
-    public Vecteur getPosition() {
-        return this.position;
-    }
+    public abstract Vecteur getPosition();
 
 
     /**
      * @return the rayon
      */
-    public double getRayon() {
-        return this.rayon;
-    }
-
+    public abstract double getRayon();
 
     /**
      * @return the vitesse
      */
-    public Vecteur getVitesse() {
-        return this.vitesse;
-    }
-
+    public abstract Vecteur getVitesse();
 
     /**
      * @return the acceleration
      */
-    public Vecteur getAcceleration() {
-        return this.acceleration;
-    }
+    public abstract Vecteur getAcceleration();
 
+    public abstract double masse();
 
     /**
      * @return the clef
      */
-    public int getClef() {
-        return this.clef;
-    }
-
-
-    public double masse() {
-        return ro * Geop.volumeSphère(rayon);
-    }
-
-
+    public abstract int getClef();
     /**
      * mise e jour de position et vitesse e t+deltaT e partir de position et vitesse e l'instant t
      * <p>
@@ -123,21 +92,8 @@ public abstract class Bille {
 
     /* cette methode engendre des clignotements : idee : utiliser l'active rendering et le double buffering pour eviter ea */
 
-    public void dessine(Graphics g)    // reference awt : mauvais
-    {
-        int width, height;
-        int xMin, yMin;
+    public abstract void dessine(Graphics g);   // reference awt : mauvais
 
-        xMin = (int) Math.round(this.getPosition().x - this.getRayon());
-        yMin = (int) Math.round(this.getPosition().y - this.getRayon());
-
-        width = height = 2 * (int) Math.round(this.getRayon());
-
-        g.setColor(Color.BLACK);
-        g.fillOval(xMin, yMin, width, height);
-        g.setColor(Color.CYAN);
-        g.drawOval(xMin, yMin, width, height);
-    }
 
 
 //----------------- classe Bille -------------------------------------

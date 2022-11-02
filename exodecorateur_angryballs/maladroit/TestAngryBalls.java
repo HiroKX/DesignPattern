@@ -84,7 +84,13 @@ v4 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
 
 //--------------- ici commence la partie e changer ---------------------------------
 
-billes.add(new DecorateurRebond(new DecorateurCouleur(new DecorateurRU(new BilleConcrete(p1, rayon, v1, new Vecteur(0,0.001))),Color.YELLOW)));
+//billes.add(new DecorateurRebond(new DecorateurCouleur(new DecorateurRU(new BilleConcrete(p1, rayon, v1, new Vecteur(0,0.001))),Color.YELLOW)));
+//billes.add(new DecorateurRebond(new DecorateurNewton(new BilleConcrete(p3, rayon*3, v1, new Vecteur(0,0.001)))));
+    billes.add(new DecorateurRebond(new BilleConcrete(new Vecteur(10,10), rayon, v1, new Vecteur(0,0.001))));
+
+    billes.add(new DecorateurRebond(new DecorateurNewton(new BilleConcrete(new Vecteur(200,200), rayon/2, v2, new Vecteur(0,0.001)))));
+
+
 /**
 billes.add(new      BilleMvtPesanteurFrottementRebond(p1, rayon, v1, new Vecteur(0,0.001), Color.yellow));
 billes.add(new              BilleMvtNewtonFrottementRebond(p2, rayon, v2, Color.green));
