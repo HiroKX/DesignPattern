@@ -20,7 +20,7 @@ import outilsvues.Outils;
 public class CadreAngryBalls_4_9_2022 extends Frame implements VueBillard
 {
 TextField presentation;
-Billard billard;
+BillardAWT billard;
 public Button lancerBilles, arreterBilles;
 Panel haut, centre, bas;
 
@@ -45,7 +45,7 @@ this.add(this.bas,BorderLayout.SOUTH);
 this.presentation = new TextField(message, 100); this.presentation.setEditable(false);
 this.haut.add(this.presentation);
 
-this.billard = new Billard(billes);
+this.billard = new BillardAWT(billes);
 this.add(this.billard);
 
 this.lancerBilles = new Button("lancer les billes"); this.bas.add(this.lancerBilles);

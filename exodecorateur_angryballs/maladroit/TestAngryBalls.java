@@ -1,6 +1,7 @@
 package exodecorateur_angryballs.maladroit;
 
 import java.awt.Color;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.Vector;
 
@@ -9,7 +10,7 @@ import exodecorateur_angryballs.maladroit.modeleSolution.*;
 import mesmaths.geometrie.base.Vecteur;
 import musique.SonLong;
 import exodecorateur_angryballs.maladroit.modele.Bille;
-import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
+import exodecorateur_angryballs.maladroit.vues.CadreAngryBallsAWT;
 
 
 /**
@@ -46,7 +47,7 @@ Vector<Bille> billes = new Vector<Bille>();
 //---------------- creation de la vue responsable du dessin des billes -------------------------
 
 int choixHurlementInitial = 0;
-CadreAngryBalls cadre = new CadreAngryBalls("Angry balls",
+CadreAngryBallsAWT cadre = new CadreAngryBallsAWT("Angry balls",
                                         "Animation de billes ayant des comportements differents. Situation ideale pour mettre en place le DP Decorator",
                                         billes,hurlements, choixHurlementInitial);
 
@@ -86,10 +87,10 @@ v4 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
 
 //billes.add(new DecorateurRebond(new DecorateurCouleur(new DecorateurRU(new BilleConcrete(p1, rayon, v1, new Vecteur(0,0.001))),Color.YELLOW)));
 //billes.add(new DecorateurRebond(new DecorateurNewton(new BilleConcrete(p3, rayon*3, v1, new Vecteur(0,0.001)))));
-    billes.add(new DecorateurRebond(new BilleConcrete(new Vecteur(10,10), rayon, v1, new Vecteur(0,0.001))));
 
-    billes.add(new DecorateurRebond(new DecorateurNewton(new BilleConcrete(new Vecteur(200,200), rayon/2, v2, new Vecteur(0,0.001)))));
-
+    //billes.add(new DecorateurRebond(new DecorateurNewton(new BilleConcrete(new Vecteur(200,200), rayon/2, v2, new Vecteur(0,0.001)))));
+Bille B = new DecorateurHurlement(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(10,10), rayon, v1, new Vecteur(0,0.001))),Color.BLUE),hurlements[choixHurlementInitial],cadre);
+billes.add(B);
 
 /**
 billes.add(new      BilleMvtPesanteurFrottementRebond(p1, rayon, v1, new Vecteur(0,0.001), Color.yellow));
@@ -102,7 +103,8 @@ billes.add(billeNoire = new BilleHurlanteMvtNewtonArret(p4, rayon, v4,  Color.bl
 
 cadre.addChoixHurlementListener(billeNoire);  // e present on peut changer le son de la bille qui hurle
 */
-//---------------------- ici finit la partie e changer -------------------------------------------------------------
+    cadre.addChoixHurlementListener((ItemListener) B);
+    //---------------------- ici finit la partie e changer -------------------------------------------------------------
 
 System.out.println("billes = " + billes);
 

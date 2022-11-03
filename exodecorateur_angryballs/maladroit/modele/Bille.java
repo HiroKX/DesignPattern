@@ -21,6 +21,13 @@ public abstract class Bille {
 //----------------- classe Bille-------------------------------------
 
 
+    protected static int prochaineClef = 0;
+
+    public abstract int getCouleur();
+
+    public abstract void setCouleur(int couleur);
+
+
     public abstract Vecteur getPosition();
 
 
@@ -92,7 +99,6 @@ public abstract class Bille {
 
     /* cette methode engendre des clignotements : idee : utiliser l'active rendering et le double buffering pour eviter ea */
 
-    public abstract void dessine(Graphics g);   // reference awt : mauvais
 
 
 

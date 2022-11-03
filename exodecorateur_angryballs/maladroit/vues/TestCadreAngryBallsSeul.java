@@ -32,7 +32,7 @@ SonLong hurlements[] = SonLong.toTableau(sonsLongs); // on obtient un tableau de
   
 Vector<Bille> billes = new Vector<Bille>();
 int choixHurlementInitial = 0;
-CadreAngryBalls cadre =new CadreAngryBalls("angry balls", "animation de billes marrantes", billes, hurlements, choixHurlementInitial);
+CadreAngryBallsAWT cadre =new CadreAngryBallsAWT("angry balls", "animation de billes marrantes", billes, hurlements, choixHurlementInitial);
 cadre.montrer();
 }
 

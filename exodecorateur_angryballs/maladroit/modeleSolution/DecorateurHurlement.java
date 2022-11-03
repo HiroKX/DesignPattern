@@ -35,7 +35,6 @@ public class DecorateurHurlement extends DecorateurBille implements ItemListener
     @Override
     public void deplacer(double deltaT)
     {
-        super.deplacer(deltaT);
         Vecteur p = this.getPosition();
         Vecteur v = this.getVitesse();
         double xMax;
@@ -58,12 +57,12 @@ public class DecorateurHurlement extends DecorateurBille implements ItemListener
             this.sonLong.joue(i++, volume, balance, coeffPitch);            /* le son est diffuse dans un thread separe */
             this.dernierInstant= instant;
         }
-        this.deplacer(deltaT);
+        super.deplacer(deltaT);
     }
 
     @Override
     public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur) {
-
+        this.bille.collisionContour(abscisseCoinHautGauche,ordonneeCoinHautGauche,largeur,hauteur);
     }
 
     @Override

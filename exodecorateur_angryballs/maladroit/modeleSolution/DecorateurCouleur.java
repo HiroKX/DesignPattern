@@ -10,15 +10,15 @@ public class DecorateurCouleur extends DecorateurBille {
 
     public DecorateurCouleur(Bille b, Color couleur) {
         super(b);
-        this.couleur = couleur;
+        this.bille.setCouleur(couleur.getRGB());
     }
 
     @Override
     public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur) {
-
+        this.bille.collisionContour(abscisseCoinHautGauche,ordonneeCoinHautGauche,largeur,hauteur);
     }
 
     public String toString(){
-        return this.bille.toString() + " couleur = "+ couleur;
+        return this.bille.toString() + " couleur = "+this.getCouleur();
     }
 }

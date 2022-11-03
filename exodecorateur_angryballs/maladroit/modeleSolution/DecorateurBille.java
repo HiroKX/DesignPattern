@@ -15,6 +15,14 @@ public abstract class DecorateurBille extends Bille {
         this.bille = b;
     }
 
+    public int getCouleur() {
+        return this.bille.getCouleur();
+    }
+
+    public void setCouleur(int couleur) {
+        this.bille.setCouleur(couleur);
+    }
+
     @Override
     public Vecteur getPosition() {
         return this.bille.getPosition();
@@ -34,10 +42,6 @@ public abstract class DecorateurBille extends Bille {
         return this.bille.masse();
     }
 
-    @Override
-    public void dessine(Graphics g) {
-        this.bille.dessine(g);
-    }
 
     @Override
     public Vecteur getAcceleration(){

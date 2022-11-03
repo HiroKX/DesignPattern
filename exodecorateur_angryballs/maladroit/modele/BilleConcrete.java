@@ -12,11 +12,23 @@ public class BilleConcrete extends Bille {
 
     public Vecteur position;   // centre de la bille
     public double rayon;            // rayon > 0
+
+    public int couleur;
+
     public Vecteur vitesse;
     public Vecteur acceleration;
     public int clef;                // identifiant unique de cette bille
-    protected static int prochaineClef = 0;
     public static double ro = 1;        // masse volumique
+
+    @Override
+    public int getCouleur() {
+        return couleur;
+    }
+
+    @Override
+    public void setCouleur(int couleur) {
+        this.couleur = couleur;
+    }
 
     /**
      * @return the position
@@ -92,19 +104,4 @@ public class BilleConcrete extends Bille {
         return "centre = " + this.position + " rayon = " + this.rayon + " vitesse = " + this.vitesse + " acceleration = " + this.acceleration + "clef = " + this.clef;
     }
 
-    public void dessine(Graphics g)    // reference awt : mauvais
-    {
-        int width, height;
-        int xMin, yMin;
-
-        xMin = (int) Math.round(this.getPosition().x - this.getRayon());
-        yMin = (int) Math.round(this.getPosition().y - this.getRayon());
-
-        width = height = 2 * (int) Math.round(this.getRayon());
-
-        g.setColor(Color.BLACK);
-        g.fillOval(xMin, yMin, width, height);
-        g.setColor(Color.CYAN);
-        g.drawOval(xMin, yMin, width, height);
-    }
 }
