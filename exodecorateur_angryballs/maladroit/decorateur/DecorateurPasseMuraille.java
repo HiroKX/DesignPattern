@@ -1,4 +1,4 @@
-package exodecorateur_angryballs.maladroit.modeleSolution;
+package exodecorateur_angryballs.maladroit.decorateur;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
 import mesmaths.cinematique.Collisions;

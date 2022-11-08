@@ -2,6 +2,9 @@ package exodecorateur_angryballs.maladroit.vues;
 
 import java.awt.*;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.Observable;
 import java.util.Vector;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
@@ -100,6 +103,14 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
         for (i = 0; i < this.ligneBoutonsChoixHurlement.boutons.length; ++i)
             this.ligneBoutonsChoixHurlement.boutons[i].addItemListener(ecouteurChoixHurlant);
 
+    }
+
+    public void addMouseListener(MouseListener mouseListener) {
+        this.billard.addMouseListener(mouseListener);
+    }
+
+    public void addMouseMotionListener(MouseMotionListener mouseMotionListener){
+        this.billard.addMouseMotionListener(mouseMotionListener);
     }
 
 }

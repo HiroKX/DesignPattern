@@ -5,23 +5,19 @@ import java.awt.event.ActionListener;
 
 
 /**
- *  ICI : IL N'Y A RIEN A CHANGER 
- *  
- *  */
+ * ICI : IL N'Y A RIEN A CHANGER
+ */
 
-public class EcouteurBoutonArreter implements ActionListener
-{
-AnimationBilles animationBilles;
+public class EcouteurBoutonArreter implements ActionListener {
+    AnimationBilles animationBilles;
 
-public EcouteurBoutonArreter(AnimationBilles animationBilles)
-    {
-    this.animationBilles = animationBilles;
+    public EcouteurBoutonArreter(AnimationBilles animationBilles) {
+        this.animationBilles = animationBilles;
     }
 
-@Override
-public void actionPerformed(ActionEvent e)
-{
-this.animationBilles.arreterAnimation();
-}
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.animationBilles.arreterAnimation();
+    }
 
 }

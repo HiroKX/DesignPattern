@@ -1,5 +1,6 @@
 package exodecorateur_angryballs.maladroit;
 
+import java.util.Observable;
 import java.util.Vector;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
@@ -11,7 +12,7 @@ import exodecorateur_angryballs.maladroit.vues.VueBillard;
  * <p>
  * ICI : IL N'Y A RIEN A CHANGER
  */
-public class AnimationBilles implements Runnable {
+public class AnimationBilles extends Observable implements Runnable {
 
 
     Vector<Bille> billes;   // la liste de toutes les billes en mouvement
@@ -51,7 +52,7 @@ public class AnimationBilles implements Runnable {
                 for (i = 0; i < billes.size(); ++i)    // mise e jour de la liste des billes
                 {
                     billeCourante = billes.get(i);
-                    billeCourante.deplacer(deltaT);                 // mise e jour position et vitesse de cette bille
+                    billeCourante.getState().deplacer(deltaT);                 // mise e jour position et vitesse de cette bille
                     billeCourante.gestionAcceleration(billes);      // calcul de l'acceleration subie par cette bille
                     billeCourante.gestionCollisionBilleBille(billes);
                     billeCourante.collisionContour(0, 0, vueBillard.largeurBillard(), vueBillard.hauteurBillard());        //System.err.println("billes = " + billes);

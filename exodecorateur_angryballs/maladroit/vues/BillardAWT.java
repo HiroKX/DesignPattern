@@ -19,6 +19,7 @@ public class BillardAWT extends Canvas implements WindowVisitor {
 
     public BillardAWT(Vector<Bille> billes) {
         this.billes = billes;
+
     }
 
     /* (non-Javadoc)
@@ -45,7 +46,7 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         xMin = (int) Math.round(bille.getPosition().x - bille.getRayon());
         yMin = (int) Math.round(bille.getPosition().y - bille.getRayon());
         width = height = 2 * (int) Math.round(bille.getRayon());
-         graphics.setColor(new Color(bille.getCouleur()));
+        graphics.setColor(new Color(bille.getCouleur()));
         graphics.fillOval(xMin, yMin, width, height);
         graphics.setColor(Color.CYAN);
         graphics.drawOval(xMin, yMin, width, height);

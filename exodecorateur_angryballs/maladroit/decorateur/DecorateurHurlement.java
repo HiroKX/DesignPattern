@@ -1,4 +1,4 @@
-package exodecorateur_angryballs.maladroit.modeleSolution;
+package exodecorateur_angryballs.maladroit.decorateur;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
 import exodecorateur_angryballs.maladroit.vues.BoutonChoixHurlement;
@@ -58,11 +58,6 @@ public class DecorateurHurlement extends DecorateurBille implements ItemListener
             this.dernierInstant= instant;
         }
         super.deplacer(deltaT);
-    }
-
-    @Override
-    public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur) {
-        this.bille.collisionContour(abscisseCoinHautGauche,ordonneeCoinHautGauche,largeur,hauteur);
     }
 
     @Override

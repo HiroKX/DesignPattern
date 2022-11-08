@@ -1,10 +1,11 @@
 package exodecorateur_angryballs.maladroit.modele;
 
+import exodecorateur_angryballs.maladroit.state.BougeState;
+import exodecorateur_angryballs.maladroit.state.State;
 import mesmaths.cinematique.Cinematique;
 import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
-import java.awt.*;
 import java.util.Vector;
 
 public class BilleConcrete extends Bille {
@@ -74,6 +75,7 @@ public class BilleConcrete extends Bille {
         return ro * Geop.volumeSphère(rayon);
     }
     public BilleConcrete(Vecteur centre, double rayon, Vecteur vitesse, Vecteur acceleration) {
+        this.state = new BougeState(this);
         this.position = centre;
         this.rayon = rayon;
         this.vitesse = vitesse;
@@ -86,8 +88,9 @@ public class BilleConcrete extends Bille {
         Cinematique.mouvementUniformémentAccéléré(this.getPosition(), this.getVitesse(), this.getAcceleration(), deltaT);
     }
 
-    public void gestionAcceleration(Vector<Bille> billes) {
-
+    public Vecteur gestionAcceleration(Vector<Bille> billes) {
+        this.getAcceleration().set(new Vecteur(0,0));
+        return new Vecteur(0,0);
     }
 
     public BilleConcrete(Vecteur position, double rayon, Vecteur vitesse) {
@@ -99,7 +102,27 @@ public class BilleConcrete extends Bille {
 
     }
 
+    @Override
+    public void attraper() {
 
+    }
+
+    @Override
+    public void relacher(Vecteur acc) {
+
+    }
+
+    public void continuer(){
+
+    }
+
+    public State getState(){
+        return state;
+    }
+
+    public void setState(State state){
+        this.state =state;
+    }
     public String toString() {
         return "centre = " + this.position + " rayon = " + this.rayon + " vitesse = " + this.vitesse + " acceleration = " + this.acceleration + "clef = " + this.clef;
     }

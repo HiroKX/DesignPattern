@@ -1,15 +1,22 @@
-package exodecorateur_angryballs.maladroit.modeleSolution;
+package exodecorateur_angryballs.maladroit.decorateur;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
+import exodecorateur_angryballs.maladroit.state.State;
 import mesmaths.geometrie.base.Vecteur;
 
-import java.awt.*;
 import java.util.Vector;
 
 
 public abstract class DecorateurBille extends Bille {
 
     protected Bille bille;
+
+    public State getState(){
+        return this.bille.getState();
+    }
+    public void setState(State state){
+        this.bille.setState(state);
+    }
 
     public DecorateurBille(Bille b){
         this.bille = b;
@@ -42,7 +49,10 @@ public abstract class DecorateurBille extends Bille {
         return this.bille.masse();
     }
 
-
+    @Override
+    public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur){
+        this.bille.collisionContour(abscisseCoinHautGauche,ordonneeCoinHautGauche,largeur,hauteur);
+    }
     @Override
     public Vecteur getAcceleration(){
         return this.bille.getAcceleration();
@@ -65,12 +75,24 @@ public abstract class DecorateurBille extends Bille {
         this.bille.deplacer(deltaT);
     }
 
-    public void gestionAcceleration(Vector<Bille> billes) {
-        this.bille.gestionAcceleration(billes);
+    public Vecteur gestionAcceleration(Vector<Bille> billes) {
+        return this.bille.gestionAcceleration(billes);
     }
 
     public String toString(){
         return this.bille.toString();
+    }
+
+    public void attraper(){
+        this.bille.attraper();
+    }
+
+    public void continuer(){
+        this.bille.continuer();
+    }
+
+    public void relacher(Vecteur acc){
+        this.bille.relacher(acc);
     }
 
 }

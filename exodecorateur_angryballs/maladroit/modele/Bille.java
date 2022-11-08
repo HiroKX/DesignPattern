@@ -1,8 +1,8 @@
 package exodecorateur_angryballs.maladroit.modele;
 
-import java.awt.*;
 import java.util.Vector;
 
+import exodecorateur_angryballs.maladroit.state.State;
 import mesmaths.geometrie.base.Vecteur;
 
 
@@ -22,6 +22,8 @@ public abstract class Bille {
 
 
     protected static int prochaineClef = 0;
+
+    public State state;
 
     public abstract int getCouleur();
 
@@ -48,6 +50,10 @@ public abstract class Bille {
 
     public abstract double masse();
 
+    public abstract State getState();
+
+    public abstract void setState(State state);
+
     /**
      * @return the clef
      */
@@ -69,8 +75,10 @@ public abstract class Bille {
      * Cette methode peut avoir besoin de "billes" si this subit l'attraction gravitationnelle des autres billes
      * La nature du calcul du vecteur acceleration de la bille  est definie dans les classes derivees
      * A ce niveau le vecteur acceleration est mis e zero (c'est e dire pas d'acceleration)
+     *
+     * @return
      */
-    public abstract void gestionAcceleration(Vector<Bille> billes);
+    public abstract Vecteur gestionAcceleration(Vector<Bille> billes);
 
     /**
      * gestion de l'eventuelle  collision de cette bille avec les autres billes
@@ -95,6 +103,13 @@ public abstract class Bille {
      * La nature du comportement de la bille en reponse e cette collision est definie dans les classes derivees
      */
     public abstract void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur);
+
+    public abstract void attraper();
+
+
+    public abstract void relacher(Vecteur acc);
+
+    public abstract void continuer();
 
 
     /* cette methode engendre des clignotements : idee : utiliser l'active rendering et le double buffering pour eviter ea */
