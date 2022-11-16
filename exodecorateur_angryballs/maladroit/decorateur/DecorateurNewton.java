@@ -14,7 +14,7 @@ public class DecorateurNewton extends DecorateurBille{
     @Override
     public Vecteur gestionAcceleration(Vector<Bille> billes)
     {
-        this.getAcceleration().ajoute(this.bille.gestionAcceleration(billes));
+        super.gestionAcceleration(billes);
         this.getAcceleration().ajoute(OutilsBille.gestionAccelerationNewton(this.bille, billes));     // contribution de l'acceleration due à l'attraction des autres billes
         return this.getAcceleration();
     }

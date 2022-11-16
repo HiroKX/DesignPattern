@@ -1,6 +1,7 @@
 package exodecorateur_angryballs.maladroit.state;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
+import mesmaths.geometrie.base.Vecteur;
 
 public class BougeState extends State{
     public BougeState(Bille b) {
@@ -8,7 +9,8 @@ public class BougeState extends State{
     }
 
     @Override
-    public void deplacer(double delta) {
-        this.b.deplacer(delta);
+    public void traiterCasGeneral(Vecteur v) {
+
     }
+
 }

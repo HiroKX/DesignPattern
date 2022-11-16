@@ -2,6 +2,7 @@ package exodecorateur_angryballs.maladroit.modele;
 
 import java.util.Vector;
 
+import exodecorateur_angryballs.maladroit.Event.ControlleurGeneral;
 import exodecorateur_angryballs.maladroit.state.State;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -94,6 +95,8 @@ public abstract class Bille {
         return OutilsBille.gestionCollisionBilleBille(this, billes);
     }
 
+    public abstract ControlleurGeneral getControlleurGeneral();
+
 
     /**
      * gestion de l'eventuelle collision de la bille (this) avec le contour rectangulaire de l'ecran defini par (abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur)
@@ -103,14 +106,6 @@ public abstract class Bille {
      * La nature du comportement de la bille en reponse e cette collision est definie dans les classes derivees
      */
     public abstract void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur);
-
-    public abstract void attraper();
-
-
-    public abstract void relacher(Vecteur acc);
-
-    public abstract void continuer();
-
 
     /* cette methode engendre des clignotements : idee : utiliser l'active rendering et le double buffering pour eviter ea */
 

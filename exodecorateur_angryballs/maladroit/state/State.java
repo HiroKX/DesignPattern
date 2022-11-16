@@ -1,6 +1,7 @@
 package exodecorateur_angryballs.maladroit.state;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
+import mesmaths.geometrie.base.Vecteur;
 
 public abstract class State {
 
@@ -10,6 +11,6 @@ public abstract class State {
         this.b=b;
     }
 
-    public abstract void deplacer(double delta);
+    public abstract void traiterCasGeneral(Vecteur v);
 
 }

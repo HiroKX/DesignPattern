@@ -1,5 +1,6 @@
 package exodecorateur_angryballs.maladroit.decorateur;
 
+import exodecorateur_angryballs.maladroit.Event.ControlleurGeneral;
 import exodecorateur_angryballs.maladroit.modele.Bille;
 import exodecorateur_angryballs.maladroit.state.State;
 import mesmaths.geometrie.base.Vecteur;
@@ -70,29 +71,22 @@ public abstract class DecorateurBille extends Bille {
         this.bille = bille;
     }
 
+    public ControlleurGeneral getControlleurGeneral(){
+        return this.bille.getControlleurGeneral();
+    }
+
     @Override
     public void deplacer(double deltaT) {
         this.bille.deplacer(deltaT);
     }
 
     public Vecteur gestionAcceleration(Vector<Bille> billes) {
+        this.getAcceleration().ajoute(this.bille.gestionAcceleration(billes));
         return this.bille.gestionAcceleration(billes);
     }
 
     public String toString(){
         return this.bille.toString();
-    }
-
-    public void attraper(){
-        this.bille.attraper();
-    }
-
-    public void continuer(){
-        this.bille.continuer();
-    }
-
-    public void relacher(Vecteur acc){
-        this.bille.relacher(acc);
     }
 
 }

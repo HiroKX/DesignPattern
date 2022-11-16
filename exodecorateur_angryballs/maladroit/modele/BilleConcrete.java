@@ -1,5 +1,6 @@
 package exodecorateur_angryballs.maladroit.modele;
 
+import exodecorateur_angryballs.maladroit.Event.ControlleurGeneral;
 import exodecorateur_angryballs.maladroit.state.BougeState;
 import exodecorateur_angryballs.maladroit.state.State;
 import mesmaths.cinematique.Cinematique;
@@ -13,14 +14,11 @@ public class BilleConcrete extends Bille {
 
     public Vecteur position;   // centre de la bille
     public double rayon;            // rayon > 0
-
     public int couleur;
-
     public Vecteur vitesse;
     public Vecteur acceleration;
     public int clef;                // identifiant unique de cette bille
     public static double ro = 1;        // masse volumique
-
     @Override
     public int getCouleur() {
         return couleur;
@@ -55,6 +53,12 @@ public class BilleConcrete extends Bille {
     }
 
 
+    public ControlleurGeneral getControlleurGeneral(){
+        return null;
+    }
+
+
+
     /**
      * @return the acceleration
      */
@@ -72,7 +76,7 @@ public class BilleConcrete extends Bille {
 
 
     public double masse() {
-        return ro * Geop.volumeSphère(rayon);
+        return ro * Math.PI*(rayon*rayon);
     }
     public BilleConcrete(Vecteur centre, double rayon, Vecteur vitesse, Vecteur acceleration) {
         this.state = new BougeState(this);
@@ -101,21 +105,6 @@ public class BilleConcrete extends Bille {
     public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur) {
 
     }
-
-    @Override
-    public void attraper() {
-
-    }
-
-    @Override
-    public void relacher(Vecteur acc) {
-
-    }
-
-    public void continuer(){
-
-    }
-
     public State getState(){
         return state;
     }

@@ -1,8 +1,7 @@
 package exodecorateur_angryballs.maladroit.decorateur;
 
+import exodecorateur_angryballs.maladroit.Event.ControlleurGeneral;
 import exodecorateur_angryballs.maladroit.modele.Bille;
-import exodecorateur_angryballs.maladroit.state.ArretState;
-import exodecorateur_angryballs.maladroit.state.BougeState;
 import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
@@ -11,29 +10,39 @@ public class DecorateurAttraper extends DecorateurBille{
 
     Vecteur influence;
 
+    ControlleurGeneral controlleurGeneral;
+
+    boolean attraper;
+
     public DecorateurAttraper(Bille b){
         super(b);
         this.influence = Vecteur.VECTEURNUL;
+        this.controlleurGeneral = new ControlleurGeneral(this);
     }
 
     @Override
     public Vecteur gestionAcceleration(Vector<Bille> billes){
-        this.getAcceleration().ajoute(this.bille.gestionAcceleration(billes));
-        this.getAcceleration().ajoute(this.influence);
+        super.gestionAcceleration(billes);
+        //this.getAcceleration().ajoute(this.influence);
         return this.getAcceleration();
     }
 
+    public ControlleurGeneral getControlleurGeneral(){
 
-    @Override
-    public void relacher(Vecteur acc){
-        this.setState( new BougeState(this.bille));
-        this.influence = acc;
-        //this.attraper = false;
+        return this.controlleurGeneral;
     }
 
-    @Override
-    public void attraper(){
-        this.setState( new ArretState(this.bille));
-        this.influence = Vecteur.VECTEURNUL;
+    public void attrape(){
+        this.attraper = true;
+        this.setCouleur(-32000);
+    }
+
+    public boolean isAttraper(){
+        return attraper;
+    }
+
+    public void relacher(){
+        this.attraper=false;
+        this.setCouleur(-255);
     }
 }

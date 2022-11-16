@@ -19,6 +19,8 @@ public class AnimationBilles extends Observable implements Runnable {
     VueBillard vueBillard;    // la vue responsable du dessin des billes
     private Thread thread;    // pour lancer et arreter les billes
 
+    private double tPrec;
+
 
     private static final double COEFF = 0.5;
 
@@ -30,41 +32,46 @@ public class AnimationBilles extends Observable implements Runnable {
         this.billes = billes;
         this.vueBillard = vueBillard;
         this.thread = null;     //est-ce utile ?
+
     }
 
     @Override
     public void run() {
-        try {
-            double deltaT;  // delai entre 2 mises e jour de la liste des billes
-            Bille billeCourante;
+        tPrec = System.currentTimeMillis();
+        double deltaT;  // delai entre 2 mises e jour de la liste des billes
+        Bille billeCourante;
 
-            double minRayons = AnimationBilles.minRayons(billes);   //necessaire au calcul de deltaT
-            double minRayons2 = minRayons * minRayons;                //necessaire au calcul de deltaT
+        double minRayons = AnimationBilles.minRayons(billes);   //necessaire au calcul de deltaT
+        double minRayons2 = minRayons * minRayons;                //necessaire au calcul de deltaT
 
-            while (!Thread.interrupted())                           // gestion du mouvement
+        while (!Thread.interrupted())                           // gestion du mouvement
+        {
+            double t = System.currentTimeMillis();//Temps en secondes
+            //deltaT = COEFF*minRayons2/(1+maxVitessesCarrees(billes));       // mise e jour deltaT. L'addition + 1 est une astuce pour eviter les divisions par zero
+
+            //System.err.println("deltaT = " + deltaT);
+            deltaT = t - tPrec;
+            tPrec = t;
+            //deltaT = 10;
+
+            int i;
+            for (i = 0; i < billes.size(); ++i)    // mise e jour de la liste des billes
             {
-                //deltaT = COEFF*minRayons2/(1+maxVitessesCarrees(billes));       // mise e jour deltaT. L'addition + 1 est une astuce pour eviter les divisions par zero
-
-                //System.err.println("deltaT = " + deltaT);
-                deltaT = 10;
-
-                int i;
-                for (i = 0; i < billes.size(); ++i)    // mise e jour de la liste des billes
-                {
-                    billeCourante = billes.get(i);
-                    billeCourante.getState().deplacer(deltaT);                 // mise e jour position et vitesse de cette bille
-                    billeCourante.gestionAcceleration(billes);      // calcul de l'acceleration subie par cette bille
-                    billeCourante.gestionCollisionBilleBille(billes);
-                    billeCourante.collisionContour(0, 0, vueBillard.largeurBillard(), vueBillard.hauteurBillard());        //System.err.println("billes = " + billes);
-                }
-
-                vueBillard.miseAJour();                                // on previent la vue qu'il faut redessiner les billes
-
-
-                Thread.sleep((int) deltaT);                          // deltaT peut etre considere comme le delai entre 2 flashes d'un stroboscope qui eclairerait la scene
+                billeCourante = billes.get(i);
+                billeCourante.deplacer(deltaT);                 // mise e jour position et vitesse de cette bille
+                billeCourante.gestionAcceleration(billes);      // calcul de l'acceleration subie par cette bille
+                billeCourante.gestionCollisionBilleBille(billes);
+                billeCourante.collisionContour(0, 0, vueBillard.largeurBillard(), vueBillard.hauteurBillard());        //System.err.println("billes = " + billes);
             }
-        } catch (InterruptedException e) {
-            /* arret normal, il n'y a rien e faire dans ce cas */
+
+            vueBillard.miseAJour();                                // on previent la vue qu'il faut redessiner les billes
+
+
+            try {
+                Thread.sleep(1);                          // deltaT peut etre considere comme le delai entre 2 flashes d'un stroboscope qui eclairerait la scene
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
     }
