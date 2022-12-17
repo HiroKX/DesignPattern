@@ -98,10 +98,8 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
 
     public void addChoixHurlementListener(ItemListener ecouteurChoixHurlant) {
         int i;
-
         for (i = 0; i < this.ligneBoutonsChoixHurlement.boutons.length; ++i)
             this.ligneBoutonsChoixHurlement.boutons[i].addItemListener(ecouteurChoixHurlant);
-
     }
 
     public void addMouseListener(MouseListener mouseListener) {

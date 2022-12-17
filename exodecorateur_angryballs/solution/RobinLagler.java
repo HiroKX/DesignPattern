@@ -4,6 +4,8 @@ package exodecorateur_angryballs.solution;
 import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
+import java.util.Observable;
+
 public class RobinLagler {
     static double EPSILON = 1.0E-6;
     public static double A;

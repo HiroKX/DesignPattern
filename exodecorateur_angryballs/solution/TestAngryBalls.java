@@ -1,7 +1,9 @@
 package exodecorateur_angryballs.solution;
 
 import java.awt.Color;
+import java.awt.event.ItemListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.Vector;
 
 import exodecorateur_angryballs.solution.modele.BilleConcrete;
@@ -10,6 +12,10 @@ import mesmaths.geometrie.base.Vecteur;
 import musique.SonLong;
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.vues.CadreAngryBallsAWT;
+import musique.javax.SonLongJavax;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 
 /**
@@ -34,7 +40,12 @@ public class TestAngryBalls {
 //-------------------- chargement des sons pour les hurlements --------------------------------------
 
         Vector<SonLong> sonsLongs = OutilsConfigurationBilleHurlante.chargeSons(repertoireSon, "config_audio_bille_hurlante.txt");
-
+        SonLong billebille;
+        try {
+            billebille = SonLongJavax.crée(repertoireSon, "collision_bille_bille 0 2000 200");
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+            throw new RuntimeException(e);
+        }
         SonLong[] hurlements = SonLong.toTableau(sonsLongs);                // on obtient un tableau de SonLong
 
 //------------------- creation de la liste (pour l'instant vide) des billes -----------------------
@@ -60,7 +71,7 @@ public class TestAngryBalls {
 
         double rayon = 0.05 * Math.min(xMax, yMax); // rayon des billes : ici toutes les billes ont le meme rayon, mais ce n'est pas obligatoire
 
-        Vecteur p0, p1, p2, p3, p4, v0, v1, v2, v3, v4;    // les positions des centres des billes et les vecteurs vitesse au demarrage.
+        Vecteur p0, p1, p2, p3, p4, v0, v1, v2, v3, v4, v5;    // les positions des centres des billes et les vecteurs vitesse au demarrage.
         // Elles vont etre choisies aleatoirement
 
 //------------------- creation des vecteurs position des billes ---------------------------------
@@ -78,34 +89,31 @@ public class TestAngryBalls {
         v2 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
         v3 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
         v4 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
+        v5 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
 
 //--------------- ici commence la partie e changer ---------------------------------
-        DecorateurAttraper b = new DecorateurAttraper(new DecorateurCollision(new DecorateurBloqueBord(new DecorateurPesanteur(new DecorateurFrottement(new DecorateurCouleur(new BilleConcrete(p1, rayon*2, v1, new Vecteur(0,0.0001)),Color.GREEN),4.5),new Vecteur(0,0.001)))));
+        DecorateurAttraper b = new DecorateurAttraper(new DecorateurCollision(new DecorateurBloqueBord(new DecorateurPesanteur(new DecorateurFrottement(new DecorateurCouleur(new BilleConcrete(p1, rayon * 2, v1, new Vecteur(0, 0.0001)), Color.GREEN), 4.5), new Vecteur(0, 0.001)))));
         billes.add(b);
-        DecorateurAttraper b2 = new DecorateurAttraper(new DecorateurSonCollision(new DecorateurFrottement(new DecorateurRebond(new DecorateurBloqueBord(new DecorateurPesanteur(new DecorateurCouleur(new BilleConcrete(p2, rayon, v2, new Vecteur(0,0.0001)),Color.RED),new Vecteur(0,0.001)))),8), hurlements[choixHurlementInitial],cadre));
+        DecorateurSonCollision b2 = new DecorateurSonCollision(new DecorateurFrottement(new DecorateurRebond(new DecorateurBloqueBord(new DecorateurPesanteur(new DecorateurCouleur(new BilleConcrete(p2, rayon, v2, new Vecteur(0, 0.0001)), Color.RED), new Vecteur(0, 0.001)))), 8), billebille, cadre);
+        DecorateurAttraper b3 = new DecorateurAttraper(b2); //Séparer pour pouvoir faire les ajouts de listener.
 
-        //Bille b2 =  new DecorateurSonMur(new DecorateurAttraper(new DecorateurBloqueBord(new DecorateurFrottement(new DecorateurCouleur(new BilleConcrete(p0, rayon, v0, new Vecteur(0,0.0001)),Color.RED),4.5))), hurlements[choixHurlementInitial], cadre);
+        billes.add(b3);
 
-        billes.add(b2);        //billes.add(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(p0, rayon, v0)), Color.RED));
-        //DecorateurAttraper b3= new DecorateurAttraper(new DecorateurBloqueBord(new DecorateurPesanteur(new DecorateurFrottement(new DecorateurCouleur(new BilleConcrete(p3, rayon*2, v3, new Vecteur(0,0.0001)),Color.YELLOW),4.5),new Vecteur(0,0.001))));
-        //billes.add(b3);
-        //billes.add(new DecorateurCouleur(new DecorateurRebond(new DecorateurFrottement(new DecorateurPesanteur(new BilleConcrete(p2, rayon, v2),new Vecteur(0,0.001)),4.5)), Color.GREEN));
-        //billes.add(new DecorateurCouleur(new DecorateurRebond(new DecorateurFrottement(new DecorateurPesanteur(new BilleConcrete(p3, rayon, v3),new Vecteur(0,0.001)),10)), Color.RED));
+        DecorateurSonCollision b6  = new DecorateurSonCollision(new DecorateurFrottement(new DecorateurRebond(new DecorateurBloqueBord(new DecorateurPesanteur(new DecorateurCouleur(new BilleConcrete(p0, rayon, v3, new Vecteur(0, 0.0001)), Color.RED), new Vecteur(0, 0.001)))), 8), billebille, cadre);
 
-        //billes.add(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(p0, rayon, v0)), Color.RED));
-         //billes.add(new DecorateurCouleur(new DecorateurPesanteur(new DecorateurFrottement(new DecorateurRebond(new BilleConcrete(p1, rayon, v1)),100), new Vecteur(0, 0.001)), Color.YELLOW));
-         //billes.add(new DecorateurCouleur(new DecorateurRebond(new DecorateurFrottement(new DecorateurNewton(new BilleConcrete(p2, rayon, v2)),0.001)), Color.GREEN));
-        //billes.add(new DecorateurPasseMuraille(new DecorateurCouleur(new BilleConcrete(p3, rayon, v3), Color.BLUE)));
-        //Bille B = new DecorateurHurlement(new DecorateurCouleur(new DecorateurBloqueBord(new DecorateurNewton(new BilleConcrete(p4, rayon, v4))), Color.black), hurlements[choixHurlementInitial], cadre);
-        //billes.add(B);
+        DecorateurSonCollision b4 = new DecorateurSonCollision(new DecorateurFrottement(new DecorateurRebond(new DecorateurBloqueBord(new DecorateurPesanteur(new DecorateurCouleur(new BilleConcrete(p3, rayon, v4, new Vecteur(0, 0.0001)), Color.RED), new Vecteur(0, 0.001)))), 8), billebille, cadre);
 
-        //cadre.addChoixHurlementListener((ItemListener) B);
-        //cadre.addChoixHurlementListener((ItemListener) b2);
-        //MouseFollower mf = new MouseFollower();
+        DecorateurSonCollision b5= new DecorateurSonCollision(new DecorateurFrottement(new DecorateurRebond(new DecorateurBloqueBord(new DecorateurPesanteur(new DecorateurCouleur(new BilleConcrete(p4, rayon, v5, new Vecteur(0, 0.0001)), Color.RED), new Vecteur(0, 0.001)))), 8), billebille, cadre);
+        billes.add(b4);
+        billes.add(b5);
+        billes.add(b6);
+
+        cadre.addChoixHurlementListener(b2);//Nécessaire pour le changement de son peut être un observer/observable
+
         cadre.addMouseMotionListener(b.getControlleurGeneral());//En faite c'est bon comme ça (vu avec le prof)
         cadre.addMouseListener(b.getControlleurGeneral());
-        cadre.addMouseMotionListener(b2.getControlleurGeneral());
-        cadre.addMouseListener(b2.getControlleurGeneral());
+        cadre.addMouseMotionListener(b3.getControlleurGeneral());
+        cadre.addMouseListener(b3.getControlleurGeneral());
         //---------------------- ici finit la partie e changer -------------------------------------------------------------
 
         System.out.println("billes = " + billes);

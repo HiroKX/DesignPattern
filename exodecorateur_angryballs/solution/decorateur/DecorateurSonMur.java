@@ -13,7 +13,7 @@ public class DecorateurSonMur extends DecorateurBille implements ItemListener {
 
     private static final int DELAI_MIN = 10;    /* delai minimum de rafraichissement du son. en millisecondes */
     public static final int DELAI_MAX = 150;    /* delai maximum de rafraichissement du son. en millisecondes */
-    public SonLong sonLong;                            /* bande son e diffuser */
+    public SonLong sonLong;                        /* bande son e diffuser */
     int i;              /* ne de l'element de sonLong e jouer. on doit avoir i >= 0.
                     sonLong se charge de faire le modulo pour obtenir un indice correct
                     et pour boucler ainsi sur le tableau inscrit dans sonLong */
