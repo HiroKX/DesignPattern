@@ -32,6 +32,8 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
         Outils.place(this, 0.33, 0.33, 0.5, 0.5);
         this.ecouteurTerminaison = new EcouteurTerminaison(this);
 
+        this.setIgnoreRepaint(true);
+        //this.setMinimumSize(new Dimension(500, 500));
 
         this.haut = new Panel();
         this.haut.setBackground(Color.LIGHT_GRAY);
@@ -48,8 +50,8 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
         this.presentation.setEditable(false);
         this.haut.add(this.presentation);
 
-        this.billard = new BillardAWT(billes);
-        this.add(this.billard);
+
+
 
 //------------------- placement des composants du bas du cadre -------------------------------
 
@@ -73,6 +75,11 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
         this.ligneBoutonsChoixHurlement = new PanneauChoixHurlement(hurlements, choixHurlementInitial);
         this.bas.add(this.ligneBoutonsChoixHurlement);
 
+//---------------- placement du billard -----------------------------------------------------
+        this.billard = new BillardAWT(billes);
+        this.add(this.billard);
+        this.montrer();
+        this.billard.initBuffer();
     }
 
     public double largeurBillard() {
@@ -85,7 +92,8 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
 
     @Override
     public void miseAJour() {
-        this.billard.repaint();
+        //this.billard.repaint();
+        this.billard.myRenderingLoop();
     }
 
     /* (non-Javadoc)

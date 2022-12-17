@@ -1,6 +1,8 @@
 package exodecorateur_angryballs.solution.vues;
 
 import java.awt.*;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 import exodecorateur_angryballs.solution.modele.Bille;
@@ -16,26 +18,56 @@ import exodecorateur_angryballs.solution.visiteur.WindowVisitor;
 public class BillardAWT extends Canvas implements WindowVisitor {
     Vector<Bille> billes;
     Graphics graphics;
+    BufferStrategy buffer;
+    GraphicsEnvironment ge;
+    GraphicsDevice gd;
+    GraphicsConfiguration gc;
+    BufferedImage bi;
 
     public BillardAWT(Vector<Bille> billes) {
+        this.setIgnoreRepaint(true);
         this.billes = billes;
 
+        ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        gd = ge.getDefaultScreenDevice();
+        gc = gd.getDefaultConfiguration();
+
+        // Create off-screen drawing surface
+        bi = gc.createCompatibleImage(500, 500);
     }
 
-    /* (non-Javadoc)
-     * @see java.awt.Canvas#paint(java.awt.Graphics)
-     */
-    @Override
-    public void paint(Graphics graphics) {
-        int i;
-
-        for (i = 0; i < this.billes.size(); ++i){
-            //this.billes.get(i).dessine(graphics);
-            this.graphics = graphics;
-            this.visit(this.billes.get(i));
+    public void initBuffer(){
+        try {
+            this.createBufferStrategy(2);
+            Thread.sleep(150);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+        this.buffer = this.getBufferStrategy();
+    }
 
-        //System.out.println("billes dans le billard = " + billes);
+    public void myRenderingLoop() {
+           try {
+               this.graphics = this.buffer.getDrawGraphics();
+               // Nettoyage de l'ecran
+
+               //graphics = bi.createGraphics();
+               graphics.setColor(Color.WHITE);
+               graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+               //graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+
+               for (Bille bille : this.billes) {
+                   this.graphics = this.buffer.getDrawGraphics();
+                   this.visit(bille);
+               }
+
+               if(!this.buffer.contentsLost())
+                   this.buffer.show();
+              }finally {
+                if(this.graphics != null)
+                     this.graphics.dispose();
+           }
     }
 
     @Override
