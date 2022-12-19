@@ -1,6 +1,9 @@
 package exodecorateur_angryballs.solution;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Objects;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
 
 import exodecorateur_angryballs.solution.modele.Bille;
@@ -12,27 +15,68 @@ import exodecorateur_angryballs.solution.vues.VueBillard;
  * <p>
  * ICI : IL N'Y A RIEN A CHANGER
  */
-public class AnimationBilles extends Observable implements Runnable {
-
-
-    Vector<Bille> billes;   // la liste de toutes les billes en mouvement
-    VueBillard vueBillard;    // la vue responsable du dessin des billes
-    private Thread thread;    // pour lancer et arreter les billes
-
-    private double tPrec;
+public class AnimationBilles implements Runnable {
 
 
     private static final double COEFF = 0.5;
+    Vector<Bille> billes;   // la liste de toutes les billes en mouvement
+    VueBillard vueBillard;    // la vue responsable du dessin des billes
+    private Thread thread;    // pour lancer et arreter les billes
+    private double tPrec;
 
     /**
-     * @param billes
-     * @param vueBillard
+     * @param billes la liste de toutes les billes
+     * @param vueBillard la vue responsable du dessin des billes
      */
     public AnimationBilles(Vector<Bille> billes, VueBillard vueBillard) {
         this.billes = billes;
         this.vueBillard = vueBillard;
         this.thread = null;     //est-ce utile ?
+        // Affiche les billes avant le lancement de l'animation
+        this.vueBillard.miseAJour();
+    }
 
+    /**
+     * calcule le maximum de de la norme carree (pour faire moins de calcul) des vecteurs vitesse de la liste de billes
+     */
+    static double maxVitessesCarrees(Vector<Bille> billes) {
+        double vitesse2Max = 0;
+
+        int i;
+        double vitesse2Courante;
+
+        for (i = 0; i < billes.size(); ++i)
+            if ((vitesse2Courante = billes.get(i).getVitesse().normeCarrée()) > vitesse2Max)
+                vitesse2Max = vitesse2Courante;
+
+        return vitesse2Max;
+    }
+
+    /**
+     * calcule le minimum  des rayons de a liste des billes
+     */
+    static double minRayons(Vector<Bille> billes) {
+        double rayonMin, rayonCourant;
+
+        rayonMin = Double.MAX_VALUE;
+
+        int i;
+        for (i = 0; i < billes.size(); ++i)
+            if ((rayonCourant = billes.get(i).getRayon()) < rayonMin)
+                rayonMin = rayonCourant;
+
+        return rayonMin;
+    }
+
+    // Change les billes, utilisé pour changer de scénario
+    public void setBilles(Vector<Bille> billes) {
+            // On remplace les billes
+            this.billes = billes;
+            // On arrête l'animation pour fermer le thread si ce n'est pas déjà fait
+            this.arreterAnimation();
+            // On change les billes dans la vue du billard
+            this.vueBillard.changeScenario(billes);
+            this.vueBillard.miseAJour();
     }
 
     @Override
@@ -70,44 +114,11 @@ public class AnimationBilles extends Observable implements Runnable {
             try {
                 Thread.sleep(1);                          // deltaT peut etre considere comme le delai entre 2 flashes d'un stroboscope qui eclairerait la scene
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+               throw new RuntimeException(e);
             }
         }
 
     }
-
-    /**
-     * calcule le maximum de de la norme carree (pour faire moins de calcul) des vecteurs vitesse de la liste de billes
-     */
-    static double maxVitessesCarrees(Vector<Bille> billes) {
-        double vitesse2Max = 0;
-
-        int i;
-        double vitesse2Courante;
-
-        for (i = 0; i < billes.size(); ++i)
-            if ((vitesse2Courante = billes.get(i).getVitesse().normeCarrée()) > vitesse2Max)
-                vitesse2Max = vitesse2Courante;
-
-        return vitesse2Max;
-    }
-
-    /**
-     * calcule le minimum  des rayons de a liste des billes
-     */
-    static double minRayons(Vector<Bille> billes) {
-        double rayonMin, rayonCourant;
-
-        rayonMin = Double.MAX_VALUE;
-
-        int i;
-        for (i = 0; i < billes.size(); ++i)
-            if ((rayonCourant = billes.get(i).getRayon()) < rayonMin)
-                rayonMin = rayonCourant;
-
-        return rayonMin;
-    }
-
 
     public void lancerAnimation() {
         if (this.thread == null) {

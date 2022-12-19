@@ -19,21 +19,10 @@ public class BillardAWT extends Canvas implements WindowVisitor {
     Vector<Bille> billes;
     Graphics graphics;
     BufferStrategy buffer;
-    GraphicsEnvironment ge;
-    GraphicsDevice gd;
-    GraphicsConfiguration gc;
-    BufferedImage bi;
 
     public BillardAWT(Vector<Bille> billes) {
         this.setIgnoreRepaint(true);
         this.billes = billes;
-
-        ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        gd = ge.getDefaultScreenDevice();
-        gc = gd.getDefaultConfiguration();
-
-        // Create off-screen drawing surface
-        bi = gc.createCompatibleImage(500, 500);
     }
 
     public void initBuffer(){
@@ -48,14 +37,10 @@ public class BillardAWT extends Canvas implements WindowVisitor {
 
     public void myRenderingLoop() {
            try {
-               this.graphics = this.buffer.getDrawGraphics();
                // Nettoyage de l'ecran
-
-               //graphics = bi.createGraphics();
+               this.graphics = this.buffer.getDrawGraphics();
                graphics.setColor(Color.WHITE);
                graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-               //graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
-
 
                for (Bille bille : this.billes) {
                    this.graphics = this.buffer.getDrawGraphics();
@@ -82,6 +67,7 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         graphics.fillOval(xMin, yMin, width, height);
         graphics.setColor(Color.CYAN);
         graphics.drawOval(xMin, yMin, width, height);
+        graphics.drawString(bille.getClef()+"", (xMin+width/2)-3, (yMin+height/2)+5);
     }
 
 }

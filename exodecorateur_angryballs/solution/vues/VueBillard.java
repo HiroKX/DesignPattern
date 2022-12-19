@@ -1,6 +1,10 @@
 package exodecorateur_angryballs.solution.vues;
 
 
+import exodecorateur_angryballs.solution.modele.Bille;
+import java.util.Vector;
+
+
 /**
  * contrat respecte par toute vue capable de dessiner la liste des billes
  * 
@@ -20,4 +24,6 @@ public double hauteurBillard();
 public void miseAJour();
 
 public void montrer();
+
+public void changeScenario(Vector<Bille> billes);
 }

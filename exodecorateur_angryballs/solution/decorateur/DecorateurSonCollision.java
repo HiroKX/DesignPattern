@@ -11,7 +11,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Vector;
 
-public class DecorateurSonCollision extends DecorateurBille implements ItemListener{
+public class DecorateurSonCollision extends DecorateurBille{
 
     private static final int DELAI_MIN = 10;    /* delai minimum de rafraichissement du son. en millisecondes */
     public static final int DELAI_MAX = 150;    /* delai maximum de rafraichissement du son. en millisecondes */
@@ -41,7 +41,7 @@ public class DecorateurSonCollision extends DecorateurBille implements ItemListe
         if(temp){
             Vecteur p = this.getPosition();
             Vecteur v = this.getVitesse();
-            double a = RobinLagler.A;//TODO : observer et observable (ici observer et la bas observable) a set dans le main Mais, la méthode est static de collision, donc quel interet ?
+            double a = RobinLagler.A;
             double volume =  1-Math.exp(-a);
             double n = v.norme();
             double y = Math.exp(-COEFF_VOLUME*n);                // y = e^(-COEFF*n). on obtient donc 0 < y <= 1
@@ -57,16 +57,4 @@ public class DecorateurSonCollision extends DecorateurBille implements ItemListe
         }
         return temp;
     }
-
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-
-        System.err.println(e.getSource());
-        if (e.getSource() instanceof BoutonChoixHurlement) {
-            BoutonChoixHurlement boutonChoixHurlement = (BoutonChoixHurlement) (e.getSource());
-            this.sonLong = boutonChoixHurlement.sonLong;
-            System.out.println(this.sonLong);//System.err.println("dans BilleHurlanteMvtNewtonArret.itemStateChanged");
-        }
-    }
-
 }

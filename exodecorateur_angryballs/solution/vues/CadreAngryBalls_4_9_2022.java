@@ -72,6 +72,9 @@ this.billard.repaint();
 /* (non-Javadoc)
  * @see exodecorateur.vues.VueBillard#montrer()
  */
+public void changeScenario(Vector<Bille> billes){
+
+}
 @Override
 public void montrer()
 {

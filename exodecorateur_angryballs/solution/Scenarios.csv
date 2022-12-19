@@ -1,0 +1,7 @@
+﻿Nom;Rayon;DecorateurCouleur;DecorateurBloqueBord;DecorateurCollision;DecorateurFrottement;DecorateurHurlement;DecorateurNewton;DecorateurPasseMuraille;DecorateurPesanteur;DecorateurRebond;DecorateurAttraper;DecorateurSonCollision;DecorateurSonMur
+test;2;green;x;x;8;;;;x;;x;;x
+test;1;red;x;;8;;;;x;x;x;x;
+test;1;red;x;;8;;;;x;x;;x;
+test;1;red;x;;8;;;;x;x;;x;
+test;1;red;x;;8;;;;x;x;;x;
+bleu;3;blue;x;;8;;;;x;x;x;x;
