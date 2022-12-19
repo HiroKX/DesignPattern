@@ -1,11 +1,13 @@
 package exodecorateur_angryballs.solution.vues;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import exodecorateur_angryballs.solution.modele.Bille;
 
 
+import exodecorateur_angryballs.solution.scenario.Scenario;
 import outilsvues.EcouteurTerminaison;
 
 import outilsvues.Outils;
@@ -75,7 +77,18 @@ this.billard.repaint();
 public void changeScenario(Vector<Bille> billes){
 
 }
-@Override
+
+    @Override
+    public void addScenario(Scenario scenario) {
+
+    }
+
+    @Override
+    public void addScenarios(ArrayList<Scenario> scenario) {
+
+    }
+
+    @Override
 public void montrer()
 {
 this.setVisible(true);

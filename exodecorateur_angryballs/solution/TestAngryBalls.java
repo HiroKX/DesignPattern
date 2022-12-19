@@ -2,6 +2,8 @@ package exodecorateur_angryballs.solution;
 
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
+import exodecorateur_angryballs.solution.scenario.ScenarioBillard;
+import exodecorateur_angryballs.solution.scenario.ScenarioNB;
 import exodecorateur_angryballs.solution.scenario.ScenariosFichier;
 import exodecorateur_angryballs.solution.son.SonLongRobin;
 import exodecorateur_angryballs.solution.vues.CadreAngryBallsAWT;
@@ -48,15 +50,14 @@ public class TestAngryBalls {
 
 //------------------- creation de la liste (pour l'instant vide) des billes -----------------------
 
-        Vector<Bille> billes = new Vector<Bille>();
-        Vector<Vector<Bille>> billesScenarios = new Vector<>();
+        Vector<Bille> billes = new Vector<>();
 
 //---------------- creation de la vue responsable du dessin des billes -------------------------
 
         int choixHurlementInitial = 0;
         CadreAngryBallsAWT cadre = new CadreAngryBallsAWT("Angry balls",
                 "Animation de billes ayant des comportements differents. Situation ideale pour mettre en place le DP Decorator",
-                billes, hurlements, choixHurlementInitial);
+                new Vector<>(), hurlements, choixHurlementInitial);
 
         cadre.montrer(); // on rend visible la vue
 
@@ -157,22 +158,20 @@ public class TestAngryBalls {
 
 
          ScenariosFichier sf = new ScenariosFichier(cadre,sonBilleChoc);
-         ArrayList<Scenario> lScenario = sf.chargerScenarios("Scenarios.csv");
-        Scenario defaultScenario = lScenario.get(0);
-        billes.addAll(defaultScenario.getBilles());
-         //Scenario billard = new ScenarioBillard(cadre,sonBilleChoc);
-         //lScenario.add(billard);
-         // Scenario nbBille = new ScenarioNB(sonBilleChoc,cadre,1000);
-         // cadre.addScenarios(lScenario);
-
-         // cadre.addScenario(billard);
-         // cadre.addScenario(nbBille);
+         ArrayList<Scenario> lireScenario = sf.chargerScenarios("Scenarios.csv");
+         Scenario defaultScenario = lireScenario.get(0);
+         Scenario billard = new ScenarioBillard(cadre,sonBilleChoc);
+         Scenario nbBille = new ScenarioNB(cadre,sonBilleChoc,1000);
+         System.out.println(lireScenario.size());
+          cadre.addScenarios(lireScenario);
+          cadre.addScenario(billard);
+          cadre.addScenario(nbBille);
 
         //---------------------- ici finit la partie e changer -------------------------------------------------------------
 
         System.out.println("billesNombres = " + defaultScenario.getBilles().size());
         System.out.println("billes = " + defaultScenario.getBilles());
-        cadre.initPanneauScenario(lScenario);
+        cadre.initPanneauScenario(cadre.getScenarios());
         cadre.initPanneauBille(defaultScenario.getBilles());
 
 //-------------------- creation de l'objet responsable de l'animation (c'est un thread separe) -----------------------
@@ -192,8 +191,8 @@ public class TestAngryBalls {
 
         cadre.lancerBilles.addActionListener(ecouteurBoutonLancer);             // pourrait etre remplace par Observable - Observer
         cadre.arreterBilles.addActionListener(ecouteurBoutonArreter);           // pourrait etre remplace par Observable - Observer
-        for (int i = 0; i < lScenario.size(); i++) {
-            ecouteurChoixScenario.add(new EcouteurChoixScenario(lScenario.get(i), animationBilles));
+        for (int i = 0; i < cadre.getScenarios().size(); i++) {
+            ecouteurChoixScenario.add(new EcouteurChoixScenario(cadre.getScenarios().get(i), animationBilles));
             cadre.ligneBoutonsChoixScenario.boutons[i].addItemListener(ecouteurChoixScenario.get(i));
         }
 

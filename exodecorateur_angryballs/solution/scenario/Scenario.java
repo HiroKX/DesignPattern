@@ -15,6 +15,10 @@ public abstract class Scenario {
 
     protected SonLong sonChocBille;
 
+    protected double vMax;
+    protected double xMax, yMax;
+    protected double rayon;
+
     public Scenario(VueBillard cadre, SonLong sonChoc){
         this.cadre =cadre;
         this.sonChocBille = sonChoc;
@@ -25,6 +29,13 @@ public abstract class Scenario {
     public Scenario(String nom, Vector<Bille> billes) {
         this.nom = nom;
         this.billes = billes;
+    }
+
+    public void setVecteur(){
+        this.vMax = 0.1;
+        this.xMax = this.cadre.largeurBillard();      // abscisse maximal
+        this.yMax = this.cadre.hauteurBillard();      // ordonnee maximale
+        this.rayon  = 0.05 * Math.min(xMax, yMax);    // rayon des billes
     }
 
     public String getNom() {

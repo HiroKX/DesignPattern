@@ -1,3 +1,7 @@
 *.xml
 out/
 /out/*
+exodecorateur_angryballs/.DS_Store
+.DS_Store
+.DS_Store
+*.class

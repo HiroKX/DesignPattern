@@ -65,7 +65,10 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         width = height = 2 * (int) Math.round(bille.getRayon());
         graphics.setColor(new Color(bille.getCouleur()));
         graphics.fillOval(xMin, yMin, width, height);
-        graphics.setColor(Color.CYAN);
+        if(bille.getCouleur() == 0x000000)
+            graphics.setColor(Color.CYAN);
+        else
+            graphics.setColor(Color.BLACK);
         graphics.drawOval(xMin, yMin, width, height);
         graphics.drawString(bille.getClef()+"", (xMin+width/2)-3, (yMin+height/2)+5);
     }

@@ -29,10 +29,14 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
     public PanneauChoixScenario ligneBoutonsChoixScenario;
     EcouteurTerminaison ecouteurTerminaison;
 
+    ArrayList<Scenario> scenarios;
+
     public CadreAngryBallsAWT(String titre, String message, Vector<Bille> billes, SonLong[] hurlements, int choixHurlementInitial) throws HeadlessException {
         super(titre);
         Outils.place(this, 0.33, 0.33, 0.5, 0.5);
         this.ecouteurTerminaison = new EcouteurTerminaison(this);
+
+        this.scenarios = new ArrayList<>();
 
         this.setIgnoreRepaint(true);
 
@@ -127,6 +131,20 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
         // On met à jour la vue
         this.revalidate();
         this.repaint();
+    }
+
+    @Override
+    public void addScenario(Scenario scenario) {
+        this.scenarios.add(scenario);
+    }
+
+    @Override
+    public void addScenarios(ArrayList<Scenario> scenario) {
+        this.scenarios.addAll(scenario);
+    }
+
+    public ArrayList<Scenario> getScenarios() {
+        return this.scenarios;
     }
 
     /* (non-Javadoc)

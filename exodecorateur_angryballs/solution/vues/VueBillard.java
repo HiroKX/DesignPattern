@@ -2,6 +2,9 @@ package exodecorateur_angryballs.solution.vues;
 
 
 import exodecorateur_angryballs.solution.modele.Bille;
+import exodecorateur_angryballs.solution.scenario.Scenario;
+
+import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -26,4 +29,7 @@ public void miseAJour();
 public void montrer();
 
 public void changeScenario(Vector<Bille> billes);
+public void addScenario(Scenario scenario);
+public void addScenarios(ArrayList<Scenario> scenario);
+
 }
