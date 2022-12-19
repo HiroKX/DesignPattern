@@ -1,10 +1,9 @@
 package exodecorateur_angryballs.solution.vues;
 
-import exodecorateur_angryballs.solution.Scenario;
+import exodecorateur_angryballs.solution.scenario.Scenario;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class PanneauChoixScenario extends Panel {
     CheckboxGroup checkboxGroup;

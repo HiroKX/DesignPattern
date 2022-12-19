@@ -1,4 +1,4 @@
-package exodecorateur_angryballs.solution;
+package exodecorateur_angryballs.solution.scenario;
 
 import exodecorateur_angryballs.solution.vues.VueBillard;
 import musique.SonLong;

@@ -1,5 +1,7 @@
 package exodecorateur_angryballs.solution;
 
+import exodecorateur_angryballs.solution.scenario.Scenario;
+
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 

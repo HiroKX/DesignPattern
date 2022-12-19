@@ -1,13 +1,9 @@
 package exodecorateur_angryballs.solution;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Objects;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Vector;
-
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.vues.VueBillard;
+
+import java.util.Vector;
 
 /**
  * responsable de l'animation des billes, c-e-d responsable du mouvement de la liste des billes. met perpetuellement e jour les billes.
@@ -30,6 +26,14 @@ public class AnimationBilles implements Runnable {
      */
     public AnimationBilles(Vector<Bille> billes, VueBillard vueBillard) {
         this.billes = billes;
+        this.vueBillard = vueBillard;
+        this.thread = null;     //est-ce utile ?
+        // Affiche les billes avant le lancement de l'animation
+        this.vueBillard.miseAJour();
+    }
+
+    public AnimationBilles( VueBillard vueBillard) {
+        this.billes = new Vector<>();
         this.vueBillard = vueBillard;
         this.thread = null;     //est-ce utile ?
         // Affiche les billes avant le lancement de l'animation

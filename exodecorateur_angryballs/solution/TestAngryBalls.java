@@ -1,18 +1,19 @@
 package exodecorateur_angryballs.solution;
 
+import exodecorateur_angryballs.solution.modele.Bille;
+import exodecorateur_angryballs.solution.scenario.Scenario;
+import exodecorateur_angryballs.solution.scenario.ScenariosFichier;
+import exodecorateur_angryballs.solution.son.SonLongRobin;
+import exodecorateur_angryballs.solution.vues.CadreAngryBallsAWT;
+import mesmaths.geometrie.base.Vecteur;
+import musique.SonLong;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
-
-import mesmaths.geometrie.base.Vecteur;
-import musique.SonLong;
-import exodecorateur_angryballs.solution.modele.Bille;
-import exodecorateur_angryballs.solution.vues.CadreAngryBallsAWT;
-import musique.javax.SonLongJavax;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 
 /**
@@ -39,7 +40,7 @@ public class TestAngryBalls {
         Vector<SonLong> sonsLongs = OutilsConfigurationBilleHurlante.chargeSons(repertoireSon, "config_audio_bille_hurlante.txt");
         SonLong sonBilleChoc;
         try {
-            sonBilleChoc = SonLongJavax.crée(repertoireSon, "collision_bille_bille 0 2000 200");
+            sonBilleChoc = SonLongRobin.crée(repertoireSon, "collision_bille_bille 0 2000 200");
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -157,13 +158,10 @@ public class TestAngryBalls {
 
          ScenariosFichier sf = new ScenariosFichier(cadre,sonBilleChoc);
          ArrayList<Scenario> lScenario = sf.chargerScenarios("Scenarios.csv");
+        Scenario defaultScenario = lScenario.get(0);
+        billes.addAll(defaultScenario.getBilles());
          //Scenario billard = new ScenarioBillard(cadre,sonBilleChoc);
          //lScenario.add(billard);
-         for (Scenario scenario : lScenario) {
-             billes.addAll(scenario.getBilles());
-             billesScenarios.add(billes);
-             billes = new Vector<>();
-         }
          // Scenario nbBille = new ScenarioNB(sonBilleChoc,cadre,1000);
          // cadre.addScenarios(lScenario);
 
@@ -172,13 +170,15 @@ public class TestAngryBalls {
 
         //---------------------- ici finit la partie e changer -------------------------------------------------------------
 
-        System.out.println("billes = " + billesScenarios.get(0));
+        System.out.println("billesNombres = " + defaultScenario.getBilles().size());
+        System.out.println("billes = " + defaultScenario.getBilles());
         cadre.initPanneauScenario(lScenario);
-        cadre.initPanneauBille(billesScenarios.get(0));
+        cadre.initPanneauBille(defaultScenario.getBilles());
 
 //-------------------- creation de l'objet responsable de l'animation (c'est un thread separe) -----------------------
 
-        AnimationBilles animationBilles = new AnimationBilles(billesScenarios.get(0), cadre);
+        AnimationBilles animationBilles = new AnimationBilles( cadre);
+        animationBilles.setBilles(defaultScenario.getBilles());
 
 //----------------------- mise en place des ecouteurs de boutons qui permettent de contrôler (un peu...) l'application -----------------
 

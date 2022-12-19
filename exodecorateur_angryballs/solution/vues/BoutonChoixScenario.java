@@ -1,6 +1,6 @@
 package exodecorateur_angryballs.solution.vues;
 
-import exodecorateur_angryballs.solution.Scenario;
+import exodecorateur_angryballs.solution.scenario.Scenario;
 
 import java.awt.*;
 

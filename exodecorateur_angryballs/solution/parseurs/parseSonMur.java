@@ -11,8 +11,9 @@ public class parseSonMur extends Parser {
 
     @Override
     public Object parser(String ligne, Bille bille, Object[] args) throws Exception {
-        if(ligne.isEmpty())
+        if(!ligne.equals('x')) {
             return bille;
+        }
         return new DecorateurSonMur(bille, (SonLong) args[0], (VueBillard) args[1]);
     }
 }

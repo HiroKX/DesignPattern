@@ -1,4 +1,4 @@
-package exodecorateur_angryballs.solution;
+package exodecorateur_angryballs.solution.scenario;
 
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.vues.VueBillard;
@@ -17,8 +17,6 @@ public class ScenarioClassique extends Scenario {
     }
     @Override
     public Vector<Bille> getBilles(){
-        System.out.println(this.billes);
-        System.out.println("Je get les billes de "+this.getNom());
         return this.billes;
     }
 }

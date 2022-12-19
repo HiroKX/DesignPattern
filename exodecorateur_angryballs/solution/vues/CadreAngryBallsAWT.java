@@ -1,20 +1,17 @@
 package exodecorateur_angryballs.solution.vues;
 
+import exodecorateur_angryballs.solution.scenario.Scenario;
+import exodecorateur_angryballs.solution.modele.Bille;
+import musique.SonLong;
+import outilsvues.EcouteurTerminaison;
+import outilsvues.Outils;
+
 import java.awt.*;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Vector;
-
-import exodecorateur_angryballs.solution.Scenario;
-import exodecorateur_angryballs.solution.modele.Bille;
-import musique.SonLong;
-import outilsvues.EcouteurTerminaison;
-
-import outilsvues.Outils;
 
 /**
  * Vue dessinant les billes et contenant les 3 boutons de contrele (arret du programme, lancer les billes, arreter les billes)
