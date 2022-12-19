@@ -47,10 +47,8 @@ public class DecorateurSonCollision extends DecorateurBille{
             double y = Math.exp(-COEFF_VOLUME*n);                // y = e^(-COEFF*n). on obtient donc 0 < y <= 1
             double x1 = p.x/this.vueBillard.largeurBillard();
             double balance = 2*x1 - 1;
-            System.err.println("volume = " + volume);
             int delai = (int)(DELAI_MIN*volume + DELAI_MAX*y);              /* le delai entre 2 diffusions diminue lorsque la vitesse augmente */
             long instant = System.currentTimeMillis();
-            System.err.println(sonLong.getClass());             /* la frequence de diffusion augmente donc avec la vitesse de la bille */
                 double coeffPitch = 1;
                 this.sonLong.joue(i++, volume, balance, coeffPitch);            /* le son est diffuse dans un thread separe */
                 this.dernierInstant= instant;

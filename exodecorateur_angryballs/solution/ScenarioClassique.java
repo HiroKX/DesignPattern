@@ -17,7 +17,7 @@ public class ScenarioClassique extends Scenario {
     }
     @Override
     public Vector<Bille> getBilles(){
-        System.out.println(this.getBilles());
+        System.out.println(this.billes);
         System.out.println("Je get les billes de "+this.getNom());
         return this.billes;
     }
