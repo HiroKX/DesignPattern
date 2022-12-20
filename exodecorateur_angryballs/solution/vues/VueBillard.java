@@ -31,5 +31,4 @@ public void montrer();
 public void changeScenario(Vector<Bille> billes);
 public void addScenario(Scenario scenario);
 public void addScenarios(ArrayList<Scenario> scenario);
-
 }

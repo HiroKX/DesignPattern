@@ -12,7 +12,7 @@ public class parseCouleur extends Parser {
     public Object parser(String ligne, Bille bille, Object[] args) throws Exception {
         if(ligne.isEmpty())
             return bille;
-        Field field = Class.forName("java.awt.Color").getField(ligne);
+        Field field = Class.forName("java.awt.Color").getField(ligne);//TODO : a changer
         Color color = (Color)field.get(null);
         return new DecorateurCouleur(bille, color);
     }

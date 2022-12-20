@@ -27,7 +27,6 @@ public class DecorateurSonCollision extends DecorateurBille{
         super(b);
         this.sonLong = sonLong;
         i = 0;
-        System.out.println("aaa");
         dernierInstant = System.currentTimeMillis();
         this.vueBillard = vueBillard;
     }

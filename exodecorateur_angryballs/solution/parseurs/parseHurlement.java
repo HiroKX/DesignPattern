@@ -9,7 +9,7 @@ public class parseHurlement extends Parser {
 
     @Override
     public Object parser(String ligne, Bille bille, Object[] args) throws Exception {
-        if(ligne.isEmpty())
+        if(!ligne.equals("x"))
             return bille;
         return new DecorateurHurlement(bille, (SonLong) args[0], (VueBillard) args[1]);
     }

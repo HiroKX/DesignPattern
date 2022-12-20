@@ -1,7 +1,6 @@
-﻿Nom;Rayon;DecorateurCouleur;DecorateurBloqueBord;DecorateurCollision;DecorateurFrottement;DecorateurHurlement;DecorateurNewton;DecorateurPasseMuraille;DecorateurPesanteur;DecorateurRebond;DecorateurAttraper;DecorateurSonCollision;DecorateurSonMur
-test;30;green;x;x;8;;;;x;;x;"";""
-test;30;red;x;;8;;;;x;x;;x;
-test;30;red;x;;8;;;;x;x;;x;
-test;30;red;x;;8;;;;x;x;;x;
-test;30;red;x;;8;;;;x;x;;x;
-bleu;30;blue;x;;8;;;;x;x;;x;
+﻿Nom;Rayon;DecorateurCouleur;DecorateurBloqueBord;DecorateurFrottement;DecorateurHurlement;DecorateurNewton;DecorateurPasseMuraille;DecorateurPesanteur;DecorateurRebond;DecorateurAttraper;DecorateurSonCollision;DecorateurSonMur
+test;30;green;x;8;;;"";x;"";x;"";""
+test;30;red;x;8;;;"";x;"";;"";
+test;30;red;x;8;;;;x;"";;"";
+test;30;red;x;8;;;;x;"";;"";
+bleu;30;blue;x;8;;;;x;x;x;x;

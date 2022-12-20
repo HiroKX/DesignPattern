@@ -1,9 +1,9 @@
 package exodecorateur_angryballs.solution.modele;
 
-import java.util.Vector;
-
 import exodecorateur_angryballs.solution.Event.ControlleurGeneral;
 import mesmaths.geometrie.base.Vecteur;
+
+import java.util.Vector;
 
 
 /**
@@ -22,7 +22,7 @@ public abstract class Bille {
 
 
     protected static int prochaineClef = 0;
-
+    public boolean temp = false;
 
     public abstract int getCouleur();
 
@@ -98,6 +98,8 @@ public abstract class Bille {
      * La nature du comportement de la bille en reponse e cette collision est definie dans les classes derivees
      */
     public abstract void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur);
+
+    public abstract String toStringCentre();
 
     /* cette methode engendre des clignotements : idee : utiliser l'active rendering et le double buffering pour eviter ea */
 

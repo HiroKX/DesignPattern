@@ -8,7 +8,7 @@ public class parseNewton extends Parser {
 
     @Override
     public Object parser(String ligne, Bille bille, Object[] args) throws Exception {
-        if(ligne.isEmpty())
+        if(!ligne.equals("x"))
             return bille;
         return new DecorateurNewton(bille);
     }

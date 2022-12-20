@@ -48,6 +48,11 @@ public abstract class DecorateurBille extends Bille {
     }
 
     @Override
+    public String toStringCentre() {
+        return this.bille.toStringCentre();
+    }
+
+    @Override
     public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
         return this.bille.gestionCollisionBilleBille(billes);
     }

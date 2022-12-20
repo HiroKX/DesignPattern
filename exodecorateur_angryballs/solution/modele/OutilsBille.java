@@ -1,11 +1,10 @@
 package exodecorateur_angryballs.solution.modele;
 
-import java.util.Vector;
-
-
 import exodecorateur_angryballs.solution.RobinLagler;
 import mesmaths.geometrie.base.Vecteur;
 import mesmaths.mecanique.MecaniquePoint;
+
+import java.util.Vector;
 
 /**
  * Operations utiles sur les billes
@@ -65,6 +64,15 @@ public class OutilsBille {
             if (RobinLagler.CollisionBilleBille(cetteBille.getPosition(), cetteBille.getRayon(), cetteBille.getVitesse(), cetteBille.masse(),
                     billeCourante.getPosition(), billeCourante.getRayon(), billeCourante.getVitesse(), billeCourante.masse()))
                 return true;
+        }
+        return gestionCollisionBilleBilleStatique(cetteBille, autresBilles);
+    }
+
+    public static boolean gestionCollisionBilleBilleStatique(Bille cetteBille, Vector<Bille> autresBilles) {
+        for (int i = 0; i < autresBilles.size(); ++i) {
+            Bille tBilles = autresBilles.get(i);
+            mesmaths.cinematique.brouillon.Collisions.CollisionBilleBille2(cetteBille.getPosition(),cetteBille.getRayon(),new Vecteur(0.00000001,0.0000000001),
+                    cetteBille.masse(),tBilles.getPosition(),tBilles.getRayon(),new Vecteur(0.00000001,0.0000000001),tBilles.masse());
         }
         return false;
     }

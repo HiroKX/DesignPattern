@@ -64,7 +64,7 @@ public class DecorateurSonMur extends DecorateurBille implements ItemListener {
 
 
 
-        this.bille.collisionContour(abscisseCoinHautGauche,ordonneeCoinHautGauche,largeur,hauteur);
+        //this.bille.collisionContour(abscisseCoinHautGauche,ordonneeCoinHautGauche,largeur,hauteur);
     }
 
     @Override

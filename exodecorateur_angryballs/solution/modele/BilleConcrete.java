@@ -1,8 +1,6 @@
 package exodecorateur_angryballs.solution.modele;
 
 import exodecorateur_angryballs.solution.Event.ControlleurGeneral;
-import exodecorateur_angryballs.solution.state.InitialState;
-import exodecorateur_angryballs.solution.state.State;
 import mesmaths.cinematique.Cinematique;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -18,6 +16,7 @@ public class BilleConcrete extends Bille {
     public Vecteur acceleration;
     public int clef;                // identifiant unique de cette bille
     public static double ro = 1;        // masse volumique
+    public static boolean TEMP = false;
     @Override
     public int getCouleur() {
         return couleur;
@@ -97,7 +96,9 @@ public class BilleConcrete extends Bille {
 
     @Override
     public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
-        return false;
+
+        temp = OutilsBille.gestionCollisionBilleBille(this, billes);
+        return temp;
     }
 
     public BilleConcrete(Vecteur position, double rayon, Vecteur vitesse) {
@@ -112,4 +113,7 @@ public class BilleConcrete extends Bille {
         return "centre = " + this.position + " rayon = " + this.rayon + " vitesse = " + this.vitesse + " acceleration = " + this.acceleration + "clef = " + this.clef;
     }
 
+    public String toStringCentre(){
+        return this.clef + " : "+ (int) this.position.x + ","+ (int) this.position.y;
+    }
 }

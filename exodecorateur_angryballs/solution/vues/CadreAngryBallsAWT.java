@@ -1,15 +1,13 @@
 package exodecorateur_angryballs.solution.vues;
 
-import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.modele.Bille;
+import exodecorateur_angryballs.solution.scenario.Scenario;
 import musique.SonLong;
 import outilsvues.EcouteurTerminaison;
 import outilsvues.Outils;
 
 import java.awt.*;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -43,9 +41,30 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
         this.haut = new Panel();
         this.haut.setBackground(Color.LIGHT_GRAY);
         this.add(this.haut, BorderLayout.NORTH);
-
         this.centre = new Panel();
         this.add(this.centre, BorderLayout.CENTER);
+        this.addComponentListener(new ComponentListener() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                CadreAngryBallsAWT awt = (CadreAngryBallsAWT) e.getSource();
+                awt.miseAJour();
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) {
+                // Ne pas faire de traitement ici
+            }
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                // Ne pas faire de traitement ici
+            }
+
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                // Ne pas faire de traitement ici
+            }
+        });
 
         this.bas = new Panel();
         this.bas.setBackground(Color.LIGHT_GRAY);

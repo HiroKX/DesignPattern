@@ -1,12 +1,11 @@
 package exodecorateur_angryballs.solution.vues;
 
-import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
-import java.util.Vector;
-
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.visiteur.WindowVisitor;
+
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+import java.util.Vector;
 
 
 /**
@@ -70,7 +69,12 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         else
             graphics.setColor(Color.BLACK);
         graphics.drawOval(xMin, yMin, width, height);
-        graphics.drawString(bille.getClef()+"", (xMin+width/2)-3, (yMin+height/2)+5);
+
+        try {
+            graphics.drawString(bille.getClef() + "", (xMin + width / 2) - 3, (yMin + height / 2) + 5);
+        }catch(Exception e){
+            System.err.println("Resizing");
+        }
     }
 
 }
