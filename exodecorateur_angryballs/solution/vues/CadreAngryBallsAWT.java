@@ -6,6 +6,7 @@ import musique.SonLong;
 import outilsvues.EcouteurTerminaison;
 import outilsvues.Outils;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -17,19 +18,26 @@ import java.util.Vector;
  * <p>
  * ICI : IL N'Y A RIEN A CHANGER
  */
-public class CadreAngryBallsAWT extends Frame implements VueBillard {
+public final class CadreAngryBallsAWT extends Frame implements VueBillard {
+    private static CadreAngryBallsAWT instance = null;
     TextField presentation;
     BillardAWT billard;
-    public Button lancerBilles, arreterBilles;
+    public Button lancerBilles, arreterBilles, reinitialiserBilles;
     Panel haut, centre, bas, ligneBoutonsLancerArret;
     PanneauChoixHurlement ligneBoutonsChoixHurlement;
     PanneauChoixBille ligneBoutonsChoixBilles;
     public PanneauChoixScenario ligneBoutonsChoixScenario;
     EcouteurTerminaison ecouteurTerminaison;
-
     ArrayList<Scenario> scenarios;
+    Scenario scenarioCourant;
 
-    public CadreAngryBallsAWT(String titre, String message, Vector<Bille> billes, SonLong[] hurlements, int choixHurlementInitial) throws HeadlessException {
+    public static CadreAngryBallsAWT getInstance(String titre, String message, Vector<Bille> billes, SonLong[] hurlements, int choixHurlementInitial) {
+        if (instance == null)
+            instance = new CadreAngryBallsAWT(titre, message, billes, hurlements, choixHurlementInitial);
+        return instance;
+    }
+
+    private CadreAngryBallsAWT(String titre, String message, Vector<Bille> billes, SonLong[] hurlements, int choixHurlementInitial) throws HeadlessException {
         super(titre);
         Outils.place(this, 0.33, 0.33, 0.5, 0.5);
         this.ecouteurTerminaison = new EcouteurTerminaison(this);
@@ -92,6 +100,9 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
         this.arreterBilles = new Button("arreter les billes");
         this.ligneBoutonsLancerArret.add(this.arreterBilles);
 
+        this.reinitialiserBilles = new Button("relancer les billes");
+        this.ligneBoutonsLancerArret.add(this.reinitialiserBilles);
+
 //---------------- placement de la ligne de boutons de choix des sons pour le hurlement ------
 
         this.ligneBoutonsChoixHurlement = new PanneauChoixHurlement(hurlements, choixHurlementInitial);
@@ -124,28 +135,38 @@ public class CadreAngryBallsAWT extends Frame implements VueBillard {
         return this.billard.getHeight();
     }
 
+    public void setScenarioCourant(Scenario scenarioCourant) {
+        this.scenarioCourant = scenarioCourant;
+    }
+
+    @Override
+    public Scenario getScenarioCourant() {
+        return this.scenarioCourant;
+    }
+
     @Override
     public void miseAJour() {
         this.billard.myRenderingLoop();
     }
 
     @Override
-    public void changeScenario(Vector<Bille> billes){
+    public void changeScenario(Scenario scenario) {
         // On enlève la vue du billard
         this.remove(this.billard);
         // On crée un nouveau billard avec les nouvelles billes
-        this.billard = new BillardAWT(billes);
+        this.billard = new BillardAWT(scenario.getBilles());
         // On ajoute la vue du billard
         this.add(this.billard);
         // On réinitialise le buffer
         this.montrer();
         this.billard.initBuffer();
         // On met à jour le panneau de choix des billes
-        this.initPanneauBille(billes);
-        for(Bille b : billes){
+        this.initPanneauBille(scenario.getBilles());
+        for(Bille b : scenario.getBilles()){
             this.addMouseMotionListener(b.getControlleurGeneral());
             this.addMouseListener(b.getControlleurGeneral());
         }
+        this.setScenarioCourant(scenario);
 
         // On met à jour la vue
         this.revalidate();

@@ -48,126 +48,27 @@ public class TestAngryBalls {
         }
         SonLong[] hurlements = SonLong.toTableau(sonsLongs);                // on obtient un tableau de SonLong
 
-//------------------- creation de la liste (pour l'instant vide) des billes -----------------------
-
-        Vector<Bille> billes = new Vector<>();
-
 //---------------- creation de la vue responsable du dessin des billes -------------------------
 
         int choixHurlementInitial = 0;
-        CadreAngryBallsAWT cadre = new CadreAngryBallsAWT("Angry balls",
+        CadreAngryBallsAWT cadre = CadreAngryBallsAWT.getInstance("Angry balls",
                 "Animation de billes ayant des comportements differents. Situation ideale pour mettre en place le DP Decorator",
                 new Vector<>(), hurlements, choixHurlementInitial);
 
         cadre.montrer(); // on rend visible la vue
 
-//------------- remplissage de la liste avec 5 billes -------------------------------
+//------------------- creation des scenarios ---------------------------------------------
 
-
-        double xMax, yMax;
-        double vMax = 0.1;
-        xMax = cadre.largeurBillard();      // abscisse maximal
-        yMax = cadre.hauteurBillard();      // ordonnee maximale
-
-        double rayon = 0.05 * Math.min(xMax, yMax); // rayon des billes : ici toutes les billes ont le meme rayon, mais ce n'est pas obligatoire
-
-        Vecteur p0, p1, p2, p3, p4, v0, v1, v2, v3, v4, v5;    // les positions des centres des billes et les vecteurs vitesse au demarrage.
-        // Elles vont etre choisies aleatoirement
-
-//------------------- creation des vecteurs position des billes ---------------------------------
-
-        p0 = Vecteur.créationAléatoire(0, 0, xMax, yMax);
-        p1 = Vecteur.créationAléatoire(0, 0, xMax, yMax);
-        p2 = Vecteur.créationAléatoire(0, 0, xMax, yMax);
-        p3 = Vecteur.créationAléatoire(0, 0, xMax, yMax);
-        p4 = Vecteur.créationAléatoire(0, 0, xMax, yMax);
-
-//------------------- creation des vecteurs vitesse des billes ---------------------------------
-
-        v0 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
-        v1 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, 0);
-        v2 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
-        v3 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
-        v4 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
-        v5 = Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax);
-
-//--------------- ici commence la partie e changer ---------------------------------
-      /*  DecorateurAttraper b = new DecorateurAttraper(
-                new DecorateurCollision(
-                        new DecorateurBloqueBord(
-                                new DecorateurPesanteur(
-                                        new DecorateurFrottement(
-                                                new DecorateurCouleur(
-                                                        new BilleConcrete(
-                                                                p1, rayon * 2, v1, new Vecteur(0, 0.0001)), Color.GREEN), 4.5), new Vecteur(0, 0.001)))));
-        billes.add(b);
-        DecorateurSonCollision b2 = new DecorateurSonCollision(
-                new DecorateurFrottement(
-                        new DecorateurRebond(
-                                new DecorateurBloqueBord(
-                                        new DecorateurPesanteur(
-                                                new DecorateurCouleur(
-                                                        new BilleConcrete(
-                                                                p2, rayon, v2, new Vecteur(0, 0.0001)), Color.RED), new Vecteur(0, 0.001)))), 8), sonBilleChoc, cadre);
-        DecorateurAttraper b3 = new DecorateurAttraper(b2); //Séparer pour pouvoir faire les ajouts de listener.
-
-        billes.add(b3);
-
-        DecorateurSonCollision b6  = new DecorateurSonCollision(
-                new DecorateurFrottement(
-                        new DecorateurRebond(
-                                new DecorateurBloqueBord(
-                                        new DecorateurPesanteur(
-                                                new DecorateurCouleur(
-                                                        new BilleConcrete(
-                                                                p0, rayon, v3, new Vecteur(0, 0.0001)), Color.RED), new Vecteur(0, 0.001)))), 8), sonBilleChoc, cadre);
-
-        DecorateurSonCollision b4 = new DecorateurSonCollision(
-                new DecorateurFrottement(
-                        new DecorateurRebond(
-                                new DecorateurBloqueBord(
-                                        new DecorateurPesanteur(
-                                                new DecorateurCouleur(
-                                                        new BilleConcrete(
-                                                                p3, rayon, v4, new Vecteur(0, 0.0001)), Color.RED), new Vecteur(0, 0.001)))), 8), sonBilleChoc, cadre);
-
-        DecorateurSonCollision b5= new DecorateurSonCollision(
-                new DecorateurFrottement(
-                        new DecorateurRebond(
-                                new DecorateurBloqueBord(
-                                        new DecorateurPesanteur(
-                                                new DecorateurCouleur(
-                                                        new BilleConcrete(
-                                                                p4, rayon, v5, new Vecteur(0, 0.0001)), Color.RED), new Vecteur(0, 0.001)))), 8), sonBilleChoc, cadre);
-        billes.add(b4);
-        billes.add(b5);
-        billes.add(b6);
-
-
-        cadre.addMouseMotionListener(b.getControlleurGeneral());//En faite c'est bon comme ça (vu avec le prof)
-        cadre.addMouseListener(b.getControlleurGeneral());
-        cadre.addMouseMotionListener(b3.getControlleurGeneral());
-        cadre.addMouseListener(b3.getControlleurGeneral());*/
-/**
-        ArrayList<Scenario> scenarios = ScenariosFichier.chargerScenarios("Scenarios.csv", xMax,yMax,rayon, sonBilleChoc, cadre);
-        for (Scenario scenario : scenarios) {
-            billes.addAll(scenario.getBilles());
-            billesScenarios.add(billes);
-            billes = new Vector<>();
-        }*/
-
-
-         ScenariosFichier sf = new ScenariosFichier(cadre,sonBilleChoc);
-         ArrayList<Scenario> lireScenario = sf.chargerScenarios("Scenarios.csv");
+         ScenariosFichier scenariosFichier = new ScenariosFichier(cadre,sonBilleChoc);
+         ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("Scenarios.csv");
          Scenario defaultScenario = lireScenario.get(0);
          Scenario billard = new ScenarioBillard(cadre,sonBilleChoc);
          Scenario nbBille = new ScenarioNB(cadre,sonBilleChoc,1000);
-         System.out.println(lireScenario.size());
           cadre.addScenarios(lireScenario);
           cadre.addScenario(billard);
           cadre.addScenario(nbBille);
 
-        //---------------------- ici finit la partie e changer -------------------------------------------------------------
+//---------------------- ici finit la partie e changer -------------------------------------------------------------
 
         System.out.println("billesNombres = " + defaultScenario.getBilles().size());
         System.out.println("billes = " + defaultScenario.getBilles());
@@ -176,16 +77,15 @@ public class TestAngryBalls {
 
 //-------------------- creation de l'objet responsable de l'animation (c'est un thread separe) -----------------------
 
-        AnimationBilles animationBilles = new AnimationBilles( cadre);
-        animationBilles.setBilles(defaultScenario.getBilles());
+        AnimationBilles animationBilles = new AnimationBilles(cadre);
+        animationBilles.setBilles(defaultScenario);
 
 //----------------------- mise en place des ecouteurs de boutons qui permettent de contrôler (un peu...) l'application -----------------
 
         EcouteurBoutonLancer ecouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
         EcouteurBoutonArreter ecouteurBoutonArreter = new EcouteurBoutonArreter(animationBilles);
-
+        EcouteurBoutonReinitialiser ecouteurBoutonReinitialiser = new EcouteurBoutonReinitialiser(animationBilles);
         ArrayList <EcouteurChoixScenario> ecouteurChoixScenario = new ArrayList<>();
-
 
 //------------------------- activation des ecouteurs des boutons et ea tourne tout seul ------------------------------
 
@@ -195,6 +95,7 @@ public class TestAngryBalls {
             ecouteurChoixScenario.add(new EcouteurChoixScenario(cadre.getScenarios().get(i), animationBilles));
             cadre.ligneBoutonsChoixScenario.boutons[i].addItemListener(ecouteurChoixScenario.get(i));
         }
+        cadre.reinitialiserBilles.addActionListener(ecouteurBoutonReinitialiser);     // pourrait etre remplace par Observable - Observer
 
         cadre.revalidate();
         cadre.repaint();

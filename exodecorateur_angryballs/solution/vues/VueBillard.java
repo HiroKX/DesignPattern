@@ -28,7 +28,9 @@ public void miseAJour();
 
 public void montrer();
 
-public void changeScenario(Vector<Bille> billes);
+public void changeScenario(Scenario scenario);
 public void addScenario(Scenario scenario);
 public void addScenarios(ArrayList<Scenario> scenario);
+public void setScenarioCourant(Scenario scenarioCourant);
+public Scenario getScenarioCourant();
 }

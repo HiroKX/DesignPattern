@@ -1,6 +1,7 @@
 package exodecorateur_angryballs.solution;
 
 import exodecorateur_angryballs.solution.modele.Bille;
+import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.vues.VueBillard;
 
 import java.util.ArrayList;
@@ -76,13 +77,13 @@ public class AnimationBilles implements Runnable {
     }
 
     // Change les billes, utilisé pour changer de scénario
-    public void setBilles(Vector<Bille> billes) {
+    public void setBilles(Scenario scenario) {
             // On remplace les billes
-            this.billes = billes;
+            this.billes = scenario.getBilles();
             // On arrête l'animation pour fermer le thread si ce n'est pas déjà fait
             this.arreterAnimation();
             // On change les billes dans la vue du billard
-            this.vueBillard.changeScenario(billes);
+            this.vueBillard.changeScenario(scenario);
             this.vueBillard.miseAJour();
     }
 
@@ -147,5 +148,10 @@ public class AnimationBilles implements Runnable {
             this.thread.interrupt();
             this.thread = null;
         }
+    }
+
+    public void reinitialiser() {
+        this.vueBillard.getScenarioCourant().resetBilles();
+        this.setBilles(this.vueBillard.getScenarioCourant());
     }
 }

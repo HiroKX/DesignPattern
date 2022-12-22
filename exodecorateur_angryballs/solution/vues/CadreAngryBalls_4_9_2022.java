@@ -89,11 +89,25 @@ public void changeScenario(Vector<Bille> billes){
     }
 
     @Override
+    public void setScenarioCourant(Scenario scenarioCourant) {
+
+    }
+
+    @Override
+    public Scenario getScenarioCourant() {
+        return null;
+    }
+
+    @Override
 public void montrer()
 {
 this.setVisible(true);
 }
 
+    @Override
+    public void changeScenario(Scenario scenario) {
+
+    }
 
 
 }

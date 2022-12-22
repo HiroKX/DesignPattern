@@ -12,6 +12,7 @@ public abstract class Scenario {
     protected String nom;
     // Les billes du scénario
     protected Vector<Bille> billes;
+    protected final Vector<Bille> billesReset;
 
     protected SonLong sonChocBille;
 
@@ -24,11 +25,13 @@ public abstract class Scenario {
         this.sonChocBille = sonChoc;
         this.nom="pas de nom";
         this.billes = new Vector<Bille>();
+        this.billesReset = billes;
     }
 
     public Scenario(String nom, Vector<Bille> billes) {
         this.nom = nom;
         this.billes = billes;
+        this.billesReset = billes;
     }
 
     public void setVecteur(){
@@ -54,5 +57,13 @@ public abstract class Scenario {
         this.billes = billes;
     }
 
+    public void resetBilles(){
+        //this.billes.remove(0);
+        //todo
+        this.billes = this.billesReset;
+    }
 
+    public void removeBille(Bille bille){
+        this.billes.remove(bille);
+    }
 }
