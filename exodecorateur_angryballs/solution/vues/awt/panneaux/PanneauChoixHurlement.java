@@ -1,4 +1,4 @@
-package exodecorateur_angryballs.solution.vues;
+package exodecorateur_angryballs.solution.vues.awt.panneaux;
 
 import java.awt.CheckboxGroup;
 import java.awt.GridLayout;
@@ -16,7 +16,7 @@ import musique.SonLong;
  * ICI : IL N'Y A RIEN A CHANGER
  */
 public class PanneauChoixHurlement extends Panel {
-    exodecorateur_angryballs.maladroit.vues.BoutonChoixHurlement boutons[];
+    public exodecorateur_angryballs.maladroit.vues.BoutonChoixHurlement boutons[];
     CheckboxGroup checkboxGroup;
 
     /**

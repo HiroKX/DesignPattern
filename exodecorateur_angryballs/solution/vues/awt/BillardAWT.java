@@ -1,4 +1,4 @@
-package exodecorateur_angryballs.solution.vues;
+package exodecorateur_angryballs.solution.vues.awt;
 
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.visiteur.WindowVisitor;
@@ -32,6 +32,10 @@ public class BillardAWT extends Canvas implements WindowVisitor {
             throw new RuntimeException(e);
         }
         this.buffer = this.getBufferStrategy();
+    }
+
+    public BufferStrategy getBuffer(){
+        return this.buffer;
     }
 
     public void myRenderingLoop() {

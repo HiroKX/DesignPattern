@@ -1,4 +1,4 @@
-package exodecorateur_angryballs.solution.vues;
+package exodecorateur_angryballs.solution.vues.awt.boutons;
 
 import java.awt.Checkbox;
 import java.awt.CheckboxGroup;

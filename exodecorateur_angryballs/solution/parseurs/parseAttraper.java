@@ -2,8 +2,6 @@ package exodecorateur_angryballs.solution.parseurs;
 
 import exodecorateur_angryballs.solution.decorateur.DecorateurAttraper;
 import exodecorateur_angryballs.solution.modele.Bille;
-import exodecorateur_angryballs.solution.vues.CadreAngryBallsAWT;
-import musique.SonLong;
 
 
 public class parseAttraper extends Parser {

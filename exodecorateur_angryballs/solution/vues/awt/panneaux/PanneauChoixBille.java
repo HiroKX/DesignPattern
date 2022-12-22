@@ -1,13 +1,14 @@
-package exodecorateur_angryballs.solution.vues;
+package exodecorateur_angryballs.solution.vues.awt.panneaux;
 
 import exodecorateur_angryballs.solution.modele.Bille;
+import exodecorateur_angryballs.solution.vues.awt.boutons.BoutonChoixBille;
 
 import java.awt.*;
 import java.util.Vector;
 
 public class PanneauChoixBille extends Panel {
     CheckboxGroup checkboxGroup;
-    BoutonChoixBille boutons[];
+    public BoutonChoixBille boutons[];
 
     public PanneauChoixBille(Vector<Bille> billes) {
         this.add(new Label("Choix de la bille :"));

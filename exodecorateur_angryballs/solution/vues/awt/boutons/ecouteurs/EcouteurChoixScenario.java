@@ -1,5 +1,6 @@
-package exodecorateur_angryballs.solution;
+package exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs;
 
+import exodecorateur_angryballs.solution.AnimationBilles;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 
 import java.awt.event.ItemEvent;

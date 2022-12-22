@@ -1,4 +1,4 @@
-package exodecorateur_angryballs.solution.vues;
+package exodecorateur_angryballs.solution.vues.awt.cadre;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -8,6 +8,8 @@ import exodecorateur_angryballs.solution.modele.Bille;
 
 
 import exodecorateur_angryballs.solution.scenario.Scenario;
+import exodecorateur_angryballs.solution.vues.VueBillard;
+import exodecorateur_angryballs.solution.vues.awt.BillardAWT;
 import outilsvues.EcouteurTerminaison;
 
 import outilsvues.Outils;

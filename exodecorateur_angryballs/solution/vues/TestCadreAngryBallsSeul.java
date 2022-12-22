@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import exodecorateur_angryballs.maladroit.OutilsConfigurationBilleHurlante;
 import exodecorateur_angryballs.solution.modele.Bille;
+import exodecorateur_angryballs.solution.vues.awt.cadre.CadreAngryBallsAWT;
 import musique.SonLong;
 
 

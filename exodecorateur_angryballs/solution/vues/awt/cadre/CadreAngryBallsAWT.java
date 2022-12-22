@@ -1,12 +1,16 @@
-package exodecorateur_angryballs.solution.vues;
+package exodecorateur_angryballs.solution.vues.awt.cadre;
 
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
+import exodecorateur_angryballs.solution.vues.VueBillard;
+import exodecorateur_angryballs.solution.vues.awt.BillardAWT;
+import exodecorateur_angryballs.solution.vues.awt.panneaux.PanneauChoixBille;
+import exodecorateur_angryballs.solution.vues.awt.panneaux.PanneauChoixHurlement;
+import exodecorateur_angryballs.solution.vues.awt.panneaux.PanneauChoixScenario;
 import musique.SonLong;
 import outilsvues.EcouteurTerminaison;
 import outilsvues.Outils;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;

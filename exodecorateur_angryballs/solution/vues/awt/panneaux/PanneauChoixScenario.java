@@ -1,6 +1,7 @@
-package exodecorateur_angryballs.solution.vues;
+package exodecorateur_angryballs.solution.vues.awt.panneaux;
 
 import exodecorateur_angryballs.solution.scenario.Scenario;
+import exodecorateur_angryballs.solution.vues.awt.boutons.BoutonChoixScenario;
 
 import java.awt.*;
 import java.util.ArrayList;

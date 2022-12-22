@@ -5,7 +5,11 @@ import exodecorateur_angryballs.solution.scenario.ScenarioBillard;
 import exodecorateur_angryballs.solution.scenario.ScenarioNB;
 import exodecorateur_angryballs.solution.scenario.ScenariosFichier;
 import exodecorateur_angryballs.solution.son.SonLongRobin;
-import exodecorateur_angryballs.solution.vues.CadreAngryBallsAWT;
+import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurBoutonArreter;
+import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurBoutonLancer;
+import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurBoutonReinitialiser;
+import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurChoixScenario;
+import exodecorateur_angryballs.solution.vues.awt.cadre.CadreAngryBallsAWT;
 import musique.SonLong;
 
 import javax.sound.sampled.LineUnavailableException;
