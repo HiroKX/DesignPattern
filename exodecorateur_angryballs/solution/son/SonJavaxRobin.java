@@ -122,9 +122,9 @@ public abstract class SonJavaxRobin implements Runnable {
             throw new ArrayIndexOutOfBoundsException("le tampon n'a pas ete cre");
         } else {
             this.ligne.start();
-            //this.run1(contrôleVolume, (FloatControl) contrôleBalance, (FloatControl) contrôlePitch, gainMin, gainMax);
+            this.run1(contrôleVolume, (FloatControl) contrôleBalance, (FloatControl) contrôlePitch, gainMin, gainMax);
             this.ligne.stop();
-        }
+        }/**
         try {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(
@@ -137,7 +137,7 @@ public abstract class SonJavaxRobin implements Runnable {
             clip.setLoopPoints(nrFrames/3, nrFrames/3*2);
         } catch (Exception e) {
             System.err.println(e.getMessage());
-        }
+        }*/
     }
 
     protected abstract void run1(FloatControl var1, FloatControl var2, FloatControl var3, double var4, double var6);

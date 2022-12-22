@@ -1,13 +1,11 @@
 package exodecorateur_angryballs.solution;
 
-import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.scenario.ScenarioBillard;
 import exodecorateur_angryballs.solution.scenario.ScenarioNB;
 import exodecorateur_angryballs.solution.scenario.ScenariosFichier;
 import exodecorateur_angryballs.solution.son.SonLongRobin;
 import exodecorateur_angryballs.solution.vues.CadreAngryBallsAWT;
-import mesmaths.geometrie.base.Vecteur;
 import musique.SonLong;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -86,6 +84,7 @@ public class TestAngryBalls {
         EcouteurBoutonArreter ecouteurBoutonArreter = new EcouteurBoutonArreter(animationBilles);
         EcouteurBoutonReinitialiser ecouteurBoutonReinitialiser = new EcouteurBoutonReinitialiser(animationBilles);
         ArrayList <EcouteurChoixScenario> ecouteurChoixScenario = new ArrayList<>();
+
 
 //------------------------- activation des ecouteurs des boutons et ea tourne tout seul ------------------------------
 

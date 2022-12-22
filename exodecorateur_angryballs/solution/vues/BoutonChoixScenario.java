@@ -3,9 +3,8 @@ package exodecorateur_angryballs.solution.vues;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 
 import java.awt.*;
-import java.util.Observable;
 
-public class BoutonChoixScenario extends Bouton{
+public class BoutonChoixScenario extends Checkbox{
     Scenario scenario;
 
     public BoutonChoixScenario(CheckboxGroup checkboxGroup, boolean b, Scenario scenario) {

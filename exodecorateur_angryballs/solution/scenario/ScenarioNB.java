@@ -9,14 +9,22 @@ import musique.SonLong;
 import java.util.Vector;
 
 public class ScenarioNB extends Scenario {
+    int nbBilles;
     public ScenarioNB(VueBillard cadre, SonLong sonBilleChoc, int nbBilles) {
         super(cadre, sonBilleChoc);
         this.nom = "ScenarioNB";
         this.setVecteur();
+        this.billes= this.getInitBilles();
+    }
+
+    @Override
+    public Vector<Bille> getInitBilles() {
+        Vector<Bille> lBilles = new Vector<>();
         for (int i = 0; i < nbBilles; i++) {
             Bille b = new BilleConcrete(Vecteur.créationAléatoire(0, 0, cadre.largeurBillard(), cadre.hauteurBillard()),rayon, Vecteur.créationAléatoire(-vMax, -vMax, vMax, vMax),new Vecteur(0, 0.0001));
-            billes.add(b);
+            lBilles.add(b);
         }
+        return lBilles;
     }
 }
 

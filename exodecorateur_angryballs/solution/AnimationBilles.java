@@ -4,7 +4,6 @@ import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.vues.VueBillard;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -21,7 +20,6 @@ public class AnimationBilles implements Runnable {
     VueBillard vueBillard;    // la vue responsable du dessin des billes
     private Thread thread;    // pour lancer et arreter les billes
     private double tPrec;
-    ArrayList<String> centres = new ArrayList<>();
 
     /**
      * @param billes la liste de toutes les billes
@@ -115,13 +113,7 @@ public class AnimationBilles implements Runnable {
                 billeCourante.gestionAcceleration(billes);      // calcul de l'acceleration subie par cette bille
                 billeCourante.gestionCollisionBilleBille(billes);
                 billeCourante.collisionContour(0, 0, vueBillard.largeurBillard(), vueBillard.hauteurBillard());        //System.err.println("billes = " + billes);
-                if(centres.size()<billes.size()){
-                    centres.add(i,billeCourante.toStringCentre());
-                }
-                if(!centres.get(i).equals(billeCourante.toStringCentre())){
-                    System.out.println(billeCourante.toStringCentre() + billeCourante.temp);
-                    centres.add(i,billeCourante.toStringCentre());
-                }
+
             }
 
             vueBillard.miseAJour();                                // on previent la vue qu'il faut redessiner les billes

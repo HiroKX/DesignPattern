@@ -21,6 +21,11 @@ public class ScenariosFichier extends Scenario{
         super(vue,sonChoc);
     }
 
+    @Override
+    public Vector<Bille> getInitBilles() {
+        return null;
+    }
+
     /**
      * Charge les scenarios de billes a partir d'un fichier
      * @param nomFichier nom du fichier contenant la description des scenarios
@@ -96,5 +101,7 @@ public class ScenariosFichier extends Scenario{
         // On retourne les scénarios
         return scenarios;
     }
+
+
 
 }

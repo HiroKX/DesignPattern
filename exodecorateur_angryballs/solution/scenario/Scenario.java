@@ -12,7 +12,7 @@ public abstract class Scenario {
     protected String nom;
     // Les billes du scénario
     protected Vector<Bille> billes;
-    protected final Vector<Bille> billesReset;
+    protected Vector<Bille> billesReset;
 
     protected SonLong sonChocBille;
 
@@ -59,10 +59,11 @@ public abstract class Scenario {
 
     public void resetBilles(){
         //this.billes.remove(0);
-        //todo
-        this.billes = this.billesReset;
+
+        this.billes = this.getInitBilles();
     }
 
+    public abstract Vector<Bille> getInitBilles();
     public void removeBille(Bille bille){
         this.billes.remove(bille);
     }
