@@ -34,7 +34,7 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
     ArrayList<Scenario> scenarios;
     Scenario scenarioCourant;
 
-    ArrayList<Object> observeurs;
+    ArrayList<Observer> observeurs;
 
     public static CadreAngryBallsAWT getInstance(String titre, String message, Vector<Bille> billes, SonLong[] hurlements, int choixHurlementInitial) {
         if (instance == null)
@@ -130,19 +130,23 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         } catch (NullPointerException ignored) {}
         this.ligneBoutonsChoixBilles = new PanneauChoixBille(billes);
         this.bas.add(this.ligneBoutonsChoixBilles);
+        for(int i = 0; i < billes.size(); i++)
+            this.ligneBoutonsChoixBilles.boutons[i].addItemListener((ItemEvent e)-> this.notifyObservers("bille;"+e.getItem()));
     }
 
     public void initPanneauScenario(ArrayList<Scenario> scenarios){
         this.ligneBoutonsChoixScenario = new PanneauChoixScenario(scenarios);
         this.bas.add(this.ligneBoutonsChoixScenario);
+        for(int i = 0; i < scenarios.size(); i++)
+            this.ligneBoutonsChoixScenario.boutons[i].addItemListener((ItemEvent e) -> this.notifyObservers("scenario;" + e.getItem()));
     }
 
     public void notifyObservers(Object arg) {
-        for (Object o : this.observeurs)
-            ((Observer) o).update(null, arg);
+        for (Observer o : this.observeurs)
+            o.update(null, arg);
     }
 
-    public void addObserver(Object o) {
+    public void addObserver(Observer o) {
         this.observeurs.add(o);
     }
 

@@ -81,20 +81,13 @@ public class TestAngryBalls {
         AnimationBilles animationBilles = new AnimationBilles(cadre);
         animationBilles.setBilles(defaultScenario);
 
-//----------------------- mise en place des ecouteurs de boutons qui permettent de contrôler (un peu...) l'application -----------------
-
-        ArrayList <EcouteurChoixScenario> ecouteurChoixScenario = new ArrayList<>();
-
 //------------------------- activation des ecouteurs des boutons et ea tourne tout seul ------------------------------
 
         cadre.addObserver(new EcouteurBoutonLancer(animationBilles));
         cadre.addObserver(new EcouteurBoutonArreter(animationBilles));
         cadre.addObserver(new EcouteurBoutonReinitialiser(animationBilles));
-
-        for (int i = 0; i < cadre.getScenarios().size(); i++) {
-            ecouteurChoixScenario.add(new EcouteurChoixScenario(cadre.getScenarios().get(i), animationBilles));
-            cadre.ligneBoutonsChoixScenario.boutons[i].addItemListener(ecouteurChoixScenario.get(i));
-        }
+        for (int i = 0; i < cadre.getScenarios().size(); i++)
+            cadre.addObserver(new EcouteurChoixScenario(cadre.getScenarios().get(i), animationBilles));
 
         cadre.revalidate();
         cadre.repaint();
