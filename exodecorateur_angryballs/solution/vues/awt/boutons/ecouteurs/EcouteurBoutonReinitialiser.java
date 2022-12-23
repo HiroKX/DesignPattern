@@ -2,10 +2,10 @@ package exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs;
 
 import exodecorateur_angryballs.solution.AnimationBilles;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
-public class EcouteurBoutonReinitialiser implements ActionListener {
+public class EcouteurBoutonReinitialiser implements Observer {
     AnimationBilles animationBilles;
 
     public EcouteurBoutonReinitialiser(AnimationBilles animationBilles) {
@@ -13,8 +13,9 @@ public class EcouteurBoutonReinitialiser implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        this.animationBilles.reinitialiser();
+    public void update(Observable o, Object arg) {
+        if(arg.equals("reinitialiser"))
+            this.animationBilles.reinitialiser();
     }
 }
 

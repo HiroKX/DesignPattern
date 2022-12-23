@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-
 /**
  * Gestion d'une liste de billes en mouvement ayant toutes un comportement different
  * <p>
@@ -84,21 +83,18 @@ public class TestAngryBalls {
 
 //----------------------- mise en place des ecouteurs de boutons qui permettent de contrôler (un peu...) l'application -----------------
 
-        EcouteurBoutonLancer ecouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
-        EcouteurBoutonArreter ecouteurBoutonArreter = new EcouteurBoutonArreter(animationBilles);
-        EcouteurBoutonReinitialiser ecouteurBoutonReinitialiser = new EcouteurBoutonReinitialiser(animationBilles);
         ArrayList <EcouteurChoixScenario> ecouteurChoixScenario = new ArrayList<>();
-
 
 //------------------------- activation des ecouteurs des boutons et ea tourne tout seul ------------------------------
 
-        cadre.lancerBilles.addActionListener(ecouteurBoutonLancer);             // pourrait etre remplace par Observable - Observer
-        cadre.arreterBilles.addActionListener(ecouteurBoutonArreter);           // pourrait etre remplace par Observable - Observer
+        cadre.addObserver(new EcouteurBoutonLancer(animationBilles));
+        cadre.addObserver(new EcouteurBoutonArreter(animationBilles));
+        cadre.addObserver(new EcouteurBoutonReinitialiser(animationBilles));
+
         for (int i = 0; i < cadre.getScenarios().size(); i++) {
             ecouteurChoixScenario.add(new EcouteurChoixScenario(cadre.getScenarios().get(i), animationBilles));
             cadre.ligneBoutonsChoixScenario.boutons[i].addItemListener(ecouteurChoixScenario.get(i));
         }
-        cadre.reinitialiserBilles.addActionListener(ecouteurBoutonReinitialiser);     // pourrait etre remplace par Observable - Observer
 
         cadre.revalidate();
         cadre.repaint();

@@ -14,15 +14,14 @@ import outilsvues.Outils;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Observer;
 import java.util.Vector;
 
 /**
  * Vue dessinant les billes et contenant les 3 boutons de contrele (arret du programme, lancer les billes, arreter les billes)
  * et contenant la ligne des boutons de choix des sons pour la bille hurlante
- * <p>
- * ICI : IL N'Y A RIEN A CHANGER
  */
-public final class CadreAngryBallsAWT extends Frame implements VueBillard {
+public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
     private static CadreAngryBallsAWT instance = null;
     TextField presentation;
     BillardAWT billard;
@@ -34,6 +33,8 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard {
     EcouteurTerminaison ecouteurTerminaison;
     ArrayList<Scenario> scenarios;
     Scenario scenarioCourant;
+
+    ArrayList<Object> observeurs;
 
     public static CadreAngryBallsAWT getInstance(String titre, String message, Vector<Bille> billes, SonLong[] hurlements, int choixHurlementInitial) {
         if (instance == null)
@@ -47,6 +48,8 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard {
         this.ecouteurTerminaison = new EcouteurTerminaison(this);
 
         this.scenarios = new ArrayList<>();
+
+        this.observeurs = new ArrayList<>();
 
         this.setIgnoreRepaint(true);
 
@@ -100,12 +103,15 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard {
 
         this.lancerBilles = new Button("lancer les billes");
         this.ligneBoutonsLancerArret.add(this.lancerBilles);
+        this.lancerBilles.addActionListener((ActionEvent e)-> this.notifyObservers("lancer"));
 
         this.arreterBilles = new Button("arreter les billes");
         this.ligneBoutonsLancerArret.add(this.arreterBilles);
+        this.arreterBilles.addActionListener((ActionEvent e)-> this.notifyObservers("arreter"));
 
         this.reinitialiserBilles = new Button("relancer les billes");
         this.ligneBoutonsLancerArret.add(this.reinitialiserBilles);
+        this.reinitialiserBilles.addActionListener((ActionEvent e)-> this.notifyObservers("reinitialiser"));
 
 //---------------- placement de la ligne de boutons de choix des sons pour le hurlement ------
 
@@ -129,6 +135,15 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard {
     public void initPanneauScenario(ArrayList<Scenario> scenarios){
         this.ligneBoutonsChoixScenario = new PanneauChoixScenario(scenarios);
         this.bas.add(this.ligneBoutonsChoixScenario);
+    }
+
+    public void notifyObservers(Object arg) {
+        for (Object o : this.observeurs)
+            ((Observer) o).update(null, arg);
+    }
+
+    public void addObserver(Object o) {
+        this.observeurs.add(o);
     }
 
     public double largeurBillard() {
