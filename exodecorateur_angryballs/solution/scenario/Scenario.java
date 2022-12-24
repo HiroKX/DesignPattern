@@ -34,6 +34,11 @@ public abstract class Scenario {
         this.billesReset = billes;
     }
 
+    public Scenario(String nom){
+        this.nom= nom;
+        this.billes = new Vector<>();
+    }
+
     public void setVecteur(){
         this.vMax = 0.1;
         this.xMax = this.cadre.largeurBillard();      // abscisse maximal
