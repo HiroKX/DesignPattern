@@ -5,10 +5,7 @@ import exodecorateur_angryballs.solution.scenario.ScenarioBillard;
 import exodecorateur_angryballs.solution.scenario.ScenarioNB;
 import exodecorateur_angryballs.solution.scenario.ScenariosFichier;
 import exodecorateur_angryballs.solution.son.SonLongRobin;
-import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurBoutonArreter;
-import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurBoutonLancer;
-import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurBoutonReinitialiser;
-import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurChoixScenario;
+import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.*;
 import exodecorateur_angryballs.solution.vues.awt.cadre.CadreAngryBallsAWT;
 import musique.SonLong;
 
@@ -74,7 +71,6 @@ public class TestAngryBalls {
         System.out.println("billesNombres = " + defaultScenario.getBilles().size());
         System.out.println("billes = " + defaultScenario.getBilles());
         cadre.initPanneauScenario(cadre.getScenarios());
-        cadre.initPanneauBille(defaultScenario.getBilles());
 
 //-------------------- creation de l'objet responsable de l'animation (c'est un thread separe) -----------------------
 

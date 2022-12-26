@@ -12,32 +12,10 @@ public abstract class Scenario {
     protected String nom;
     // Les billes du scénario
     protected Vector<Bille> billes;
-    protected Vector<Bille> billesReset;
-
     protected SonLong sonChocBille;
-
     protected double vMax;
     protected double xMax, yMax;
     protected double rayon;
-
-    public Scenario(VueBillard cadre, SonLong sonChoc){
-        this.cadre =cadre;
-        this.sonChocBille = sonChoc;
-        this.nom="pas de nom";
-        this.billes = new Vector<Bille>();
-        this.billesReset = billes;
-    }
-
-    public Scenario(String nom, Vector<Bille> billes) {
-        this.nom = nom;
-        this.billes = billes;
-        this.billesReset = billes;
-    }
-
-    public Scenario(String nom){
-        this.nom= nom;
-        this.billes = new Vector<>();
-    }
 
     public void setVecteur(){
         this.vMax = 0.1;
@@ -54,8 +32,12 @@ public abstract class Scenario {
         return billes;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public Bille getBilleInt(int i){
+        for(int j = 0; j < billes.size(); j++) {
+            if (billes.elementAt(j).getClef() == i)
+                return billes.elementAt(j);
+        }
+        return null;
     }
 
     public void setBilles(Vector<Bille> billes) {
@@ -63,8 +45,6 @@ public abstract class Scenario {
     }
 
     public void resetBilles(){
-        //this.billes.remove(0);
-
         this.billes = this.getInitBilles();
     }
 

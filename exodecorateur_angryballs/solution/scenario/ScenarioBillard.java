@@ -13,7 +13,8 @@ import java.util.Vector;
 
 public class ScenarioBillard extends Scenario {
     public ScenarioBillard(VueBillard cadre, SonLong sonBilleChoc) {
-        super(cadre, sonBilleChoc);
+        this.cadre = cadre;
+        this.sonChocBille = sonBilleChoc;
         this.nom = "Billard";
         this.setVecteur();
         this.setBillard();

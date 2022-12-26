@@ -18,7 +18,8 @@ import java.util.Vector;
 public class ScenariosFichier extends Scenario{
 
     public ScenariosFichier(VueBillard vue,SonLong sonChoc){
-        super(vue,sonChoc);
+        this.cadre = vue;
+        this.sonChocBille = sonChoc;
     }
 
     @Override

@@ -74,6 +74,18 @@ public abstract class DecorateurBille extends Bille {
         this.bille = bille;
     }
 
+    public Vecteur setPosition(Vecteur position) {
+        return this.bille.setPosition(position);
+    }
+
+    public void setChoisie(boolean b) {
+        this.bille.setChoisie(b);
+    }
+
+    public boolean getChoisie() {
+        return this.bille.getChoisie();
+    }
+
     public ControlleurGeneral getControlleurGeneral(){
         return this.bille.getControlleurGeneral();
     }

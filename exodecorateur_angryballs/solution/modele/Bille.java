@@ -31,6 +31,8 @@ public abstract class Bille {
 
     public abstract Vecteur getPosition();
 
+    public abstract Vecteur setPosition(Vecteur position);
+
 
     /**
      * @return the rayon
@@ -101,10 +103,8 @@ public abstract class Bille {
 
     public abstract String toStringCentre();
 
-    /* cette methode engendre des clignotements : idee : utiliser l'active rendering et le double buffering pour eviter ea */
-
-
-
+    public abstract void setChoisie(boolean b);
+    public abstract boolean getChoisie();
 
 //----------------- classe Bille -------------------------------------
 }

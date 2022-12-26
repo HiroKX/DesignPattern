@@ -1,5 +1,6 @@
 package exodecorateur_angryballs.solution.vues.awt.cadre;
 
+import exodecorateur_angryballs.solution.Event.ControlleurBilleClavier;
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.vues.VueBillard;
@@ -22,18 +23,17 @@ import java.util.Vector;
  * et contenant la ligne des boutons de choix des sons pour la bille hurlante
  */
 public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
+    // Le billard, avec le DP Singleton
     private static CadreAngryBallsAWT instance = null;
     TextField presentation;
     BillardAWT billard;
     public Button lancerBilles, arreterBilles, reinitialiserBilles;
     Panel haut, centre, bas, ligneBoutonsLancerArret;
     PanneauChoixHurlement ligneBoutonsChoixHurlement;
-    PanneauChoixBille ligneBoutonsChoixBilles;
     public PanneauChoixScenario ligneBoutonsChoixScenario;
     EcouteurTerminaison ecouteurTerminaison;
     ArrayList<Scenario> scenarios;
     Scenario scenarioCourant;
-
     ArrayList<Observer> observeurs;
 
     public static CadreAngryBallsAWT getInstance(String titre, String message, Vector<Bille> billes, SonLong[] hurlements, int choixHurlementInitial) {
@@ -91,24 +91,24 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
 
 //------------------- placement des composants du bas du cadre -------------------------------
 
-        int nombreLignes = 4, nombreColonnes = 1;
+        int nombreLignes = 3, nombreColonnes = 1;
 
         this.bas.setLayout(new GridLayout(nombreLignes, nombreColonnes));
 
-//---------------- placement des boutons lancer - arreter ------------------------------------
+//---------------- placement des boutons lancer - arreter - reinitialiser ------------------------------------
 
+    // Panneau des boutons
         this.ligneBoutonsLancerArret = new Panel();
         this.bas.add(this.ligneBoutonsLancerArret);
-
-
+    // Bouton lancer
         this.lancerBilles = new Button("lancer les billes");
         this.ligneBoutonsLancerArret.add(this.lancerBilles);
         this.lancerBilles.addActionListener((ActionEvent e)-> this.notifyObservers("lancer"));
-
+    // Bouton arreter
         this.arreterBilles = new Button("arreter les billes");
         this.ligneBoutonsLancerArret.add(this.arreterBilles);
         this.arreterBilles.addActionListener((ActionEvent e)-> this.notifyObservers("arreter"));
-
+    // Bouton reinitialiser
         this.reinitialiserBilles = new Button("relancer les billes");
         this.ligneBoutonsLancerArret.add(this.reinitialiserBilles);
         this.reinitialiserBilles.addActionListener((ActionEvent e)-> this.notifyObservers("reinitialiser"));
@@ -119,19 +119,11 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         this.bas.add(this.ligneBoutonsChoixHurlement);
 
 //---------------- placement du billard -----------------------------------------------------
+
         this.billard = new BillardAWT(billes);
         this.add(this.billard);
         this.montrer();
         this.billard.initBuffer();
-    }
-    public void initPanneauBille(Vector<Bille> billes) {
-        try {
-            this.bas.remove(this.ligneBoutonsChoixBilles);
-        } catch (NullPointerException ignored) {}
-        this.ligneBoutonsChoixBilles = new PanneauChoixBille(billes);
-        this.bas.add(this.ligneBoutonsChoixBilles);
-        for(int i = 0; i < billes.size(); i++)
-            this.ligneBoutonsChoixBilles.boutons[i].addItemListener((ItemEvent e)-> this.notifyObservers("bille;"+e.getItem()));
     }
 
     public void initPanneauScenario(ArrayList<Scenario> scenarios){
@@ -160,6 +152,7 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
 
     public void setScenarioCourant(Scenario scenarioCourant) {
         this.scenarioCourant = scenarioCourant;
+        this.billard.setKeyListner(new ControlleurBilleClavier(this.scenarioCourant));
     }
 
     @Override
@@ -183,8 +176,6 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         // On réinitialise le buffer
         this.montrer();
         this.billard.initBuffer();
-        // On met à jour le panneau de choix des billes
-        this.initPanneauBille(scenario.getBilles());
         for(Bille b : scenario.getBilles()){
             this.addMouseMotionListener(b.getControlleurGeneral());
             this.addMouseListener(b.getControlleurGeneral());
@@ -222,11 +213,6 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         int i;
         for (i = 0; i < this.ligneBoutonsChoixHurlement.boutons.length; ++i)
             this.ligneBoutonsChoixHurlement.boutons[i].addItemListener(ecouteurChoixHurlant);
-    }
-
-    public void addChoixBilleListener(ItemListener ecouteurChoixBille) {
-        for (int i = 0; i < this.ligneBoutonsChoixBilles.boutons.length; ++i)
-            this.ligneBoutonsChoixBilles.boutons[i].addItemListener(ecouteurChoixBille);
     }
 
     public void addMouseListener(MouseListener mouseListener) {

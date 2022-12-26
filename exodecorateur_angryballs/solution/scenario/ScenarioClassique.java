@@ -7,12 +7,9 @@ import musique.SonLong;
 import java.util.Vector;
 
 public class ScenarioClassique extends Scenario {
-    public ScenarioClassique(VueBillard cadre, SonLong sonChocBille){
-        super(cadre, sonChocBille);
-    }
-
     public ScenarioClassique(String nomScenario, Vector<Bille> billes,SonLong sonChocBille) {
-        super(nomScenario,billes);
+        this.nom = nomScenario;
+        this.billes = billes;
         this.sonChocBille = sonChocBille;
     }
     @Override

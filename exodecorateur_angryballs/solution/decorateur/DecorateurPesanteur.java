@@ -9,7 +9,6 @@ public class DecorateurPesanteur extends DecorateurBille{
 
     Vecteur pesanteur;
 
-
     public DecorateurPesanteur(Bille b, Vecteur pesanteur){
         super(b);
         this.pesanteur = pesanteur;
