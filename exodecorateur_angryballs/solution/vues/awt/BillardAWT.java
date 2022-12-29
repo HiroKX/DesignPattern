@@ -1,6 +1,7 @@
 package exodecorateur_angryballs.solution.vues.awt;
 
 import exodecorateur_angryballs.solution.Event.ControlleurBilleClavier;
+import exodecorateur_angryballs.solution.decorateur.DecorateurSelectionnable;
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.visiteur.WindowVisitor;
 
@@ -49,23 +50,25 @@ public class BillardAWT extends Canvas implements WindowVisitor {
     }
 
     public void myRenderingLoop() {
-           try {
-           // Nettoyage de l'ecran
-               this.graphics = this.buffer.getDrawGraphics();
-               graphics.setColor(Color.WHITE);
-               graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-           // Dessin des billes
-               for (Bille bille : this.billes) {
-                   this.graphics = this.buffer.getDrawGraphics();
-                   this.visit(bille);
-               }
-           // Affichage
-               if(!this.buffer.contentsLost())
-                   this.buffer.show();
-              }finally {
-                if(this.graphics != null)
-                     this.graphics.dispose();
-           }
+        if(this.buffer != null) {
+            try {
+                // Nettoyage de l'ecran
+                this.graphics = this.buffer.getDrawGraphics();
+                graphics.setColor(Color.WHITE);
+                graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+                // Dessin des billes
+                for (Bille bille : this.billes) {
+                    this.graphics = this.buffer.getDrawGraphics();
+                    this.visit(bille);
+                }
+                // Affichage
+                if (!this.buffer.contentsLost())
+                    this.buffer.show();
+            } finally {
+                if (this.graphics != null)
+                    this.graphics.dispose();
+            }
+        }
     }
 
     @Override
@@ -81,7 +84,7 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         graphics.fillOval(xMin, yMin, width, height);
 
         // Si elle est choisie on met les contours en vert
-        if(bille.getChoisie())
+        if(bille instanceof DecorateurSelectionnable && ((DecorateurSelectionnable) bille).getChoisie())
             graphics.setColor(Color.GREEN);
         // Sinon si la bille est noire on met les contours en noir
         else if(bille.getCouleur() == 0x000000)

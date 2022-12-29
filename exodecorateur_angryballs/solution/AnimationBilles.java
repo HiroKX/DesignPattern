@@ -5,143 +5,163 @@ import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.vues.VueBillard;
 
 import java.util.Vector;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
- * responsable de l'animation des billes, c-e-d responsable du mouvement de la liste des billes. met perpetuellement e jour les billes.
- * gere le delai entre 2 mises e jour (deltaT) et previent la vue responsable du dessin des billes qu'il faut mettre e jour la scene
- * <p>
- * ICI : IL N'Y A RIEN A CHANGER
+ * Responsable de l'animation des billes, c-à-d responsable du mouvement de la liste des billes.
+ * Met perpetuellement à jour les billes.
+ * Gère le delai entre 2 mises à jour (deltaT) et previent la vue responsable du dessin des billes qu'il faut mettre à jour la scene
  */
-public class AnimationBilles implements Runnable {
+public class AnimationBilles {
+    /**
+     * Délai entre deux rafraichissements en millisecondes
+     */
+    public static final int DELAI = 2;
 
+    /**
+     * La liste de toutes les billes en mouvement
+     */
+    Vector<Bille> billes;
 
-    private static final double COEFF = 0.5;
-    Vector<Bille> billes;   // la liste de toutes les billes en mouvement
-    VueBillard vueBillard;    // la vue responsable du dessin des billes
-    private Thread thread;    // pour lancer et arreter les billes
+    /**
+     * La vue responsable du dessin des billes
+     */
+    VueBillard vueBillard;
+
+    /**
+     * Le temps de la derniere mise à jour
+     */
     private double tPrec;
 
     /**
-     * @param billes la liste de toutes les billes
+     * Delai entre 2 mises à jour de la liste des billes
+     */
+    double deltaT;
+
+    /**
+     * Pour gèrer le delai entre 2 mises à jour
+     */
+    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+    /**
+     * @param billes     la liste de toutes les billes
      * @param vueBillard la vue responsable du dessin des billes
      */
     public AnimationBilles(Vector<Bille> billes, VueBillard vueBillard) {
+        assert billes != null;
+        assert vueBillard != null;
         this.billes = billes;
         this.vueBillard = vueBillard;
-        this.thread = null;     //est-ce utile ?
         // Affiche les billes avant le lancement de l'animation
         this.vueBillard.miseAJour();
-    }
-
-    public AnimationBilles( VueBillard vueBillard) {
-        this.billes = new Vector<>();
-        this.vueBillard = vueBillard;
-        this.thread = null;     //est-ce utile ?
-        // Affiche les billes avant le lancement de l'animation
-        this.vueBillard.miseAJour();
-
     }
 
     /**
-     * calcule le maximum de de la norme carree (pour faire moins de calcul) des vecteurs vitesse de la liste de billes
+     * @param vueBillard la vue responsable du dessin des billes
+     */
+    public AnimationBilles(VueBillard vueBillard) {
+        assert vueBillard != null;
+        this.billes = new Vector<>();
+        this.vueBillard = vueBillard;
+        // Affiche les billes avant le lancement de l'animation
+        this.vueBillard.miseAJour();
+    }
+
+    /**
+     * Calcule le maximum de la norme carree (pour faire moins de calcul) des vecteurs vitesse de la liste de billes
+     *
+     * @param billes la liste de billes
+     * @return le maximum de la norme carree des vecteurs vitesse de la liste de billes
      */
     static double maxVitessesCarrees(Vector<Bille> billes) {
+        assert billes != null;
         double vitesse2Max = 0;
-
-        int i;
         double vitesse2Courante;
-
-        for (i = 0; i < billes.size(); ++i)
-            if ((vitesse2Courante = billes.get(i).getVitesse().normeCarrée()) > vitesse2Max)
+        for (Bille bille : billes)
+            if ((vitesse2Courante = bille.getVitesse().normeCarrée()) > vitesse2Max)
                 vitesse2Max = vitesse2Courante;
-
         return vitesse2Max;
     }
 
     /**
-     * calcule le minimum  des rayons de a liste des billes
+     * Calcule le minimum des rayons de la liste des billes
+     *
+     * @param billes la liste des billes
+     * @return le minimum des rayons de la liste des billes
      */
     static double minRayons(Vector<Bille> billes) {
-        double rayonMin, rayonCourant;
-
-        rayonMin = Double.MAX_VALUE;
-
-        int i;
-        for (i = 0; i < billes.size(); ++i)
-            if ((rayonCourant = billes.get(i).getRayon()) < rayonMin)
+        assert billes != null;
+        double rayonMin = Double.MAX_VALUE, rayonCourant;
+        for (Bille bille : billes)
+            if ((rayonCourant = bille.getRayon()) < rayonMin)
                 rayonMin = rayonCourant;
-
         return rayonMin;
     }
 
-    // Change les billes, utilisé pour changer de scénario
+    /**
+     * Change les billes, utilisé pour changer de scénario
+     *
+     * @param scenario le scénario avec les nouvelles billes
+     */
     public void setBilles(Scenario scenario) {
-            // On remplace les billes
-            this.billes = scenario.getBilles();
-            // On arrête l'animation pour fermer le thread si ce n'est pas déjà fait
-            this.arreterAnimation();
-            // On change les billes dans la vue du billard
-            this.vueBillard.changeScenario(scenario);
-            this.vueBillard.miseAJour();
+        assert scenario != null;
+        // On remplace les billes
+        this.billes = scenario.getBilles();
+        // On arrête l'animation pour fermer le thread si ce n'est pas déjà fait
+        this.arreterAnimation();
+        // On change les billes dans la vue du billard
+        this.vueBillard.changeScenario(scenario);
+        this.vueBillard.miseAJour();
     }
 
-    @Override
-    public void run() {
-        tPrec = System.currentTimeMillis();
-        double deltaT;  // delai entre 2 mises e jour de la liste des billes
-        Bille billeCourante;
-
-        double minRayons = AnimationBilles.minRayons(billes);   //necessaire au calcul de deltaT
-        double minRayons2 = minRayons * minRayons;                //necessaire au calcul de deltaT
-
-        while (!Thread.interrupted())                           // gestion du mouvement
-        {
-            double t = System.currentTimeMillis();//Temps en secondes
-            //deltaT = COEFF*minRayons2/(1+maxVitessesCarrees(billes));       // mise e jour deltaT. L'addition + 1 est une astuce pour eviter les divisions par zero
-
-            //System.err.println("deltaT = " + deltaT);
-            deltaT = t - tPrec;
-            tPrec = t;
-            //deltaT = 10;
-            int i;
-            for (i = 0; i < billes.size(); ++i)    // mise e jour de la liste des billes
-            {
-
-                billeCourante = billes.get(i);
-
-                billeCourante.deplacer(deltaT);                 // mise e jour position et vitesse de cette bille
-                billeCourante.gestionAcceleration(billes);      // calcul de l'acceleration subie par cette bille
-                billeCourante.gestionCollisionBilleBille(billes);
-                billeCourante.collisionContour(0, 0, vueBillard.largeurBillard(), vueBillard.hauteurBillard());        //System.err.println("billes = " + billes);
-
-            }
-
-            vueBillard.miseAJour();                                // on previent la vue qu'il faut redessiner les billes
-
-
-            try {
-                Thread.sleep(1);                          // deltaT peut etre considere comme le delai entre 2 flashes d'un stroboscope qui eclairerait la scene
-            } catch (InterruptedException e) {
-               throw new RuntimeException(e);
-            }
+    /**
+     * Boucle qui se répète toutes les DELAI millisecondes pour mettre à jour l'animation
+     */
+    public void boucleAnimation() {
+        // Temps en secondes
+        double t = System.currentTimeMillis();
+        // Calcul du temps écoulé depuis la dernière mise à jour
+        deltaT = t - tPrec;
+        tPrec = t;
+        // Mise à jour de la liste des billes
+        for (Bille bille : this.billes) {
+            // Mise à jour position et vitesse de cette bille
+            bille.deplacer(deltaT);
+            // Calcul de l'acceleration subie par cette bille
+            bille.gestionAcceleration(this.billes);
+            bille.gestionCollisionBilleBille(this.billes);
+            bille.collisionContour(0, 0, vueBillard.largeurBillard(), vueBillard.hauteurBillard());
         }
-
+        // On prévient la vue qu'il faut redessiner les billes
+        vueBillard.miseAJour();
     }
 
+    /**
+     * Lance l'animation
+     */
     public void lancerAnimation() {
-        if (this.thread == null) {
-            this.thread = new Thread(this);
-            thread.start();
+        assert this.scheduler != null;
+        if (this.scheduler.isShutdown()) {
+            tPrec = System.currentTimeMillis();
+            this.scheduler = Executors.newScheduledThreadPool(1);
+            this.scheduler.scheduleWithFixedDelay(this::boucleAnimation, 0, DELAI, TimeUnit.MILLISECONDS);
         }
     }
 
+    /**
+     * Arrete l'animation
+     */
     public void arreterAnimation() {
-        if (thread != null) {
-            this.thread.interrupt();
-            this.thread = null;
-        }
+        assert this.scheduler != null;
+        if (!this.scheduler.isShutdown())
+            this.scheduler.shutdown();
     }
 
+    /**
+     * Reinitialise l'animation
+     */
     public void reinitialiser() {
         this.vueBillard.getScenarioCourant().resetBilles();
         this.setBilles(this.vueBillard.getScenarioCourant());

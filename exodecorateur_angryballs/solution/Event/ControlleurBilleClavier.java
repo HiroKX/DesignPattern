@@ -1,5 +1,6 @@
 package exodecorateur_angryballs.solution.Event;
 
+import exodecorateur_angryballs.solution.decorateur.DecorateurSelectionnable;
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 import mesmaths.geometrie.base.Vecteur;
@@ -10,7 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ControlleurBilleClavier implements KeyListener, MouseListener {
-    private Bille bille;
+    private DecorateurSelectionnable bille;
     private final Scenario scenario;
 
     public ControlleurBilleClavier(Scenario scenario) {
@@ -67,9 +68,13 @@ public class ControlleurBilleClavier implements KeyListener, MouseListener {
             this.bille.setChoisie(false);
         for (Bille b : this.scenario.getBilles()) {
             if (mesmaths.geometrie.base.Geop.appartientDisque(new Vecteur(e.getX(), e.getY()), b.getPosition(), b.getRayon())) {
-                this.bille = b;
-                b.setChoisie(true);
-                break;
+                try {
+                    this.bille = (DecorateurSelectionnable) b;
+                    this.bille.setChoisie(true);
+                    break;
+                } catch (ClassCastException ex) {
+                    break;
+                }
             }
         }
     }

@@ -17,7 +17,6 @@ public class BilleConcrete extends Bille {
     public int clef;                // identifiant unique de cette bille
     public static double ro = 1;        // masse volumique
     public static boolean TEMP = false;
-    public boolean choisie = false;
     @Override
     public int getCouleur() {
         return couleur;
@@ -38,15 +37,6 @@ public class BilleConcrete extends Bille {
     public Vecteur setPosition(Vecteur position) {
         return this.position = position;
     }
-
-    public void setChoisie(boolean b) {
-        this.choisie = b;
-    }
-
-    public boolean getChoisie() {
-        return this.choisie;
-    }
-
 
     /**
      * @return the rayon

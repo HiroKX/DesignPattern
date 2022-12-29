@@ -103,9 +103,13 @@ public abstract class Bille {
 
     public abstract String toStringCentre();
 
-    public abstract void setChoisie(boolean b);
-    public abstract boolean getChoisie();
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Bille b)
+            return this.getClef() == b.getClef();
+        return false;
+    }
 
-//----------------- classe Bille -------------------------------------
+    //----------------- classe Bille -------------------------------------
 }
 

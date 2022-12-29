@@ -78,14 +78,6 @@ public abstract class DecorateurBille extends Bille {
         return this.bille.setPosition(position);
     }
 
-    public void setChoisie(boolean b) {
-        this.bille.setChoisie(b);
-    }
-
-    public boolean getChoisie() {
-        return this.bille.getChoisie();
-    }
-
     public ControlleurGeneral getControlleurGeneral(){
         return this.bille.getControlleurGeneral();
     }

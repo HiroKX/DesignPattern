@@ -19,19 +19,17 @@ public class OutilsBille {
      * @return la liste des autres billes que cetteBille, c'est-e-dire la liste de toutes les billes sauf cetteBille
      */
     public static Vector<Bille> autresBilles(Bille cetteBille, Vector<Bille> billes) {
-        Vector<Bille> autresBilles = new Vector<Bille>();
-
-        Bille billeCourante;
-
-        int i;
-
-        for (i = 0; i < billes.size(); ++i) {
-            billeCourante = billes.get(i);
-            if (billeCourante.getClef() != cetteBille.getClef())
-                autresBilles.add(billeCourante);
-        }
-
+        Vector<Bille> autresBilles = (Vector<Bille>) billes.clone();
+        autresBilles.remove(cetteBille);
         return autresBilles;
+        /*
+        Vector<Bille> autresBilles = new Vector<Bille>();
+        for (Bille bille : billes) {
+            if (!bille.equals(cetteBille))
+                autresBilles.add(bille);
+        }
+        return autresBilles;
+        */
     }
 
 
@@ -55,24 +53,18 @@ public class OutilsBille {
 //--- on cherche e present la 1ere des autres billes avec laquelle cetteBille est en collision ---------------------
 //-------------- on suppose qu'il ne peut y avoir de collision qui implique plus de deux billes e la fois ---------------
 
-        Bille billeCourante;
-
-        int i;
-
-        for (i = 0; i < autresBilles.size(); ++i) {
-            billeCourante = autresBilles.get(i);
+        for (Bille autresBille : autresBilles) {
             if (RobinLagler.CollisionBilleBille(cetteBille.getPosition(), cetteBille.getRayon(), cetteBille.getVitesse(), cetteBille.masse(),
-                    billeCourante.getPosition(), billeCourante.getRayon(), billeCourante.getVitesse(), billeCourante.masse()))
+                    autresBille.getPosition(), autresBille.getRayon(), autresBille.getVitesse(), autresBille.masse()))
                 return true;
         }
         return gestionCollisionBilleBilleStatique(cetteBille, autresBilles);
     }
 
     public static boolean gestionCollisionBilleBilleStatique(Bille cetteBille, Vector<Bille> autresBilles) {
-        for (int i = 0; i < autresBilles.size(); ++i) {
-            Bille tBilles = autresBilles.get(i);
-            mesmaths.cinematique.brouillon.Collisions.CollisionBilleBille2(cetteBille.getPosition(),cetteBille.getRayon(),new Vecteur(0.00000001,0.0000000001),
-                    cetteBille.masse(),tBilles.getPosition(),tBilles.getRayon(),new Vecteur(0.00000001,0.0000000001),tBilles.masse());
+        for (Bille autresBille : autresBilles) {
+            mesmaths.cinematique.brouillon.Collisions.CollisionBilleBille2(cetteBille.getPosition(), cetteBille.getRayon(), new Vecteur(0.00000001, 0.0000000001),
+                    cetteBille.masse(), autresBille.getPosition(), autresBille.getRayon(), new Vecteur(0.00000001, 0.0000000001), autresBille.masse());
         }
         return false;
     }
@@ -94,18 +86,15 @@ public class OutilsBille {
         Vector<Bille> autresBilles = OutilsBille.autresBilles(cetteBille, billes);
 
 //-------------- e present on recupere les masses et les positions des autres billes ------------------
-        int i;
-        Bille billeCourante;
 
         int d = autresBilles.size();
 
-        double masses[] = new double[d];   // les masses des autres billes
-        Vecteur C[] = new Vecteur[d];      // les positions des autres billes
+        double[] masses = new double[d];   // les masses des autres billes
+        Vecteur[] C = new Vecteur[d];      // les positions des autres billes
 
-        for (i = 0; i < d; ++i) {
-            billeCourante = autresBilles.get(i);
-            masses[i] = billeCourante.masse();
-            C[i] = billeCourante.getPosition();
+        for (int i = 0; i < d; ++i) {
+            masses[i] = autresBilles.get(i).masse();
+            C[i] = autresBilles.get(i).getPosition();
         }
 
 //------------------ e present on calcule le champ de gravite exerce par les autres billes sur cette bille ------------------
