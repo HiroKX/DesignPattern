@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 
+/*
+    Classe qui charge les differents scenarios de billes à partir d un fichier
+ */
 public class ScenariosFichier extends Scenario{
 
     public ScenariosFichier(VueBillard vue,SonLong sonChoc){

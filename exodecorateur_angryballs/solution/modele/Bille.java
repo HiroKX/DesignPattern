@@ -8,13 +8,13 @@ import java.util.Vector;
 
 /**
  * Cas general d'une bille de billard
- * <p>
- * Aucune des classes du package maladroit.modele ne doit faire de reference e des classes de java.awt ni e aucune autre librairie graphique JAVA car
+
+ * Aucune des classes du package maladroit.modele ne doit faire de reference a des classes de java.awt ni aucune autre librairie graphique JAVA car
  * le modele NE DOIT PAS dependre de la vue !!! Vous devez faire les modifications en consequence !! Exploitez les Design Patterns.
- * <p>
- * On rappelle que ces references e une librairie graphique sont nefastes car si on change de librairie graphique, voire on fait migrer le projet sur android,
+
+ * On rappelle que les references a une librairie graphique sont nefastes car si on change de librairie graphique, voire on fait migrer le projet sur android,
  * il faut modifier les classes du modele. La maintenance devient catastrophique
- * <p>
+
  * A MODIFIER
  */
 public abstract class Bille {
@@ -35,33 +35,33 @@ public abstract class Bille {
 
 
     /**
-     * @return the rayon
+     * @return le rayon
      */
     public abstract double getRayon();
 
     /**
-     * @return the vitesse
+     * @return la vitesse
      */
     public abstract Vecteur getVitesse();
 
     /**
-     * @return the acceleration
+     * @return l acceleration
      */
     public abstract Vecteur getAcceleration();
 
     public abstract double masse();
 
     /**
-     * @return the clef
+     * @return la clef
      */
     public abstract int getClef();
     /**
-     * mise e jour de position et vitesse e t+deltaT e partir de position et vitesse e l'instant t
-     * <p>
+     * mise a jour de position et vitesse et deltaT a partir de position et vitesse a l'instant t
+
      * modifie le vecteur position et le vecteur vitesse
-     * <p>
+
      * laisse le vecteur acceleration intact
-     * <p>
+
      * La bille subit par defaut un mouvement uniformement accelere
      */
     public abstract void deplacer(double deltaT);
@@ -94,10 +94,10 @@ public abstract class Bille {
 
     /**
      * gestion de l'eventuelle collision de la bille (this) avec le contour rectangulaire de l'ecran defini par (abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur)
-     * <p>
-     * detecte si il y a collision et le cas echeant met e jour position et vitesse
-     * <p>
-     * La nature du comportement de la bille en reponse e cette collision est definie dans les classes derivees
+
+     * detecte si il y a collision et le cas echeant met a jour position et vitesse
+
+     * La nature du comportement de la bille en reponse a cette collision est definie dans les classes derivees
      */
     public abstract void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur);
 
@@ -109,7 +109,5 @@ public abstract class Bille {
             return this.getClef() == b.getClef();
         return false;
     }
-
-    //----------------- classe Bille -------------------------------------
 }
 

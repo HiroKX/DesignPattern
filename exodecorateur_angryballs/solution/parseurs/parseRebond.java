@@ -3,6 +3,9 @@ package exodecorateur_angryballs.solution.parseurs;
 import exodecorateur_angryballs.solution.decorateur.DecorateurRebond;
 import exodecorateur_angryballs.solution.modele.Bille;
 
+/*
+    Parser qui recupere l'information de si la bille rebondit ou non
+ */
 public class parseRebond extends Parser {
 
     @Override

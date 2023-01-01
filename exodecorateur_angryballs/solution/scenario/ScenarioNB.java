@@ -8,6 +8,9 @@ import musique.SonLong;
 
 import java.util.Vector;
 
+/*
+    Scenario où l on trouve un tres grand nombre de billes
+ */
 public class ScenarioNB extends Scenario {
     int nbBilles;
     public ScenarioNB(VueBillard cadre, SonLong sonBilleChoc, int nbBilles) {

@@ -11,6 +11,9 @@ import musique.SonLong;
 import java.awt.*;
 import java.util.Vector;
 
+/*
+    Classe qui definit le scenario billard qui est en heritage de la clase abstraite Scenario
+ */
 public class ScenarioBillard extends Scenario {
     public ScenarioBillard(VueBillard cadre, SonLong sonBilleChoc) {
         this.cadre = cadre;
@@ -20,6 +23,7 @@ public class ScenarioBillard extends Scenario {
         this.setBillard();
     }
 
+    // fonction qui cree la liste de billes presentent dans le billard
     @Override
     public Vector<Bille> getInitBilles() {
         // Bille blanche

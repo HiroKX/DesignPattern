@@ -10,6 +10,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/*
+    Cette classe permet de contrôler une bille sélectionnée avec les touches du clvier
+ */
 public class ControlleurBilleClavier implements KeyListener, MouseListener {
     private DecorateurSelectionnable bille;
     private final Scenario scenario;
@@ -62,6 +65,7 @@ public class ControlleurBilleClavier implements KeyListener, MouseListener {
 
     }
 
+    // permet de choisir une bille en cliquant sur celle-ci
     @Override
     public void mousePressed(MouseEvent e) {
         if(this.bille != null)

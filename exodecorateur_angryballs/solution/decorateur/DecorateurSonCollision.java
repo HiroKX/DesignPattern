@@ -9,6 +9,9 @@ import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
 
+/*
+    Ce decorateur gere le son des collisions entre les billes
+ */
 public class DecorateurSonCollision extends DecorateurBille{
 
     private static final int DELAI_MIN = 10;    /* delai minimum de rafraichissement du son. en millisecondes */

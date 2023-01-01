@@ -7,6 +7,9 @@ import exodecorateur_angryballs.solution.modele.Bille;
 
 import musique.SonLong;
 
+/*
+    Parser qui recupere l information suivante: la bille produit un son si elle entre en collision avec un bord du cadre ou non
+ */
 public class parseSonMur extends Parser {
 
     @Override

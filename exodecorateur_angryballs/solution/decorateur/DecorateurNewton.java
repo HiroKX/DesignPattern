@@ -5,7 +5,9 @@ import exodecorateur_angryballs.solution.modele.OutilsBille;
 import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
-
+/*
+    Ce decorateur gere l attraction gravitationnelle de la bille sur les autres billes
+ */
 public class DecorateurNewton extends DecorateurBille{
     public DecorateurNewton(Bille b) {
         super(b);

@@ -9,6 +9,9 @@ import musique.SonLong;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+/*
+    Ce decorateur gere le son des collisions des billes sur les bords du cadre
+ */
 public class DecorateurSonMur extends DecorateurBille implements ItemListener {
 
     private static final int DELAI_MIN = 10;    /* delai minimum de rafraichissement du son. en millisecondes */

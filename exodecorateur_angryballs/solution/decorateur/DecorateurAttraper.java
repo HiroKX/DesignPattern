@@ -6,6 +6,10 @@ import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
 
+
+/*
+    Ce décorateur permet de contrôler le mouvement d'un bille après avoir été sélectionnée
+ */
 public class DecorateurAttraper extends DecorateurBille{
 
     Vecteur influence;

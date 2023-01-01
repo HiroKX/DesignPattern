@@ -6,6 +6,9 @@ import musique.SonLong;
 
 import java.util.Vector;
 
+/*
+    Classe abstraite qui permet de definir un scenario (une liste de bille avec des caracteristiques)
+ */
 public abstract class Scenario {
     protected VueBillard cadre;
     // Le nom du scénario

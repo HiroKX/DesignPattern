@@ -1,7 +1,7 @@
 package exodecorateur_angryballs.solution.son;//
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
-//
+
 
 
 import musique.SonBref;

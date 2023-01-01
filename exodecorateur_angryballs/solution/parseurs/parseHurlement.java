@@ -5,6 +5,9 @@ import exodecorateur_angryballs.solution.decorateur.DecorateurHurlement;
 import exodecorateur_angryballs.solution.modele.Bille;
 import musique.SonLong;
 
+/*
+    Parser qui recupere l'information de si les billes font du bruit ou non
+ */
 public class parseHurlement extends Parser {
 
     @Override

@@ -17,9 +17,7 @@ public class ScenarioClassique extends Scenario {
         return this.billes;
     }
 
-    public void addBille(Bille b){
-        this.billes.add(b);
-    }
+    //public void addBille(Bille b){ this.billes.add(b);}
 
     @Override
     public Vector<Bille> getInitBilles() {

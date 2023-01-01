@@ -17,15 +17,11 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * Gestion d'une liste de billes en mouvement ayant toutes un comportement different
- * <p>
- * Ideal pour mettre en place le DP decorator
+ Création des éléments pour les tests
  */
 public class TestAngryBalls {
 
-    /**
-     * @param args
-     */
+
     public static void main(String[] args) {
 //---------------------- gestion des bruitages : parametrage du chemin du dossier contenant les fichiers audio --------------------------
 
@@ -48,7 +44,7 @@ public class TestAngryBalls {
 
 //---------------- creation de la vue responsable du dessin des billes -------------------------
 
-        int choixHurlementInitial = 0;
+        int choixHurlementInitial = 1;
         CadreAngryBallsAWT cadre = CadreAngryBallsAWT.getInstance("Angry balls",
                 "Animation de billes ayant des comportements differents. Situation ideale pour mettre en place le DP Decorator",
                 new Vector<>(), hurlements, choixHurlementInitial);
@@ -58,10 +54,11 @@ public class TestAngryBalls {
 //------------------- creation des scenarios ---------------------------------------------
 
          ScenariosFichier scenariosFichier = new ScenariosFichier(cadre,sonBilleChoc);
-         ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("Scenarios.csv");
+         //ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("Scenarios.csv");
+         ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("S1.csv");
          Scenario defaultScenario = lireScenario.get(0);
          Scenario billard = new ScenarioBillard(cadre,sonBilleChoc);
-         Scenario nbBille = new ScenarioNB(cadre,sonBilleChoc,1000);
+         Scenario nbBille = new ScenarioNB(cadre,sonBilleChoc,100);
           cadre.addScenarios(lireScenario);
           cadre.addScenario(billard);
           cadre.addScenario(nbBille);

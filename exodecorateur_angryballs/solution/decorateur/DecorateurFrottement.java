@@ -6,6 +6,9 @@ import mesmaths.mecanique.MecaniquePoint;
 
 import java.util.Vector;
 
+/*
+    Ce decorateur gere les frottements de la bille dans l air, plus la valeur est grande plus les frottements dont importants
+ */
 public class DecorateurFrottement extends DecorateurBille {
 
     double coeff;

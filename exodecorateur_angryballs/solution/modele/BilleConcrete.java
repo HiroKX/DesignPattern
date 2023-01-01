@@ -6,6 +6,9 @@ import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
 
+/*
+    implementation d'une bille (concrete) qui hérite de Bille
+ */
 public class BilleConcrete extends Bille {
 
 
@@ -39,7 +42,7 @@ public class BilleConcrete extends Bille {
     }
 
     /**
-     * @return the rayon
+     * @return le rayon
      */
     public double getRayon() {
         return this.rayon;
@@ -47,7 +50,7 @@ public class BilleConcrete extends Bille {
 
 
     /**
-     * @return the vitesse
+     * @return la vitesse
      */
     public Vecteur getVitesse() {
         return this.vitesse;
@@ -61,7 +64,7 @@ public class BilleConcrete extends Bille {
 
 
     /**
-     * @return the acceleration
+     * @return l acceleration
      */
     public Vecteur getAcceleration() {
         return this.acceleration;
@@ -69,7 +72,7 @@ public class BilleConcrete extends Bille {
 
 
     /**
-     * @return the clef
+     * @return la clef
      */
     public int getClef() {
         return this.clef;
@@ -79,6 +82,7 @@ public class BilleConcrete extends Bille {
     public double masse() {
         return ro * Math.PI*(rayon*rayon);
     }
+
     public BilleConcrete(Vecteur centre, double rayon, Vecteur vitesse, Vecteur acceleration) {
         this.position = centre;
         this.rayon = rayon;

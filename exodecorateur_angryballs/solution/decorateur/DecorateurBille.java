@@ -6,15 +6,23 @@ import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
 
-
+/*
+    Classe abstraite à partir de laquelle on construira tous les decorateurs
+ */
 public abstract class DecorateurBille extends Bille {
 
     protected Bille bille;
 
+    /*
+    Constructeur de la classe
+     */
     public DecorateurBille(Bille b){
         this.bille = b;
     }
 
+    /*
+    Recupere la couleur de la bille
+     */
     public int getCouleur() {
         return this.bille.getCouleur();
     }
@@ -23,25 +31,38 @@ public abstract class DecorateurBille extends Bille {
         this.bille.setCouleur(couleur);
     }
 
+    /*
+    Recupere la position de la bille
+     */
     @Override
     public Vecteur getPosition() {
         return this.bille.getPosition();
     }
 
+    /**
+    Recupere le rayon
+     **/
     @Override
     public double getRayon() {
         return this.bille.getRayon();
     }
 
+    /*
+    Recupere la clef de la bille
+     */
     @Override
     public int getClef() {
         return this.bille.getClef();
     }
 
+    //definit la masse de la bille
     public double masse() {
         return this.bille.masse();
     }
 
+    /*
+    Definit où se trouve les collisions sur les bords du cadre
+     */
     @Override
     public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur){
         this.bille.collisionContour(abscisseCoinHautGauche,ordonneeCoinHautGauche,largeur,hauteur);
@@ -52,20 +73,32 @@ public abstract class DecorateurBille extends Bille {
         return this.bille.toStringCentre();
     }
 
+    /*
+    Definit la collision entre billes
+     */
     @Override
     public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
         return this.bille.gestionCollisionBilleBille(billes);
     }
 
+    /*
+    Recupere l acceleration
+     */
     @Override
     public Vecteur getAcceleration(){
         return this.bille.getAcceleration();
     }
 
+    /*
+    Recupere la vitesse
+     */
     public Vecteur getVitesse(){
         return this.bille.getVitesse();
     }
 
+    /*
+    Recupere la bille
+     */
     public Bille getBille() {
         return bille;
     }
@@ -82,16 +115,23 @@ public abstract class DecorateurBille extends Bille {
         return this.bille.getControlleurGeneral();
     }
 
+    /*
+    Definit le deplacement de la bille sur une duree de deltaT
+     */
     @Override
     public void deplacer(double deltaT) {
         this.bille.deplacer(deltaT);
     }
 
+    //Gere l acceleration de la bille
     public Vecteur gestionAcceleration(Vector<Bille> billes) {
         this.getAcceleration().ajoute(this.bille.gestionAcceleration(billes));
         return this.bille.gestionAcceleration(billes);
     }
 
+    /*
+    Renvoie un string
+     */
     public String toString(){
         return this.bille.toString();
     }

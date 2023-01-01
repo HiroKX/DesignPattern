@@ -4,6 +4,9 @@ import exodecorateur_angryballs.solution.modele.Bille;
 
 import java.awt.*;
 
+/*
+    Ce décorateur permet de definir la couleur des billes en utilisant la classe Color de java.awt
+ */
 public class DecorateurCouleur extends DecorateurBille {
 
     private Color couleur;
