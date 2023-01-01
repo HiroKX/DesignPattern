@@ -6,19 +6,26 @@ import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
 
-/*
+/**
     implementation d'une bille (concrete) qui hérite de Bille
  */
 public class BilleConcrete extends Bille {
 
-
-    public Vecteur position;   // centre de la bille
-    public double rayon;            // rayon > 0
+    /** centre de la bille */
+    public Vecteur position;
+    /** rayon > 0 */
+    public double rayon;
+    /** couleur de la bille */
     public int couleur;
+    /** vitesse de la bille */
     public Vecteur vitesse;
+    /** acceleration de la bille */
     public Vecteur acceleration;
-    public int clef;                // identifiant unique de cette bille
-    public static double ro = 1;        // masse volumique
+    /** identifiant unique de cette bille */
+    public int clef;
+    /** masse volumique de la bille */
+    public static double ro = 1;
+
     public static boolean TEMP = false;
     @Override
     public int getCouleur() {

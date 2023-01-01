@@ -8,8 +8,6 @@ import java.util.Vector;
 
 /**
  * Operations utiles sur les billes
- * <p>
- * ICI : IL N'Y A RIEN A CHANGER
  */
 
 public class OutilsBille {

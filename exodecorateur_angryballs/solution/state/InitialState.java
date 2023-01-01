@@ -4,6 +4,7 @@ import exodecorateur_angryballs.solution.Event.ControlleurEtat;
 import exodecorateur_angryballs.solution.Event.ControlleurGeneral;
 import mesmaths.geometrie.base.Vecteur;
 
+/** Etat initial */
 public class InitialState extends ControlleurEtat {
 
     public InitialState(ControlleurGeneral controlleurGeneral, ControlleurEtat suivant, ControlleurEtat retour) {

@@ -5,7 +5,6 @@ import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.vues.VueBillard;
 import exodecorateur_angryballs.solution.vues.awt.BillardAWT;
-import exodecorateur_angryballs.solution.vues.awt.panneaux.PanneauChoixBille;
 import exodecorateur_angryballs.solution.vues.awt.panneaux.PanneauChoixHurlement;
 import exodecorateur_angryballs.solution.vues.awt.panneaux.PanneauChoixScenario;
 import musique.SonLong;
@@ -23,25 +22,49 @@ import java.util.Vector;
  * et contenant la ligne des boutons de choix des sons pour la bille hurlante
  */
 public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
-    // Le billard, avec le DP Singleton
+    /** Le billard, avec le DP Singleton */
     private static CadreAngryBallsAWT instance = null;
+    /** Titre de la fenetre */
     TextField presentation;
+    /** Le billard */
     BillardAWT billard;
+    /** Les boutons */
     public Button lancerBilles, arreterBilles, reinitialiserBilles;
+    /** Les panneaux */
     Panel haut, centre, bas, ligneBoutonsLancerArret;
+    /** Panneau de choix des hurlements */
     PanneauChoixHurlement ligneBoutonsChoixHurlement;
+    /** Panneau de choix des scenarios */
     public PanneauChoixScenario ligneBoutonsChoixScenario;
+    /** Ecouteur de terminaison */
     EcouteurTerminaison ecouteurTerminaison;
+    /** Les scenarios */
     ArrayList<Scenario> scenarios;
+    /** Le scenario courant */
     Scenario scenarioCourant;
+    /** Implémentation du DP Observable/Observeur, ici la classe est Observable et ce sont ses observeurs */
     ArrayList<Observer> observeurs;
 
+    /**
+     * Constructeur avec le DP Singleton
+     * @param titre Titre de la fenetre
+     * @param message Message de presentation
+     * @param billes Les billes
+     * @throws HeadlessException Exception
+     */
     public static CadreAngryBallsAWT getInstance(String titre, String message, Vector<Bille> billes, SonLong[] hurlements, int choixHurlementInitial) {
         if (instance == null)
             instance = new CadreAngryBallsAWT(titre, message, billes, hurlements, choixHurlementInitial);
         return instance;
     }
 
+    /**
+     * Constructeur
+     * @param titre Titre de la fenetre
+     * @param message Message de presentation
+     * @param billes Les billes
+     * @throws HeadlessException Exception
+     */
     private CadreAngryBallsAWT(String titre, String message, Vector<Bille> billes, SonLong[] hurlements, int choixHurlementInitial) throws HeadlessException {
         super(titre);
         Outils.place(this, 0.33, 0.33, 0.5, 0.5);
@@ -126,6 +149,10 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         this.billard.initBuffer();
     }
 
+    /**
+     *  Initialise le panneau des scenarios
+     * @param scenarios Les scenarios
+     */
     public void initPanneauScenario(ArrayList<Scenario> scenarios){
         this.ligneBoutonsChoixScenario = new PanneauChoixScenario(scenarios);
         this.bas.add(this.ligneBoutonsChoixScenario);
@@ -133,11 +160,19 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
             this.ligneBoutonsChoixScenario.boutons[i].addItemListener((ItemEvent e) -> this.notifyObservers("scenario;" + e.getItem()));
     }
 
+    /**
+     * Notifie-les observeurs quand un evenement survient
+     * @param arg L'evenement
+     */
     public void notifyObservers(Object arg) {
         for (Observer o : this.observeurs)
             o.update(null, arg);
     }
 
+    /**
+     * Ajoute un observeur
+     * @param o L'observeur
+     */
     public void addObserver(Observer o) {
         this.observeurs.add(o);
     }
@@ -150,6 +185,10 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         return this.billard.getHeight();
     }
 
+    /**
+     *
+     * @param scenarioCourant Le scenario courant
+     */
     public void setScenarioCourant(Scenario scenarioCourant) {
         this.scenarioCourant = scenarioCourant;
         this.billard.setKeyListner(new ControlleurBilleClavier(this.scenarioCourant));
@@ -165,6 +204,10 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         this.billard.myRenderingLoop();
     }
 
+    /**
+     * Change le scenario courant
+     * @param scenario Le nouveau scenario
+     */
     @Override
     public void changeScenario(Scenario scenario) {
         // On enlève la vue du billard

@@ -8,18 +8,19 @@ import mesmaths.geometrie.base.Vecteur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
+/** Controleur génaral de la souris
+ */
 public class ControlleurGeneral implements MouseMotionListener, MouseListener {
-
+/** Bille */
     public DecorateurAttraper b;
-
+/** Vieux vecteur */
     public Vecteur oldVec;
-
-
+    /** Controleur d'état courant */
     protected ControlleurEtat controlleurCourant;
-
+    /** Etat attrapé */
     protected AttrapeState etatAttrape;
 
+    /** Etat initial */
     protected InitialState etatInit;
 
     public ControlleurGeneral(DecorateurAttraper b){
@@ -31,11 +32,9 @@ public class ControlleurGeneral implements MouseMotionListener, MouseListener {
         this.controlleurCourant = this.etatInit;
     }
 
-
     public void setControlleurCourant(ControlleurEtat ce){
         this.controlleurCourant = ce;
     }
-
 
     @Override
     public void mouseClicked(MouseEvent e) {

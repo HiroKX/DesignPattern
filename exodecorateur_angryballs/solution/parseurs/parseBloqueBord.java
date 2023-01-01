@@ -3,7 +3,7 @@ package exodecorateur_angryballs.solution.parseurs;
 import exodecorateur_angryballs.solution.decorateur.DecorateurBloqueBord;
 import exodecorateur_angryballs.solution.modele.Bille;
 
-/*
+/**
     Parser qui indique si les billes entre en collision avec les bords du cadre ou non
  */
 public class parseBloqueBord extends Parser {

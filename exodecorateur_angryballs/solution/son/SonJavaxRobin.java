@@ -11,6 +11,8 @@ import javax.sound.sampled.FloatControl.Type;
 import java.io.File;
 import java.io.IOException;
 
+/** Gère les sons. */
+
 public abstract class SonJavaxRobin implements Runnable {
     public static final int TAILLE_BUFFER_LIGNE = 4800;
     SourceDataLine ligne;

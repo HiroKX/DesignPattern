@@ -5,7 +5,7 @@ import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
 
-/*
+/**
     Ce decorateur gere le poids de la bille. La bille est attirée vers le bas
  */
 public class DecorateurPesanteur extends DecorateurBille{

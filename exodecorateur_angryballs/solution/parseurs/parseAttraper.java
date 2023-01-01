@@ -3,7 +3,7 @@ package exodecorateur_angryballs.solution.parseurs;
 import exodecorateur_angryballs.solution.decorateur.DecorateurAttraper;
 import exodecorateur_angryballs.solution.modele.Bille;
 
-/*
+/**
     Parser qui sert à definir si nous pouvons attraper une bille ou non
  */
 public class parseAttraper extends Parser {

@@ -5,11 +5,18 @@ import exodecorateur_angryballs.solution.vues.awt.boutons.BoutonChoixScenario;
 
 import java.awt.*;
 import java.util.ArrayList;
-
+/**
+ * Represente la ligne des cases à cocher pour le choix du scénario.
+ * <p>
+ * Ligne du bas du cadre contenant les billes
+ */
 public class PanneauChoixScenario extends Panel {
     CheckboxGroup checkboxGroup;
     public BoutonChoixScenario boutons[];
 
+    /**
+     * @param scenarios tous les scénarios
+     */
     public PanneauChoixScenario(ArrayList<Scenario> scenarios) {
         this.add(new Label("Choix du scenario :"));
         this.boutons = new BoutonChoixScenario[scenarios.size()];

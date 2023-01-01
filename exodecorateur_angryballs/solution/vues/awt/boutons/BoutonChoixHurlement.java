@@ -5,7 +5,8 @@ import java.awt.CheckboxGroup;
 import java.awt.HeadlessException;
 
 import musique.SonLong;
-
+/** Bouton de choix de hurlement
+ */
 public class BoutonChoixHurlement extends Checkbox {
     public SonLong sonLong;
 

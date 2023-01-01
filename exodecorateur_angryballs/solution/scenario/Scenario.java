@@ -6,16 +6,19 @@ import musique.SonLong;
 
 import java.util.Vector;
 
-/*
+/**
     Classe abstraite qui permet de definir un scenario (une liste de bille avec des caracteristiques)
  */
 public abstract class Scenario {
+    /** Cadre */
     protected VueBillard cadre;
-    // Le nom du scénario
+    /** Le nom du scénario */
     protected String nom;
-    // Les billes du scénario
+    /** Les billes du scénario */
     protected Vector<Bille> billes;
+    /** Son des chocs des billes */
     protected SonLong sonChocBille;
+
     protected double vMax;
     protected double xMax, yMax;
     protected double rayon;
@@ -35,6 +38,11 @@ public abstract class Scenario {
         return billes;
     }
 
+    /**
+     * Cherche une bille avec sa clée
+     * @param i la clée de la bille
+     * @return la bille
+     */
     public Bille getBilleInt(int i){
         for(int j = 0; j < billes.size(); j++) {
             if (billes.elementAt(j).getClef() == i)
@@ -47,11 +55,19 @@ public abstract class Scenario {
         this.billes = billes;
     }
 
+    /**
+     * Remet les billes dans leur position de départ
+     */
     public void resetBilles(){
         this.billes = this.getInitBilles();
     }
 
     public abstract Vector<Bille> getInitBilles();
+
+    /**
+     * Supprime une bille du scenario
+     * @param bille la bille à supprimer
+     */
     public void removeBille(Bille bille){
         this.billes.remove(bille);
     }

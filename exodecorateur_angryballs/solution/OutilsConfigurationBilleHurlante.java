@@ -16,10 +16,8 @@ import musique.SonLongFantome;
 import musique.javax.SonLongJavax;
 
 /**
- * sert e construire tous les sons qui seront proposes pour animer la bille hurlante
- * 
- *  ICI : IL N'Y A RIEN A CHANGER
- *  
+ * sert à construire tous les sons qui seront proposes pour animer la bille hurlante
+
  * */
 public class OutilsConfigurationBilleHurlante
 {

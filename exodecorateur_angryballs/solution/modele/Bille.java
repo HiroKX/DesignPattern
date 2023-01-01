@@ -14,23 +14,35 @@ import java.util.Vector;
 
  * On rappelle que les references a une librairie graphique sont nefastes car si on change de librairie graphique, voire on fait migrer le projet sur android,
  * il faut modifier les classes du modele. La maintenance devient catastrophique
-
- * A MODIFIER
  */
 public abstract class Bille {
 //----------------- classe Bille-------------------------------------
 
 
+    /** Clée unique à chaque bille */
     protected static int prochaineClef = 0;
+    /** Booléen temporaire utilsé */
     public boolean temp = false;
 
+    /**
+     *
+     * @return la couleur de la bille
+     */
     public abstract int getCouleur();
 
+    /**
+     * @param couleur la couleur de la bille
+     */
     public abstract void setCouleur(int couleur);
 
-
+    /**
+     * @return la position de la bille
+     */
     public abstract Vecteur getPosition();
 
+    /**
+     * @param position la position de la bille
+     */
     public abstract Vecteur setPosition(Vecteur position);
 
 
@@ -49,6 +61,9 @@ public abstract class Bille {
      */
     public abstract Vecteur getAcceleration();
 
+    /**
+     * Gere la masse de la bille
+     */
     public abstract double masse();
 
     /**
@@ -73,7 +88,7 @@ public abstract class Bille {
      * La nature du calcul du vecteur acceleration de la bille  est definie dans les classes derivees
      * A ce niveau le vecteur acceleration est mis e zero (c'est e dire pas d'acceleration)
      *
-     * @return
+     * @return le vecteur acceleration
      */
     public abstract Vecteur gestionAcceleration(Vector<Bille> billes);
 
@@ -89,20 +104,32 @@ public abstract class Bille {
      */
     public abstract boolean gestionCollisionBilleBille(Vector<Bille> billes);
 
+    /**
+     *
+     * @return Le controlleur de la bille pour les evenements de la souris
+     */
     public abstract ControlleurGeneral getControlleurGeneral();
 
 
     /**
      * gestion de l'eventuelle collision de la bille (this) avec le contour rectangulaire de l'ecran defini par (abscisseCoinHautGauche, ordonneeCoinHautGauche, largeur, hauteur)
 
-     * detecte si il y a collision et le cas echeant met a jour position et vitesse
+     * detecte s'il y a collision et le cas echeant met a jour position et vitesse
 
      * La nature du comportement de la bille en reponse a cette collision est definie dans les classes derivees
      */
     public abstract void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur);
 
+    /**
+     * @return une representation textuelle de la bille
+     */
     public abstract String toStringCentre();
 
+    /**
+     * Comparaison de deux billes avec la clée
+     * @param obj l'objet a comparer
+     * @return true si les billes sont les memes
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Bille b)

@@ -5,6 +5,8 @@ import exodecorateur_angryballs.solution.AnimationBilles;
 import java.util.Observable;
 import java.util.Observer;
 
+/** Ecouteur de bouton pour réinitialiser l'animation
+ */
 public class EcouteurBoutonReinitialiser implements Observer {
     AnimationBilles animationBilles;
 

@@ -2,12 +2,14 @@ package exodecorateur_angryballs.solution.parseurs.couleur;
 
 import java.awt.*;
 
-/*
+/**
     Implementation d'un COR pour la couleur afin que le programme puisse comprendre plusieurs formats de couleur
     à savoir: Int, RGB et String
  */
 public abstract class parseCouleurCOR {
+    /** Le successeur de la chaine de responsabilité */
     parseCouleurCOR suivant;
+    /** La couleur à retourner */
     Color couleur;
 
     public parseCouleurCOR (parseCouleurCOR suivant){

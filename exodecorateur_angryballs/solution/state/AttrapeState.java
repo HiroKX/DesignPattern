@@ -4,6 +4,9 @@ import exodecorateur_angryballs.solution.Event.ControlleurEtat;
 import exodecorateur_angryballs.solution.Event.ControlleurGeneral;
 import mesmaths.geometrie.base.Vecteur;
 
+/**
+ * Etat dans lequel la bille est attrapée par la souris
+ */
 public class AttrapeState extends ControlleurEtat {
 
 

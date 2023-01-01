@@ -5,8 +5,8 @@ import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.son.SonLongRobin;
 import exodecorateur_angryballs.solution.vues.VueBillard;
 
-/*
-    Parser qui recupere l information suivante: la bille produit un son si elle entre en collision avec une autre bille ou non
+/**
+    Parser qui recupere l'information suivante : la bille produit un son si elle entre en collision avec une autre bille ou non
  */
 public class parseSonCollision extends Parser {
 

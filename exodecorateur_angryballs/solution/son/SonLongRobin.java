@@ -11,6 +11,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 
+/** Gère les longs sons. */
 public class SonLongRobin extends SonLong {
     public SonLongRobin(File répertoire, String nomFichier, int débutExtrait, int finExtrait, int effectif) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         super(new SonBrefRobin[effectif]);

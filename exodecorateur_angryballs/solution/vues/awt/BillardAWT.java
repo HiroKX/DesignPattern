@@ -11,21 +11,31 @@ import java.util.Vector;
 
 
 /**
- * responsable du dessin des billes
- * <p>
- * ICI : IL N'Y A RIEN A CHANGER
+ * Responsable du dessin des billes
  */
 
 public class BillardAWT extends Canvas implements WindowVisitor {
+    /** Billes à dessiner
+     */
     Vector<Bille> billes;
+    /** Animation
+     */
     Graphics graphics;
+    /** Buffer
+     */
     BufferStrategy buffer;
 
     public BillardAWT(Vector<Bille> billes) {
-        this.setIgnoreRepaint(true);
+        assert billes != null;
+        this.setIgnoreRepaint(true); // Active rendering
         this.billes = billes;
     }
 
+    /**
+     * Met en place le key listener pour les billes sélectionnables
+     * Le remplace si il existe déjà
+     * @param controlleurBilleClavier le controlleur
+     */
     public void setKeyListner(ControlleurBilleClavier controlleurBilleClavier) {
         if(this.getKeyListeners().length > 0) {
             this.removeKeyListener(this.getKeyListeners()[0]);
@@ -35,6 +45,9 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         this.addMouseListener(controlleurBilleClavier);
     }
 
+    /**
+     * Initialise le buffer
+     */
     public void initBuffer(){
         try {
             this.createBufferStrategy(2);
@@ -45,10 +58,9 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         this.buffer = this.getBufferStrategy();
     }
 
-    public BufferStrategy getBuffer(){
-        return this.buffer;
-    }
-
+    /**
+     * Dessine les billes
+     */
     public void myRenderingLoop() {
         if(this.buffer != null) {
             try {
@@ -71,6 +83,10 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         }
     }
 
+    /**
+     * Dessine une bille, DP Visitor
+     * @param bille la bille à dessiner
+     */
     @Override
     public void visit(Bille bille) {
         int width, height;
@@ -89,7 +105,7 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         // Sinon si la bille est noire on met les contours en noir
         else if(bille.getCouleur() == 0x000000)
             graphics.setColor(Color.CYAN);
-        // Sinon on met les contours en noir
+        // Sinon, on met les contours en noir
         else
             graphics.setColor(Color.BLACK);
         graphics.drawOval(xMin, yMin, width, height);

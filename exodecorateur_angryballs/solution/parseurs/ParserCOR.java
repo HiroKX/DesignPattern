@@ -5,6 +5,9 @@ import exodecorateur_angryballs.solution.modele.Bille;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+/**
+ * Classe qui permet de parser une ligne de fichier
+ */
 public class ParserCOR {
     /**
      * Crée la chaine de responsabilité de parseurs

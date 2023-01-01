@@ -6,11 +6,14 @@ import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
 
-/*
+/**
     Classe abstraite à partir de laquelle on construira tous les decorateurs
  */
 public abstract class DecorateurBille extends Bille {
 
+    /**
+     * La bille décorée
+     */
     protected Bille bille;
 
     /*
@@ -55,7 +58,9 @@ public abstract class DecorateurBille extends Bille {
         return this.bille.getClef();
     }
 
-    //definit la masse de la bille
+    /** definit la masse de la bille
+     * @return la masse de la bille
+     */
     public double masse() {
         return this.bille.masse();
     }
@@ -67,6 +72,7 @@ public abstract class DecorateurBille extends Bille {
     public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur){
         this.bille.collisionContour(abscisseCoinHautGauche,ordonneeCoinHautGauche,largeur,hauteur);
     }
+
 
     @Override
     public String toStringCentre() {
@@ -123,14 +129,17 @@ public abstract class DecorateurBille extends Bille {
         this.bille.deplacer(deltaT);
     }
 
-    //Gere l acceleration de la bille
+    /** Gere l'acceleration de la bille
+     * @param billes les billes du billard
+     * @return la nouvelle acceleration de la bille
+     */
     public Vecteur gestionAcceleration(Vector<Bille> billes) {
         this.getAcceleration().ajoute(this.bille.gestionAcceleration(billes));
         return this.bille.gestionAcceleration(billes);
     }
 
     /*
-    Renvoie un string
+    Renvoie un string contenant les informations de la bille
      */
     public String toString(){
         return this.bille.toString();

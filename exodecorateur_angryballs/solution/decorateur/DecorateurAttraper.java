@@ -7,15 +7,24 @@ import mesmaths.geometrie.base.Vecteur;
 import java.util.Vector;
 
 
-/*
-    Ce décorateur permet de contrôler le mouvement d'un bille après avoir été sélectionnée
+/**
+    Ce décorateur permet de contrôler le mouvement d'une bille après avoir été sélectionnée
  */
 public class DecorateurAttraper extends DecorateurBille{
 
+    /**
+        Vecteur d'influence
+     */
     Vecteur influence;
 
+    /**
+        Controlleur General
+     */
     ControlleurGeneral controlleurGeneral;
 
+    /**
+        Si la bille est attrapée
+     */
     boolean attraper;
 
     public DecorateurAttraper(Bille b){

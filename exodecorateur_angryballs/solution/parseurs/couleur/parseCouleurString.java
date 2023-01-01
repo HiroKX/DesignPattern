@@ -3,6 +3,7 @@ package exodecorateur_angryballs.solution.parseurs.couleur;
 import java.awt.*;
 import java.lang.reflect.Field;
 
+/** Parse si la couleur est un String */
 public class parseCouleurString extends parseCouleurCOR {
     public parseCouleurString(parseCouleurCOR suivant) {
         super(suivant);

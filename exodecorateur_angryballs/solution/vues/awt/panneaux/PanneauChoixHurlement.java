@@ -9,11 +9,9 @@ import exodecorateur_angryballs.maladroit.vues.BoutonChoixHurlement;
 import musique.SonLong;
 
 /**
- * Represente la ligne des cases e cocher pour le choix du son pour la bille hurlante.
+ * Represente la ligne des cases à cocher pour le choix du son pour la bille hurlante.
  * <p>
  * Ligne du bas du cadre contenant les billes
- * <p>
- * ICI : IL N'Y A RIEN A CHANGER
  */
 public class PanneauChoixHurlement extends Panel {
     public exodecorateur_angryballs.maladroit.vues.BoutonChoixHurlement boutons[];

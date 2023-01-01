@@ -9,20 +9,26 @@ import musique.SonLong;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-/*
+/**
     Ce decorateur gere le son des collisions des billes sur les bords du cadre
  */
 public class DecorateurSonMur extends DecorateurBille implements ItemListener {
-
-    private static final int DELAI_MIN = 10;    /* delai minimum de rafraichissement du son. en millisecondes */
-    public static final int DELAI_MAX = 150;    /* delai maximum de rafraichissement du son. en millisecondes */
-    public SonLong sonLong;                        /* bande son e diffuser */
-    int i;              /* ne de l'element de sonLong e jouer. on doit avoir i >= 0.
-                    sonLong se charge de faire le modulo pour obtenir un indice correct
-                    et pour boucler ainsi sur le tableau inscrit dans sonLong */
-    long dernierInstant;        /* dernier instant oe le son a ete diffuse */
+    /** delai minimum de rafraichissement du son. en millisecondes */
+    private static final int DELAI_MIN = 10;
+    /** delai maximum de rafraichissement du son. en millisecondes */
+    public static final int DELAI_MAX = 150;
+    /** bande son e diffuser */
+    public SonLong sonLong;
+    /** ne de l'element de sonLong e jouer. on doit avoir i >= 0.
+     sonLong se charge de faire le modulo pour obtenir un indice correct
+     et pour boucler ainsi sur le tableau inscrit dans sonLong */
+    int i;
+    /** dernier instant oe le son a ete diffuse */
+    long dernierInstant;
+    /** Vue du billard */
     VueBillard vueBillard;
-
+    /** Coefficient du volume
+     */
     private static final double COEFF_VOLUME = 6;
 
 

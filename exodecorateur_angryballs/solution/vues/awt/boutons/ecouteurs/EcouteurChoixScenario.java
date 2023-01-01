@@ -6,6 +6,8 @@ import exodecorateur_angryballs.solution.scenario.Scenario;
 import java.util.Observable;
 import java.util.Observer;
 
+/** Ecouteur de bouton pour choisir le scénario
+ */
 public class EcouteurChoixScenario implements Observer {
     Scenario scenario;
     AnimationBilles animationBilles;

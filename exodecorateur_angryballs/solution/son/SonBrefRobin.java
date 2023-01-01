@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
+/** Gère les sons brefs. */
 public class SonBrefRobin extends SonJavaxRobin implements SonBref {
     public SonBrefRobin(File repertoire, String nomFichier, int debutExtrait, int finExtrait) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         super(repertoire, nomFichier, debutExtrait, finExtrait);

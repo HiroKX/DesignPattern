@@ -7,16 +7,15 @@ import exodecorateur_angryballs.solution.modele.Bille;
 
 import musique.SonLong;
 
-/*
-    Parser qui recupere l information suivante: la bille produit un son si elle entre en collision avec un bord du cadre ou non
+/**
+    Parser qui recupere l'information suivante : la bille produit un son si elle entre en collision avec un bord du cadre ou non
  */
 public class parseSonMur extends Parser {
 
     @Override
     public Object parser(String ligne, Bille bille, Object[] args) throws Exception {
-        if(!ligne.equals('x')) {
+        if(!ligne.equals('x'))
             return bille;
-        }
         return new DecorateurSonMur(bille, (SonLong) args[0], (VueBillard) args[1]);
     }
 }

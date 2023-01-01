@@ -8,12 +8,16 @@ import musique.SonLong;
 
 import java.util.Vector;
 
-/*
-    Scenario où l on trouve un tres grand nombre de billes
+/**
+    Scenario où l'on a un seulement un nombre de billes à définir
  */
 public class ScenarioNB extends Scenario {
+    /** Le nombre de billes du scénario */
     int nbBilles;
     public ScenarioNB(VueBillard cadre, SonLong sonBilleChoc, int nbBilles) {
+        assert cadre != null;
+        assert sonBilleChoc != null;
+        assert nbBilles >= 0;
         this.cadre = cadre;
         this.sonChocBille = sonBilleChoc;
         this.nbBilles = nbBilles;
@@ -22,6 +26,7 @@ public class ScenarioNB extends Scenario {
         this.billes= this.getInitBilles();
     }
 
+    /** Crée un nombre nbBilles de billes avec des positions et des vitesses aléatoires */
     @Override
     public Vector<Bille> getInitBilles() {
         Vector<Bille> lBilles = new Vector<>();

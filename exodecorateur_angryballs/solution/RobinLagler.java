@@ -10,8 +10,7 @@ public class RobinLagler {
     static double EPSILON = 1.0E-6;
     public static double A;
 
-    public RobinLagler() {
-    }
+    public RobinLagler() {}
 
     public static void collisionBilleContourPasseMuraille(Vecteur position, double abscisseCoinHautGauche, double ordonnéeCoinHautGauche, double largeur, double hauteur) {
         position.x = traverseBord(position.x, abscisseCoinHautGauche, largeur);

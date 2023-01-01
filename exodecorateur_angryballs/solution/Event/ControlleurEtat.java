@@ -4,8 +4,12 @@ import mesmaths.geometrie.base.Vecteur;
 
 import java.awt.event.MouseEvent;
 
+/** Contrôleur de la souris pour le changement d'état de la bille
+ */
 public abstract class ControlleurEtat {
+    /** Controleur */
     public ControlleurGeneral _controleurGeneral;
+    /** Controleurs d'état */
     public ControlleurEtat _suivant, _retour;
     public ControlleurEtat(ControlleurGeneral controlleurGeneral, ControlleurEtat suivant, ControlleurEtat retour){
         super();
