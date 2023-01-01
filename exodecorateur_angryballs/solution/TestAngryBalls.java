@@ -1,16 +1,22 @@
 package exodecorateur_angryballs.solution;
 
-import exodecorateur_angryballs.solution.scenario.Scenario;
-import exodecorateur_angryballs.solution.scenario.ScenarioBillard;
-import exodecorateur_angryballs.solution.scenario.ScenarioNB;
-import exodecorateur_angryballs.solution.scenario.ScenariosFichier;
+import exodecorateur_angryballs.solution.decorateur.*;
+import exodecorateur_angryballs.solution.modele.Bille;
+import exodecorateur_angryballs.solution.modele.BilleConcrete;
+import exodecorateur_angryballs.solution.scenario.*;
 import exodecorateur_angryballs.solution.son.SonLongRobin;
-import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.*;
+import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurBoutonArreter;
+import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurBoutonLancer;
+import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurBoutonReinitialiser;
+import exodecorateur_angryballs.solution.vues.awt.boutons.ecouteurs.EcouteurChoixScenario;
 import exodecorateur_angryballs.solution.vues.awt.cadre.CadreAngryBallsAWT;
+import mesmaths.geometrie.base.Vecteur;
 import musique.SonLong;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.*;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,8 +64,18 @@ public class TestAngryBalls {
          ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("S1.csv");
          Scenario defaultScenario = lireScenario.get(0);
          Scenario billard = new ScenarioBillard(cadre,sonBilleChoc);
-         Scenario nbBille = new ScenarioNB(cadre,sonBilleChoc,100);
+         ScenarioClassique test = new ScenarioClassique("test2",sonBilleChoc);
+         test.addBille(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(200,200),10, new Vecteur(0.1,0.1))), Color.red));
+        test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurPesanteur(new DecorateurRebond(new BilleConcrete(new Vecteur(300,300),40, new Vecteur(0.1,0.1))),new Vecteur(0,0.0001)),0.1),Color.yellow));
+        test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurNewton(new DecorateurRebond(new BilleConcrete(new Vecteur(400,400),10, new Vecteur(0.1,0.1)))),0.1),Color.green));
+        test.addBille(new DecorateurCouleur(new DecorateurPasseMuraille(new BilleConcrete(new Vecteur(500,400),10, new Vecteur(0.1,0.1))),Color.cyan));
+        Bille hurle = new DecorateurHurlement(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(600,400),10, new Vecteur(0.1,0.1))),Color.cyan),hurlements[choixHurlementInitial], cadre);
+        cadre.addChoixHurlementListener((ItemListener) hurle);
+        test.addBille(hurle);
+
+        Scenario nbBille = new ScenarioNB(cadre,sonBilleChoc,100);
           cadre.addScenarios(lireScenario);
+          cadre.addScenario(test);
           cadre.addScenario(billard);
           cadre.addScenario(nbBille);
 

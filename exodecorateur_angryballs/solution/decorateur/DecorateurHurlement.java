@@ -1,8 +1,8 @@
 package exodecorateur_angryballs.solution.decorateur;
 
-import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.maladroit.vues.BoutonChoixHurlement;
-import exodecorateur_angryballs.maladroit.vues.VueBillard;
+import exodecorateur_angryballs.solution.modele.Bille;
+import exodecorateur_angryballs.solution.vues.VueBillard;
 import mesmaths.geometrie.base.Vecteur;
 import musique.SonLong;
 

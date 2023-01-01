@@ -1,6 +1,6 @@
 package exodecorateur_angryballs.solution.parseurs;
 
-import exodecorateur_angryballs.maladroit.vues.VueBillard;
+import exodecorateur_angryballs.solution.vues.VueBillard;
 import exodecorateur_angryballs.solution.decorateur.DecorateurHurlement;
 import exodecorateur_angryballs.solution.modele.Bille;
 import musique.SonLong;
