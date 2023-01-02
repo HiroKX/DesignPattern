@@ -1,6 +1,8 @@
 package exodecorateur_angryballs.solution.vues;
 
 import exodecorateur_angryballs.solution.scenario.Scenario;
+import musique.SonLong;
+
 import java.util.ArrayList;
 
 /**
@@ -22,4 +24,6 @@ public void addScenario(Scenario scenario);
 public void addScenarios(ArrayList<Scenario> scenario);
 public void setScenarioCourant(Scenario scenarioCourant);
 public Scenario getScenarioCourant();
+public void setHurlement(SonLong sonLong);
+public SonLong getHurlement();
 }

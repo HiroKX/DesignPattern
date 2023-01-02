@@ -12,7 +12,7 @@ import java.awt.event.ItemListener;
 /**
     Ce decorateur gere le hurlement (son) de la bille
  */
-public class DecorateurHurlement extends DecorateurBille implements ItemListener {
+public class DecorateurHurlement extends DecorateurBille{
     /** Delai minimum de rafraichissement du son en millisecondes */
     private static final int DELAI_MIN = 10;
     /** Delai maximum de rafraichissement du son en millisecondes */
@@ -67,11 +67,7 @@ public class DecorateurHurlement extends DecorateurBille implements ItemListener
         super.deplacer(deltaT);
     }
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {                                                                               //System.err.println("dans BilleHurlanteMvtNewtonArret.itemStateChanged au debut");
-        if (e.getSource() instanceof BoutonChoixHurlement) {
-            BoutonChoixHurlement boutonChoixHurlement = (BoutonChoixHurlement) (e.getSource());
-            this.sonLong = boutonChoixHurlement.sonLong;                                //System.err.println("dans BilleHurlanteMvtNewtonArret.itemStateChanged");
-        }
+    public void setHurlement(SonLong sonLong) {                                                                               //System.err.println("dans BilleHurlanteMvtNewtonArret.itemStateChanged au debut");
+            this.sonLong = sonLong;                                //System.err.println("dans BilleHurlanteMvtNewtonArret.itemStateChanged");
     }
 }

@@ -14,6 +14,7 @@ public class parseHurlement extends Parser {
     public Object parser(String ligne, Bille bille, Object[] args) throws Exception {
         if(!ligne.equals("x"))
             return bille;
+        System.out.println("Hurlement");
         return new DecorateurHurlement(bille, (SonLong) args[0], (VueBillard) args[1]);
     }
 }

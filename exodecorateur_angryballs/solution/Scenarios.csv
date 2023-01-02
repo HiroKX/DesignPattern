@@ -1,5 +1,5 @@
 ﻿Nom;Rayon;DecorateurCouleur;DecorateurBloqueBord;DecorateurFrottement;DecorateurHurlement;DecorateurNewton;DecorateurPasseMuraille;DecorateurPesanteur;DecorateurRebond;DecorateurAttraper;DecorateurSonCollision;DecorateurSonMur;DecorateurSelectionnable
-test;30;123000;x;8;;;;x;;x;;;
+test;30;123000;x;8;x;;;x;;x;;;
 test;30;1230;x;8;;;;x;;;;;x
 test;30;255,255,0;x;8;;;;x;;;;;
 test;30;red;x;8;;;;x;;;;;

@@ -38,6 +38,10 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
     public PanneauChoixScenario ligneBoutonsChoixScenario;
     /** Ecouteur de terminaison */
     EcouteurTerminaison ecouteurTerminaison;
+    /** Hurlements */
+    SonLong[] hurlements;
+    /** Choix du hurlement */
+    SonLong hurlementChoisi;
     /** Les scenarios */
     ArrayList<Scenario> scenarios;
     /** Le scenario courant */
@@ -73,6 +77,9 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         this.scenarios = new ArrayList<>();
 
         this.observeurs = new ArrayList<>();
+
+        this.hurlements = hurlements;
+        this.hurlementChoisi = hurlements[choixHurlementInitial];
 
         this.setIgnoreRepaint(true);
 
@@ -138,8 +145,10 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
 
 //---------------- placement de la ligne de boutons de choix des sons pour le hurlement ------
 
-        this.ligneBoutonsChoixHurlement = new PanneauChoixHurlement(hurlements, choixHurlementInitial);
+        this.ligneBoutonsChoixHurlement = new PanneauChoixHurlement(this.hurlements, choixHurlementInitial);
         this.bas.add(this.ligneBoutonsChoixHurlement);
+        for(int i = 0; i < this.hurlements.length; i++)
+            this.ligneBoutonsChoixHurlement.boutons[i].addItemListener((ItemEvent e)-> this.notifyObservers("hurlement;" + e.getItem()));
 
 //---------------- placement du billard -----------------------------------------------------
 
@@ -252,17 +261,24 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         this.setVisible(true);
     }
 
-    public void addChoixHurlementListener(ItemListener ecouteurChoixHurlant) {
-        int i;
-        for (i = 0; i < this.ligneBoutonsChoixHurlement.boutons.length; ++i)
-            this.ligneBoutonsChoixHurlement.boutons[i].addItemListener(ecouteurChoixHurlant);
-    }
-
     public void addMouseListener(MouseListener mouseListener) {
         this.billard.addMouseListener(mouseListener);
     }
 
     public void addMouseMotionListener(MouseMotionListener mouseMotionListener){
         this.billard.addMouseMotionListener(mouseMotionListener);
+    }
+
+    public SonLong[] getHurlements() {
+        return this.hurlements;
+    }
+
+    public void setHurlement(SonLong hurlement) {
+        this.hurlementChoisi = hurlement;
+    }
+
+    @Override
+    public SonLong getHurlement() {
+        return this.hurlementChoisi;
     }
 }

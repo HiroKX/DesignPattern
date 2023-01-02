@@ -1,8 +1,10 @@
 package exodecorateur_angryballs.solution;
 
+import exodecorateur_angryballs.solution.decorateur.DecorateurHurlement;
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.vues.VueBillard;
+import musique.SonLong;
 
 import java.util.Vector;
 import java.util.concurrent.Executors;
@@ -165,5 +167,16 @@ public class AnimationBilles {
     public void reinitialiser() {
         this.vueBillard.getScenarioCourant().resetBilles();
         this.setBilles(this.vueBillard.getScenarioCourant());
+    }
+
+    /**
+     * @param hurlement le hurlement de la bille qui a été cliquée
+     */
+    public void setHurlement(SonLong hurlement) {
+        for (Bille bille : this.billes) {
+            if (bille instanceof DecorateurHurlement)
+                ((DecorateurHurlement) bille).setHurlement(hurlement);
+        }
+        this.vueBillard.setHurlement(hurlement);
     }
 }

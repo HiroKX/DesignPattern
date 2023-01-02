@@ -10,6 +10,7 @@ import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.vues.VueBillard;
 import exodecorateur_angryballs.solution.vues.awt.BillardAWT;
+import musique.SonLong;
 import outilsvues.EcouteurTerminaison;
 
 import outilsvues.Outils;
@@ -97,6 +98,16 @@ public void changeScenario(Vector<Bille> billes){
 
     @Override
     public Scenario getScenarioCourant() {
+        return null;
+    }
+
+    @Override
+    public void setHurlement(SonLong sonLong) {
+
+    }
+
+    @Override
+    public SonLong getHurlement() {
         return null;
     }
 
