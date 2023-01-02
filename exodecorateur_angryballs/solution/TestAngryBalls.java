@@ -38,16 +38,17 @@ public class TestAngryBalls {
 //-------------------- chargement des sons pour les hurlements --------------------------------------
 
         Vector<SonLong> sonsLongs = OutilsConfigurationBilleHurlante.chargeSons(repertoireSon, "config_audio_bille_hurlante.txt");
-        SonLong sonBilleChoc;
+        SonLong hurlement, sonChocBille;
         try {
-            sonBilleChoc = SonLongRobin.crée(repertoireSon, "huey2 3000 3100 10");
+            hurlement = SonLongRobin.crée(repertoireSon, "huey2 3000 3100 10");
+            sonChocBille = SonLongRobin.crée(repertoireSon, "collision_bille_bille 0 2000 200");
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
             throw new RuntimeException(e);
         }
         SonLong[] hurlements = SonLong.toTableau(sonsLongs);                // on obtient un tableau de SonLong
 //---------------- creation de la vue responsable du dessin des billes -------------------------
 
-        int choixHurlementInitial = 1;
+        int choixHurlementInitial = 0;
         CadreAngryBallsAWT cadre = CadreAngryBallsAWT.getInstance("Angry balls",
                 "Animation de billes ayant des comportements differents. Situation ideale pour mettre en place le DP Decorator",
                 new Vector<>(), hurlements, choixHurlementInitial);
@@ -56,12 +57,12 @@ public class TestAngryBalls {
 
 //------------------- creation des scenarios ---------------------------------------------
 
-        ScenariosFichier scenariosFichier = new ScenariosFichier(cadre,sonBilleChoc);
+        ScenariosFichier scenariosFichier = new ScenariosFichier(cadre,hurlement);
         //ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("Scenarios.csv");
         ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("S1.csv");
         Scenario defaultScenario = lireScenario.get(0);
-        Scenario billard = new ScenarioBillard(cadre,sonBilleChoc);
-        ScenarioClassique test = new ScenarioClassique("test2",sonBilleChoc);
+        Scenario billard = new ScenarioBillard(cadre, sonChocBille);
+        ScenarioClassique test = new ScenarioClassique("test2",hurlement);
          test.addBille(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(200,200),10, new Vecteur(0.1,0.1))), Color.red));
          test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurPesanteur(new DecorateurRebond(new BilleConcrete(new Vecteur(300,300),40, new Vecteur(0.1,0.1))),new Vecteur(0,0.0001)),0.1),Color.yellow));
          test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurNewton(new DecorateurRebond(new BilleConcrete(new Vecteur(400,400),10, new Vecteur(0.1,0.1)))),0.1),Color.green));
@@ -69,7 +70,7 @@ public class TestAngryBalls {
         Bille hurle = new DecorateurHurlement(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(600,400),10, new Vecteur(0.1,0.1))),Color.cyan),hurlements[choixHurlementInitial], cadre);
          test.addBille(hurle);
 
-        Scenario nbBille = new ScenarioNB(cadre,sonBilleChoc,100);
+        Scenario nbBille = new ScenarioNB(cadre,hurlement,100);
           cadre.addScenarios(lireScenario);
           cadre.addScenario(test);
           cadre.addScenario(billard);

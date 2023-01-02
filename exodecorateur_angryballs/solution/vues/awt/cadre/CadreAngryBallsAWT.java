@@ -1,6 +1,8 @@
 package exodecorateur_angryballs.solution.vues.awt.cadre;
 
+import exodecorateur_angryballs.maladroit.vues.BoutonChoixHurlement;
 import exodecorateur_angryballs.solution.Event.ControlleurBilleClavier;
+import exodecorateur_angryballs.solution.decorateur.DecorateurHurlement;
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.vues.VueBillard;
@@ -228,12 +230,22 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         // On réinitialise le buffer
         this.montrer();
         this.billard.initBuffer();
+        // Pour que les billes soient attrapables
         for(Bille b : scenario.getBilles()){
             this.addMouseMotionListener(b.getControlleurGeneral());
             this.addMouseListener(b.getControlleurGeneral());
         }
         this.setScenarioCourant(scenario);
-
+        // Sert à ce que le hurlement des billes du scénario courant soit celui qui est sélectionné
+        scenario.getBilles().forEach((bille) -> {
+            if(bille instanceof DecorateurHurlement){
+                String son = ((DecorateurHurlement) bille).sonLong.getNom();
+                for (BoutonChoixHurlement b : this.ligneBoutonsChoixHurlement.boutons) {
+                    if(b.getLabel().equals(son))
+                        b.setState(true);
+                }
+            }
+        });
         // On met à jour la vue
         this.revalidate();
         this.repaint();

@@ -6,6 +6,8 @@ import exodecorateur_angryballs.solution.scenario.Scenario;
 import exodecorateur_angryballs.solution.vues.VueBillard;
 import musique.SonLong;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Objects;
 import java.util.Vector;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
