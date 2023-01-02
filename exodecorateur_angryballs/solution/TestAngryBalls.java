@@ -38,10 +38,10 @@ public class TestAngryBalls {
 //-------------------- chargement des sons pour les hurlements --------------------------------------
 
         Vector<SonLong> sonsLongs = OutilsConfigurationBilleHurlante.chargeSons(repertoireSon, "config_audio_bille_hurlante.txt");
-        SonLong hurlement, sonChocBille;
+        SonLong[] son = new SonLong[2];
         try {
-            hurlement = SonLongRobin.crée(repertoireSon, "huey2 3000 3100 10");
-            sonChocBille = SonLongRobin.crée(repertoireSon, "collision_bille_bille 0 2000 200");
+            son[0] = SonLongRobin.crée(repertoireSon, "huey2 3000 3100 10");
+            son[1] = SonLongRobin.crée(repertoireSon, "collision_bille_bille 0 2000 200");
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -57,12 +57,12 @@ public class TestAngryBalls {
 
 //------------------- creation des scenarios ---------------------------------------------
 
-        ScenariosFichier scenariosFichier = new ScenariosFichier(cadre,hurlement);
+        ScenariosFichier scenariosFichier = new ScenariosFichier(cadre,son);
         //ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("Scenarios.csv");
         ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("S1.csv");
         Scenario defaultScenario = lireScenario.get(0);
-        Scenario billard = new ScenarioBillard(cadre, sonChocBille);
-        ScenarioClassique test = new ScenarioClassique("test2",hurlement);
+        Scenario billard = new ScenarioBillard(cadre, son[1]);
+        ScenarioClassique test = new ScenarioClassique("test2",son[0]);
          test.addBille(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(200,200),10, new Vecteur(0.1,0.1))), Color.red));
          test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurPesanteur(new DecorateurRebond(new BilleConcrete(new Vecteur(300,300),40, new Vecteur(0.1,0.1))),new Vecteur(0,0.0001)),0.1),Color.yellow));
          test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurNewton(new DecorateurRebond(new BilleConcrete(new Vecteur(400,400),10, new Vecteur(0.1,0.1)))),0.1),Color.green));
@@ -70,7 +70,7 @@ public class TestAngryBalls {
         Bille hurle = new DecorateurHurlement(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(600,400),10, new Vecteur(0.1,0.1))),Color.cyan),hurlements[choixHurlementInitial], cadre);
          test.addBille(hurle);
 
-        Scenario nbBille = new ScenarioNB(cadre,hurlement,100);
+        Scenario nbBille = new ScenarioNB(cadre,son[0],100);
           cadre.addScenarios(lireScenario);
           cadre.addScenario(test);
           cadre.addScenario(billard);

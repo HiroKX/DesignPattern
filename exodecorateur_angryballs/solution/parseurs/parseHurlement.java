@@ -15,6 +15,6 @@ public class parseHurlement extends Parser {
         if(!ligne.equals("x"))
             return bille;
         System.out.println("Hurlement");
-        return new DecorateurHurlement(bille, (SonLong) args[0], (VueBillard) args[1]);
+        return new DecorateurHurlement(bille, (SonLong) args[2], (VueBillard) args[1]);
     }
 }

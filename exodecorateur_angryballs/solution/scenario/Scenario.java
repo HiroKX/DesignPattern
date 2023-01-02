@@ -22,6 +22,7 @@ public abstract class Scenario {
     protected double vMax;
     protected double xMax, yMax;
     protected double rayon;
+    protected SonLong sonHurlement;
 
     public void setVecteur(){
         this.vMax = 0.1;

@@ -20,11 +20,12 @@ import java.util.Vector;
  */
 public class ScenariosFichier extends Scenario{
 
-    public ScenariosFichier(VueBillard vue,SonLong sonChoc){
+    public ScenariosFichier(VueBillard vue,SonLong[] sonChoc){
         assert vue != null;
         assert sonChoc != null;
         this.cadre = vue;
-        this.sonChocBille = sonChoc;
+        this.sonHurlement = sonChoc[0];
+        this.sonChocBille = sonChoc[1];
     }
 
     @Override
@@ -41,7 +42,7 @@ public class ScenariosFichier extends Scenario{
         if (nomFichier == null)
             throw new IllegalArgumentException("Le nom du fichier est null.");
         File racine = new File(""); // contient le chemin d'où est lancée la JVM
-        File fichier = new File(racine.getAbsoluteFile(), "exodecorateur_angryballs"+ File.separator + "solution" + File.separator + nomFichier);
+        File fichier = new File(racine.getAbsoluteFile(),  "exodecorateur_angryballs" + File.separator + "solution" + File.separator + nomFichier);
         if (!fichier.isFile())
             throw new IllegalArgumentException("Le fichier "+ nomFichier +" n'existe pas");
 
@@ -59,9 +60,10 @@ public class ScenariosFichier extends Scenario{
         // Bille courante
         Bille bille;
         // Arguments supplémentaires
-        Object args[] = new Object[2];
+        Object args[] = new Object[3];
         args[0] = this.sonChocBille;
         args[1] = this.cadre;
+        args[2] = this.sonHurlement;
         try {
             reader = new BufferedReader(new FileReader(fichier));
             ligne = reader.readLine();
