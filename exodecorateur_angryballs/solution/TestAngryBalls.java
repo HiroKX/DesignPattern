@@ -40,7 +40,7 @@ public class TestAngryBalls {
         Vector<SonLong> sonsLongs = OutilsConfigurationBilleHurlante.chargeSons(repertoireSon, "config_audio_bille_hurlante.txt");
         SonLong sonBilleChoc;
         try {
-            sonBilleChoc = SonLongRobin.crée(repertoireSon, "collision_bille_bille 0 2000 200");
+            sonBilleChoc = SonLongRobin.crée(repertoireSon, "huey2 3000 3100 10");
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
             throw new RuntimeException(e);
         }
