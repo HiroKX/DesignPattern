@@ -1,8 +1,8 @@
 package exodecorateur_angryballs.solution.Event;
 
-import exodecorateur_angryballs.solution.decorateur.DecorateurAttraper;
-import exodecorateur_angryballs.solution.state.AttrapeState;
+import exodecorateur_angryballs.solution.decorateur.DecorateurLance;
 import exodecorateur_angryballs.solution.state.InitialState;
+import exodecorateur_angryballs.solution.state.LanceState;
 import mesmaths.geometrie.base.Vecteur;
 
 import java.awt.event.MouseEvent;
@@ -10,30 +10,49 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 /** Controleur génaral de la souris
  */
-public class ControlleurGeneral implements MouseMotionListener, MouseListener {
-/** Bille */
-    public DecorateurAttraper b;
-/** Vieux vecteur */
-    public Vecteur oldVec;
-    /** Controleur d'état courant */
+public class ControlleurLance extends ControlleurType implements MouseMotionListener, MouseListener {
+    /**
+     * Controleur d'état courant
+     */
     protected ControlleurEtat controlleurCourant;
-    /** Etat attrapé */
-    protected AttrapeState etatAttrape;
+    /**
+     * Etat attrapé
+     */
+    protected LanceState etatAttrape;
 
-    /** Etat initial */
+    /**
+     * Etat initial
+     */
     protected InitialState etatInit;
 
-    public ControlleurGeneral(DecorateurAttraper b){
+    public ControlleurLance(DecorateurLance b) {
         this.b = b;
-        this.etatInit = new InitialState(this,null,null);
-        this.etatAttrape = new AttrapeState(this,this.etatInit,this.etatInit);
+        this.etatInit = new InitialState(this, null, null);
+        this.etatAttrape = new LanceState(this, this.etatInit, this.etatInit);
         this.etatInit._suivant = this.etatAttrape;
         this.etatInit._retour = this.etatAttrape;
         this.controlleurCourant = this.etatInit;
     }
-
     public void setControlleurCourant(ControlleurEtat ce){
         this.controlleurCourant = ce;
+    }
+
+    @Override
+    public void attraper(Vecteur baseVecteur) {
+        this.oldVec = baseVecteur;
+        this.attraper = true;
+        this.controlleurCourant=this.etatAttrape;
+    }
+
+    @Override
+    public void relacher(Vecteur endVecteur) {
+            this.controlleurCourant.traiteGeneral(oldVec.difference(endVecteur));
+            this.attraper = false;
+            this.controlleurCourant=this.etatInit;
+    }
+
+    @Override
+    public void dragged(Vecteur newVecteur) {
     }
 
     @Override

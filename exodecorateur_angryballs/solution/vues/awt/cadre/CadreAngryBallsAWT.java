@@ -232,8 +232,8 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         this.billard.initBuffer();
         // Pour que les billes soient attrapables
         for(Bille b : scenario.getBilles()){
-            this.addMouseMotionListener(b.getControlleurGeneral());
-            this.addMouseListener(b.getControlleurGeneral());
+            this.addMouseMotionListener(b.getControlleur());
+            this.addMouseListener(b.getControlleur());
         }
         this.setScenarioCourant(scenario);
         // Sert à ce que le hurlement des billes du scénario courant soit celui qui est sélectionné

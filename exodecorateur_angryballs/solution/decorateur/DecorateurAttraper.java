@@ -1,6 +1,7 @@
 package exodecorateur_angryballs.solution.decorateur;
 
-import exodecorateur_angryballs.solution.Event.ControlleurGeneral;
+import exodecorateur_angryballs.solution.Event.ControlleurAttraper;
+import exodecorateur_angryballs.solution.Event.ControlleurType;
 import exodecorateur_angryballs.solution.modele.Bille;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -20,7 +21,7 @@ public class DecorateurAttraper extends DecorateurBille{
     /**
         Controlleur General
      */
-    ControlleurGeneral controlleurGeneral;
+    ControlleurAttraper controlleurGeneral;
 
     /**
         Si la bille est attrapée
@@ -30,7 +31,7 @@ public class DecorateurAttraper extends DecorateurBille{
     public DecorateurAttraper(Bille b){
         super(b);
         this.influence = Vecteur.VECTEURNUL;
-        this.controlleurGeneral = new ControlleurGeneral(this);
+        this.controlleurGeneral = new ControlleurAttraper(this);
     }
 
     @Override
@@ -39,19 +40,8 @@ public class DecorateurAttraper extends DecorateurBille{
         return this.getAcceleration();
     }
 
-    public ControlleurGeneral getControlleurGeneral(){
+    public ControlleurType getControlleur(){
         return this.controlleurGeneral;
     }
-
-    public void attrape(){
-        this.attraper = true;
-    }
-
-    public boolean isAttraper(){
-        return attraper;
-    }
-
-    public void relacher(){
-        this.attraper=false;
-    }
+    
 }

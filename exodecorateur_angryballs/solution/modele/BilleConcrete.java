@@ -1,6 +1,6 @@
 package exodecorateur_angryballs.solution.modele;
 
-import exodecorateur_angryballs.solution.Event.ControlleurGeneral;
+import exodecorateur_angryballs.solution.Event.ControlleurAttraper;
 import mesmaths.cinematique.Cinematique;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -64,7 +64,7 @@ public class BilleConcrete extends Bille {
     }
 
 
-    public ControlleurGeneral getControlleurGeneral(){
+    public ControlleurAttraper getControlleur(){
         return null;
     }
 

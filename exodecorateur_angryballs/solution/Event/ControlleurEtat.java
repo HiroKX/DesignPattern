@@ -8,12 +8,12 @@ import java.awt.event.MouseEvent;
  */
 public abstract class ControlleurEtat {
     /** Controleur */
-    public ControlleurGeneral _controleurGeneral;
+    public ControlleurType controleur;
     /** Controleurs d'état */
     public ControlleurEtat _suivant, _retour;
-    public ControlleurEtat(ControlleurGeneral controlleurGeneral, ControlleurEtat suivant, ControlleurEtat retour){
+    public ControlleurEtat(ControlleurType controlleurGeneral, ControlleurEtat suivant, ControlleurEtat retour){
         super();
-        this._controleurGeneral =controlleurGeneral;
+        this.controleur =controlleurGeneral;
         this._suivant = suivant;
         this._retour = retour;
     }
@@ -30,24 +30,18 @@ public abstract class ControlleurEtat {
     }
 
     private void eventPressed(Vecteur newVecteur){
-        if (mesmaths.geometrie.base.Geop.appartientDisque(new Vecteur(newVecteur.x, newVecteur.y), this._controleurGeneral.b.getPosition(), this._controleurGeneral.b.getRayon())) {
-            this._controleurGeneral.b.attrape();
-            this.traiteGeneral(newVecteur);
+        if (mesmaths.geometrie.base.Geop.appartientDisque(new Vecteur(newVecteur.x, newVecteur.y), this.controleur.b.getPosition(), this.controleur.b.getRayon())) {
+            this.controleur.attraper(newVecteur);
         }
     }
 
     private void eventReleased(Vecteur v){
-        if(this._controleurGeneral.b.isAttraper()){
-            this._controleurGeneral.b.relacher();
-            this._controleurGeneral.setControlleurCourant(this._suivant);
-        }
+        this.controleur.relacher(v);
     }
 
 
     private void eventDragged(Vecteur newVecteur){
-        if(this._controleurGeneral.b.isAttraper()){
-            this.traiteGeneral(newVecteur);
-        }
+        this.controleur.dragged(newVecteur);
     }
 
     public abstract void traiteGeneral(Vecteur newVecteur);

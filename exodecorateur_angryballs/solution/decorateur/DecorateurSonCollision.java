@@ -57,7 +57,6 @@ public class DecorateurSonCollision extends DecorateurBille{
             double balance = 2*x1 - 1;
             int delai = 200;              /* le delai entre 2 diffusions diminue lorsque la vitesse augmente */
             long instant = System.currentTimeMillis();
-            System.err.println(volume);
             if (instant - this.dernierInstant >=delai)                      /* la frequence de diffusion augmente donc avec la vitesse de la bille */
             {
                 double coeffPitch = 1;

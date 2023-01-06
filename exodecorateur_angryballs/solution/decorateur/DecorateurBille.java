@@ -1,6 +1,6 @@
 package exodecorateur_angryballs.solution.decorateur;
 
-import exodecorateur_angryballs.solution.Event.ControlleurGeneral;
+import exodecorateur_angryballs.solution.Event.ControlleurType;
 import exodecorateur_angryballs.solution.modele.Bille;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -117,8 +117,8 @@ public abstract class DecorateurBille extends Bille {
         return this.bille.setPosition(position);
     }
 
-    public ControlleurGeneral getControlleurGeneral(){
-        return this.bille.getControlleurGeneral();
+    public ControlleurType getControlleur(){
+        return this.bille.getControlleur();
     }
 
     /*
@@ -144,5 +144,6 @@ public abstract class DecorateurBille extends Bille {
     public String toString(){
         return this.bille.toString();
     }
+
 
 }

@@ -1,6 +1,6 @@
 package exodecorateur_angryballs.solution.modele;
 
-import exodecorateur_angryballs.solution.Event.ControlleurGeneral;
+import exodecorateur_angryballs.solution.Event.ControlleurType;
 import mesmaths.geometrie.base.Vecteur;
 
 import java.util.Vector;
@@ -108,7 +108,7 @@ public abstract class Bille {
      *
      * @return Le controlleur de la bille pour les evenements de la souris
      */
-    public abstract ControlleurGeneral getControlleurGeneral();
+    public abstract ControlleurType getControlleur();
 
 
     /**
@@ -136,5 +136,6 @@ public abstract class Bille {
             return this.getClef() == b.getClef();
         return false;
     }
+
 }
 

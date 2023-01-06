@@ -1,6 +1,6 @@
-Nom;Rayon;DecorateurCouleur;DecorateurBloqueBord;DecorateurFrottement;DecorateurNewton;DecorateurPasseMuraille;DecorateurPesanteur;DecorateurRebond;DecorateurAttraper;DecorateurSonCollision;DecorateurSonMur;DecorateurSelectionnable;DecorateurHurlement
-test;40;orange;x;10;;;x;;;;;;x
+Nom;Rayon;DecorateurCouleur;DecorateurBloqueBord;DecorateurFrottement;DecorateurNewton;DecorateurPasseMuraille;DecorateurPesanteur;DecorateurRebond;DecorateurAttraper;DecorateurSonCollision;DecorateurSonMur;DecorateurSelectionnable;DecorateurHurlement;DecorateurLance
+test;40;orange;x;10;;;x;;x;;;;x;
 test;10;green;x;8;;;x;;;;;;
 test;30;255,255,0;x;8;;;x;;;;;;
-test;80;red;x;8;;;x;;x;x;;;
+test3;80;red;x;8;;;x;;x;x;;;
 bleu;30;blue;x;8;;;x;x;x;x;;;

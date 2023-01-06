@@ -30,7 +30,7 @@ public class ScenarioBillard extends Scenario {
     public Vector<Bille> getInitBilles() {
         // Bille blanche
         Vector<Bille> lBilles = new Vector<>();
-        Bille b = new DecorateurSonCollision(new DecorateurAttraper(new DecorateurBloqueBord(
+        Bille b = new DecorateurSonCollision(new DecorateurLance(new DecorateurBloqueBord(
                 new DecorateurFrottement(new DecorateurCouleur(new BilleConcrete(
                         new Vecteur((xMax / 2) - xMax / 4, (yMax / 2)), rayon, new Vecteur(0, 0), new Vecteur(0, 0.0001)), Color.WHITE), 4.5))), (SonLongRobin) sonChocBille, cadre);
         lBilles.add(b);
