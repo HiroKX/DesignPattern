@@ -13,11 +13,9 @@ import musique.SonLong;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
-import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Vector;
 
 /**
@@ -63,11 +61,11 @@ public class TestAngryBalls {
         Scenario defaultScenario = lireScenario.get(0);
         Scenario billard = new ScenarioBillard(cadre, son[1]);
         ScenarioClassique test = new ScenarioClassique("test2",son[0]);
-         test.addBille(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(200,200),10, new Vecteur(0.1,0.1))), Color.red));
-         test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurPesanteur(new DecorateurRebond(new BilleConcrete(new Vecteur(300,300),40, new Vecteur(0.1,0.1))),new Vecteur(0,0.0001)),0.1),Color.yellow));
-         test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurNewton(new DecorateurRebond(new BilleConcrete(new Vecteur(400,400),10, new Vecteur(0.1,0.1)))),0.1),Color.green));
-         test.addBille(new DecorateurCouleur(new DecorateurPasseMuraille(new BilleConcrete(new Vecteur(500,400),10, new Vecteur(0.1,0.1))),Color.cyan));
-        Bille hurle = new DecorateurHurlement(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(600,400),10, new Vecteur(0.1,0.1))),Color.cyan),hurlements[choixHurlementInitial], cadre);
+         //test.addBille(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(200,200),10, new Vecteur(0.1,0.1))), Color.red));
+         //test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurPesanteur(new DecorateurRebond(new BilleConcrete(new Vecteur(300,300),40, new Vecteur(0.1,0.1))),new Vecteur(0,0.0001)),0.1),Color.yellow));
+         //test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurNewton(new DecorateurRebond(new BilleConcrete(new Vecteur(400,400),10, new Vecteur(0.1,0.1)))),0.1),Color.green));
+         test.addBille(new DecorateurLorentz(new DecorateurCouleur(new DecorateurPasseMuraille(new BilleConcrete(new Vecteur(500,400),10, new Vecteur(0.1,0.1))),Color.cyan)));
+        Bille hurle = new DecorateurAttraper(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(600,400),50, new Vecteur(0.1,0.1))),Color.BLUE));
          test.addBille(hurle);
 
         Scenario nbBille = new ScenarioNB(cadre,son[0],100);

@@ -35,9 +35,24 @@ public class DecorateurLance extends DecorateurBille{
         return this.getAcceleration();
     }
 
+    @Override
+    public boolean isTenue(){
+        return this.controlleurGeneral.getTenue();
+    }
+
+
+    @Override
+    public Vecteur getInfluence(){
+        return this.controlleurGeneral.getInfluence();
+    }
     public ControlleurLance getControlleur(){
         return this.controlleurGeneral;
     }
 
+
+
+    public String toString(){
+        return super.toString() +"JE SUIS LANCABLE";
+    }
 
 }

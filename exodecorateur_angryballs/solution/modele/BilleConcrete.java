@@ -130,4 +130,13 @@ public class BilleConcrete extends Bille {
     public String toStringCentre(){
         return this.clef + " : "+ (int) this.position.x + ","+ (int) this.position.y;
     }
+
+    @Override
+    public boolean isTenue() {
+        return false;
+    }
+
+    public Vecteur getInfluence(){
+        return Vecteur.VECTEURNUL;
+    }
 }

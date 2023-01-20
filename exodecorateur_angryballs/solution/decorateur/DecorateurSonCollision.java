@@ -3,9 +3,9 @@ package exodecorateur_angryballs.solution.decorateur;
 import exodecorateur_angryballs.solution.RobinLagler;
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.modele.OutilsBille;
-import exodecorateur_angryballs.solution.son.SonLongRobin;
 import exodecorateur_angryballs.solution.vues.VueBillard;
 import mesmaths.geometrie.base.Vecteur;
+import musique.SonLong;
 
 import java.util.Vector;
 
@@ -18,7 +18,7 @@ public class DecorateurSonCollision extends DecorateurBille{
     /** Delai maximum de rafraichissement du son en millisecondes */
     public static final int DELAI_MAX = 150;
     /** bande son e diffuser */
-    public SonLongRobin sonLong;
+    public SonLong sonLong;
     /** dernier instant où le son a ete diffuse */
     long dernierInstant;
     /** ne de l'element de sonLong e jouer. on doit avoir i >= 0.
@@ -33,7 +33,7 @@ public class DecorateurSonCollision extends DecorateurBille{
     private static final double COEFF_VOLUME = 6;
 
 
-    public DecorateurSonCollision(Bille b, SonLongRobin sonLong, VueBillard vueBillard) {
+    public DecorateurSonCollision(Bille b, SonLong sonLong, VueBillard vueBillard) {
         super(b);
         this.sonLong = sonLong;
         i = 0;
@@ -45,11 +45,11 @@ public class DecorateurSonCollision extends DecorateurBille{
     @Override
     public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
         boolean temp = OutilsBille.gestionCollisionBilleBille(this, billes);
-
         if(temp){
             Vecteur p = this.getPosition();
             Vecteur v = this.getVitesse();
             double a = RobinLagler.A;
+            System.out.println(a);
             double volume =  1-Math.exp(-a);
             double n = v.norme();
             double y = Math.exp(-COEFF_VOLUME*n);                // y = e^(-COEFF*n). on obtient donc 0 < y <= 1

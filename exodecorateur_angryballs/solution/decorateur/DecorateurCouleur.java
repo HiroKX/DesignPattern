@@ -16,4 +16,6 @@ public class DecorateurCouleur extends DecorateurBille {
     public String toString(){
         return this.bille.toString() + " couleur = "+this.getCouleur();
     }
+
+
 }

@@ -1,8 +1,10 @@
 package exodecorateur_angryballs.solution.vues.awt;
 
+import exodecorateur_angryballs.solution.COR.CORIndex;
 import exodecorateur_angryballs.solution.Event.ControlleurBilleClavier;
-import exodecorateur_angryballs.solution.decorateur.DecorateurSelectionnable;
 import exodecorateur_angryballs.solution.modele.Bille;
+import exodecorateur_angryballs.solution.visiteur.DessineParticulariteBille;
+import exodecorateur_angryballs.solution.visiteur.VisiteurParticulariteBilleAWT;
 import exodecorateur_angryballs.solution.visiteur.WindowVisitor;
 
 import java.awt.*;
@@ -25,10 +27,14 @@ public class BillardAWT extends Canvas implements WindowVisitor {
      */
     BufferStrategy buffer;
 
+    CORIndex cor;
+    DessineParticulariteBille dessinerParticularite;
+
     public BillardAWT(Vector<Bille> billes) {
         assert billes != null;
         this.setIgnoreRepaint(true); // Active rendering
         this.billes = billes;
+        this.cor= new CORIndex(new VisiteurParticulariteBilleAWT(graphics));
     }
 
     /**
@@ -100,20 +106,27 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         graphics.fillOval(xMin, yMin, width, height);
 
         // Si elle est choisie on met les contours en vert
-        if(bille instanceof DecorateurSelectionnable && ((DecorateurSelectionnable) bille).getChoisie())
-            graphics.setColor(Color.GREEN);
         // Sinon si la bille est noire on met les contours en noir
+        if(bille.isTenue())
+            graphics.setColor(Color.GREEN);
         else if(bille.getCouleur() == 0x000000)
             graphics.setColor(Color.CYAN);
         // Sinon, on met les contours en noir
         else
             graphics.setColor(Color.BLACK);
         graphics.drawOval(xMin, yMin, width, height);
+
+        VisiteurParticulariteBilleAWT visiteur = (VisiteurParticulariteBilleAWT) this.cor.visiteur;
+        visiteur.setGraphics(graphics);
+        this.cor.dessiner(bille);
+
+
         try {
             graphics.drawString(bille.getClef() + "", (xMin + width / 2) - 3, (yMin + height / 2) + 5);
         }catch(Exception e){
             System.err.println("Resizing");
         }
     }
+
 
 }

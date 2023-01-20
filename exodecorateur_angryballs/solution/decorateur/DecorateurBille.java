@@ -117,6 +117,10 @@ public abstract class DecorateurBille extends Bille {
         return this.bille.setPosition(position);
     }
 
+    public Vecteur getInfluence(){
+        return this.bille.getInfluence();
+    }
+
     public ControlleurType getControlleur(){
         return this.bille.getControlleur();
     }
@@ -144,6 +148,22 @@ public abstract class DecorateurBille extends Bille {
     public String toString(){
         return this.bille.toString();
     }
+    @Override
+    public boolean isTenue() {
+        return this.bille.isTenue();
+    }
 
+    public static Bille isDecoratedBy(Bille b, Class decoratorClass) {
+        if (b instanceof DecorateurBille) {
+            DecorateurBille decorator = (DecorateurBille) b;
+            b = decorator.getBille();
+            if (decoratorClass.isInstance(decorator)) {
+                return decorator;
+            } else {
+                return isDecoratedBy(b, decoratorClass);
+            }
+        }
+        return null;
+    }
 
 }

@@ -23,11 +23,6 @@ public class DecorateurAttraper extends DecorateurBille{
      */
     ControlleurAttraper controlleurGeneral;
 
-    /**
-        Si la bille est attrapée
-     */
-    boolean attraper;
-
     public DecorateurAttraper(Bille b){
         super(b);
         this.influence = Vecteur.VECTEURNUL;
@@ -38,6 +33,11 @@ public class DecorateurAttraper extends DecorateurBille{
     public Vecteur gestionAcceleration(Vector<Bille> billes){
         super.gestionAcceleration(billes);
         return this.getAcceleration();
+    }
+
+    @Override
+    public boolean isTenue(){
+        return this.controlleurGeneral.getTenue();
     }
 
     public ControlleurType getControlleur(){

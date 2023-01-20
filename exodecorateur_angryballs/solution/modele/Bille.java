@@ -137,5 +137,8 @@ public abstract class Bille {
         return false;
     }
 
+    public abstract boolean isTenue();
+
+    public abstract Vecteur getInfluence();
 }
 

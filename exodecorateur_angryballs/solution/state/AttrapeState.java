@@ -1,7 +1,7 @@
 package exodecorateur_angryballs.solution.state;
 
 import exodecorateur_angryballs.solution.Event.ControlleurEtat;
-import exodecorateur_angryballs.solution.Event.ControlleurAttraper;
+import exodecorateur_angryballs.solution.Event.ControlleurType;
 import mesmaths.geometrie.base.Vecteur;
 
 /**
@@ -10,7 +10,7 @@ import mesmaths.geometrie.base.Vecteur;
 public class AttrapeState extends ControlleurEtat {
 
 
-    public AttrapeState(ControlleurAttraper controlleurGeneral, ControlleurEtat suivant, ControlleurEtat retour) {
+    public AttrapeState(ControlleurType controlleurGeneral, ControlleurEtat suivant, ControlleurEtat retour) {
         super(controlleurGeneral, suivant, retour);
     }
 

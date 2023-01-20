@@ -1,7 +1,6 @@
 package exodecorateur_angryballs.solution.vues.awt.cadre;
 
 import exodecorateur_angryballs.maladroit.vues.BoutonChoixHurlement;
-import exodecorateur_angryballs.solution.Event.ControlleurBilleClavier;
 import exodecorateur_angryballs.solution.decorateur.DecorateurHurlement;
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.scenario.Scenario;
@@ -202,7 +201,6 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
      */
     public void setScenarioCourant(Scenario scenarioCourant) {
         this.scenarioCourant = scenarioCourant;
-        this.billard.setKeyListner(new ControlleurBilleClavier(this.scenarioCourant));
     }
 
     @Override
@@ -234,6 +232,7 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         for(Bille b : scenario.getBilles()){
             this.addMouseMotionListener(b.getControlleur());
             this.addMouseListener(b.getControlleur());
+            this.addKeyListener(b.getControlleur());
         }
         this.setScenarioCourant(scenario);
         // Sert à ce que le hurlement des billes du scénario courant soit celui qui est sélectionné
@@ -273,6 +272,9 @@ public final class CadreAngryBallsAWT extends Frame implements VueBillard  {
         this.setVisible(true);
     }
 
+    public void addKeyListener(KeyListener keyListener) {
+        this.billard.addKeyListener(keyListener);
+    }
     public void addMouseListener(MouseListener mouseListener) {
         this.billard.addMouseListener(mouseListener);
     }

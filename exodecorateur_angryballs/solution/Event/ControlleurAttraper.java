@@ -5,23 +5,23 @@ import exodecorateur_angryballs.solution.state.AttrapeState;
 import exodecorateur_angryballs.solution.state.InitialState;
 import mesmaths.geometrie.base.Vecteur;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
+
 /** Controleur génaral de la souris
  */
-public class ControlleurAttraper extends ControlleurType implements MouseMotionListener, MouseListener {
+public class ControlleurAttraper extends ControlleurType implements MouseMotionListener, MouseListener, KeyListener {
     /** Controleur d'état courant */
     protected ControlleurEtat controlleurCourant;
     /** Etat attrapé */
     protected AttrapeState etatAttrape;
+
 
     /** Etat initial */
     protected InitialState etatInit;
 
     public ControlleurAttraper(DecorateurAttraper b){
         this.b = b;
-        this.attraper=false;
+        this.tenue=false;
         this.etatInit = new InitialState(this,null,null);
         this.etatAttrape = new AttrapeState(this,this.etatInit,this.etatInit);
         this.etatInit._suivant = this.etatAttrape;
@@ -35,18 +35,20 @@ public class ControlleurAttraper extends ControlleurType implements MouseMotionL
 
     @Override
     public void attraper(Vecteur baseVecteur) {
-        this.attraper = true;
+        this.tenue = true;
+        this.controlleurCourant = this.etatAttrape;
         this.oldVec=baseVecteur;
     }
 
     @Override
     public void relacher(Vecteur endVecteur) {
-        this.attraper = false;
+        this.controlleurCourant = this.etatInit;
+        this.tenue = false;
     }
 
     @Override
     public void dragged(Vecteur newVecteur) {
-        if(this.attraper) {
+        if(this.tenue) {
             this.controlleurCourant.traiteGeneral(newVecteur);
         }
     }
@@ -83,6 +85,21 @@ public class ControlleurAttraper extends ControlleurType implements MouseMotionL
 
     @Override
     public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }

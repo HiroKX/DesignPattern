@@ -5,12 +5,11 @@ import exodecorateur_angryballs.solution.state.InitialState;
 import exodecorateur_angryballs.solution.state.LanceState;
 import mesmaths.geometrie.base.Vecteur;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
+
 /** Controleur génaral de la souris
  */
-public class ControlleurLance extends ControlleurType implements MouseMotionListener, MouseListener {
+public class ControlleurLance extends ControlleurType implements MouseMotionListener, MouseListener, KeyListener {
     /**
      * Controleur d'état courant
      */
@@ -19,7 +18,6 @@ public class ControlleurLance extends ControlleurType implements MouseMotionList
      * Etat attrapé
      */
     protected LanceState etatAttrape;
-
     /**
      * Etat initial
      */
@@ -27,6 +25,7 @@ public class ControlleurLance extends ControlleurType implements MouseMotionList
 
     public ControlleurLance(DecorateurLance b) {
         this.b = b;
+        this.influence = Vecteur.VECTEURNUL;
         this.etatInit = new InitialState(this, null, null);
         this.etatAttrape = new LanceState(this, this.etatInit, this.etatInit);
         this.etatInit._suivant = this.etatAttrape;
@@ -40,19 +39,23 @@ public class ControlleurLance extends ControlleurType implements MouseMotionList
     @Override
     public void attraper(Vecteur baseVecteur) {
         this.oldVec = baseVecteur;
-        this.attraper = true;
+        this.tenue = true;
         this.controlleurCourant=this.etatAttrape;
+        this.influence = baseVecteur;
+
     }
 
     @Override
     public void relacher(Vecteur endVecteur) {
             this.controlleurCourant.traiteGeneral(oldVec.difference(endVecteur));
-            this.attraper = false;
+            this.influence = endVecteur;
+            this.tenue = false;
             this.controlleurCourant=this.etatInit;
     }
 
     @Override
     public void dragged(Vecteur newVecteur) {
+        this.influence = newVecteur;
     }
 
     @Override
@@ -87,6 +90,21 @@ public class ControlleurLance extends ControlleurType implements MouseMotionList
 
     @Override
     public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }
