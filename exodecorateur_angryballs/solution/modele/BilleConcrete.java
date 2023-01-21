@@ -105,7 +105,7 @@ public class BilleConcrete extends Bille {
 
     public Vecteur gestionAcceleration(Vector<Bille> billes) {
         this.getAcceleration().set(new Vecteur(0,0));
-        return new Vecteur(0,0);
+        return new Vecteur(0,0);//Bizarre : Pourquoi ne pas renvoyer l'accélération ?
     }
 
     @Override

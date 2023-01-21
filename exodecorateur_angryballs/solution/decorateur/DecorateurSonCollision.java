@@ -49,7 +49,6 @@ public class DecorateurSonCollision extends DecorateurBille{
             Vecteur p = this.getPosition();
             Vecteur v = this.getVitesse();
             double a = RobinLagler.A;
-            System.out.println(a);
             double volume =  1-Math.exp(-a);
             double n = v.norme();
             double y = Math.exp(-COEFF_VOLUME*n);                // y = e^(-COEFF*n). on obtient donc 0 < y <= 1
@@ -57,14 +56,14 @@ public class DecorateurSonCollision extends DecorateurBille{
             double balance = 2*x1 - 1;
             int delai = 200;              /* le delai entre 2 diffusions diminue lorsque la vitesse augmente */
             long instant = System.currentTimeMillis();
-            if (instant - this.dernierInstant >=delai)                      /* la frequence de diffusion augmente donc avec la vitesse de la bille */
-            {
+            //if (instant - this.dernierInstant >=delai)                      /* la frequence de diffusion augmente donc avec la vitesse de la bille */
+            //{
                 double coeffPitch = 1;
                 this.sonLong.joue(i++, volume, balance, coeffPitch);            /* le son est diffuse dans un thread separe */ //TODO : modifier toute la classe pour ne faire le son qu'une fois qu'elle touche une fois le mur et avec l'intensité
                 this.dernierInstant= instant;
-            }else{
-                i=0;
-            }
+            //}else{
+            //    i=0;
+            //}
         }
         return temp;
     }

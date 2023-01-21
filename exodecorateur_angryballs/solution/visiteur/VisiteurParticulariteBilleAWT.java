@@ -62,21 +62,11 @@ public class VisiteurParticulariteBilleAWT implements DessineParticulariteBille{
         }
     }
 
-    public double distanceVec(Vecteur x1, Vecteur x2){
-        return Math.sqrt(Math.pow(x2.x - x1.x, 2) + Math.pow(x2.y - x1.y, 2));
-
-    }
-
     @Override
     public void visit(DecorateurAttraper b) {
 
     }
 
-    @Override
-    public void visit(DecorateurLorentz b) {
-        Vecteur position = b.getPosition();
-        graphics.fillOval((int) ((int) position.x+ b.v.x), (int) ((int) position.y+b.v.y),10,10);
-    }
 
     @Override
     public void visit(DecorateurBille b) {

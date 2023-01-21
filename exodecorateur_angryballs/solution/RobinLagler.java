@@ -4,8 +4,6 @@ package exodecorateur_angryballs.solution;
 import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
-import java.util.Observable;
-
 public class RobinLagler {
     static double EPSILON = 1.0E-6;
     public static double A;
@@ -100,7 +98,8 @@ public class RobinLagler {
         return false;
     }
 
-    public static boolean CollisionBilleBille(Vecteur G1, double rayon1, Vecteur v1, double m1, Vecteur G2, double rayon2, Vecteur v2, double m2) {
+    public static boolean CollisionBilleBille(final Vecteur G1, double rayon1, Vecteur v1, double m1,
+                                              final Vecteur G2, double rayon2, Vecteur v2, double m2) {
         Vecteur G1G2 = Vecteur.difference(G2, G1);
         double nG1G2_2 = G1G2.normeCarrée();
         double r = rayon1 + rayon2;

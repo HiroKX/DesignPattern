@@ -60,13 +60,25 @@ public class TestAngryBalls {
         ArrayList<Scenario> lireScenario = scenariosFichier.chargerScenarios("S1.csv");
         Scenario defaultScenario = lireScenario.get(0);
         Scenario billard = new ScenarioBillard(cadre, son[1]);
-        ScenarioClassique test = new ScenarioClassique("test2",son[0]);
-         //test.addBille(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(200,200),10, new Vecteur(0.1,0.1))), Color.red));
+        ScenarioClassique test = new ScenarioClassique("Test Base",son[0]);
+         test.addBille(new DecorateurSelectionnable(new DecorateurRebond(new BilleConcrete(new Vecteur(200,200),10, new Vecteur(0.1,0.1)))));
          //test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurPesanteur(new DecorateurRebond(new BilleConcrete(new Vecteur(300,300),40, new Vecteur(0.1,0.1))),new Vecteur(0,0.0001)),0.1),Color.yellow));
-         //test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurNewton(new DecorateurRebond(new BilleConcrete(new Vecteur(400,400),10, new Vecteur(0.1,0.1)))),0.1),Color.green));
-         test.addBille(new DecorateurLorentz(new DecorateurCouleur(new DecorateurPasseMuraille(new BilleConcrete(new Vecteur(500,400),10, new Vecteur(0.1,0.1))),Color.cyan)));
-        Bille hurle = new DecorateurAttraper(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(600,400),50, new Vecteur(0.1,0.1))),Color.BLUE));
-         test.addBille(hurle);
+         //test.addBille(new DecorateurCouleur(new DecorateurFrottement(new DecorateurNewton(new DecorateurRebond(new BilleConcrete(new Vecteur(400,400),30, new Vecteur(0.1,0.1)))),0.1),Color.green));
+         test.addBille(new DecorateurPasseMuraille(new DecorateurBloqueBord(new DecorateurCouleur(new BilleConcrete(new Vecteur(500,400),30, new Vecteur(0.1,0.1)),Color.cyan))));
+        Bille hurle = (new DecorateurCouleur(
+                new DecorateurBloqueBord(
+                        new DecorateurNewton(
+                                new DecorateurFrottement(
+                                        new DecorateurHurlement(
+                                                new BilleConcrete(
+                                                        new Vecteur(800,400),30, new Vecteur(0.1,0.1))
+                                                ,son[0],cadre),0.1))),Color.BLACK));
+         //test.addBille(hurle);
+         int rgbtangerine = 0xFEB06A;
+         test.addBille(new DecorateurRebond(new DecorateurFrottement(new DecorateurCouleurInt(new DecorateurAttraper(new BilleConcrete(new Vecteur( 100,100),50,new Vecteur(0.1,-0.3))),rgbtangerine),0.1)));
+
+        //Bille hurle = new DecorateurAttraper(new DecorateurCouleur(new DecorateurRebond(new BilleConcrete(new Vecteur(00,400),50, new Vecteur(0.1,0.1))),Color.BLUE));
+         //test.addBille(hurle);
 
         Scenario nbBille = new ScenarioNB(cadre,son[0],100);
           cadre.addScenarios(lireScenario);
@@ -86,7 +98,6 @@ public class TestAngryBalls {
         animationBilles.setBilles(defaultScenario);
 
 //------------------------- activation des ecouteurs des boutons et ea tourne tout seul ------------------------------
-
         cadre.addObserver(new EcouteurBoutonLancer(animationBilles));
         cadre.addObserver(new EcouteurBoutonArreter(animationBilles));
         cadre.addObserver(new EcouteurBoutonReinitialiser(animationBilles));

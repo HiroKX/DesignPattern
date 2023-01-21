@@ -108,7 +108,7 @@ public class BillardAWT extends Canvas implements WindowVisitor {
         // Si elle est choisie on met les contours en vert
         // Sinon si la bille est noire on met les contours en noir
         if(bille.isTenue())
-            graphics.setColor(Color.GREEN);
+            graphics.setColor(Color.BLUE);
         else if(bille.getCouleur() == 0x000000)
             graphics.setColor(Color.CYAN);
         // Sinon, on met les contours en noir

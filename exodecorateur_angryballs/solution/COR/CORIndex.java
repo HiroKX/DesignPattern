@@ -8,8 +8,7 @@ public class CORIndex {
     COR cor;
     public CORIndex(DessineParticulariteBille visiteur){
         this.visiteur = visiteur;
-        CORLorentz CORLorentez = new CORLorentz(null,visiteur);
-        CORAttraper CORAttraper = new CORAttraper(CORLorentez,visiteur);
+        CORAttraper CORAttraper = new CORAttraper(null,visiteur);
         CORLance CORLance = new CORLance(CORAttraper,visiteur);
         this.cor = new CORSelectionnable(CORLance,visiteur);
     }

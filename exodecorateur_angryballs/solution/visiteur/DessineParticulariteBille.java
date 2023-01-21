@@ -6,7 +6,6 @@ public interface DessineParticulariteBille {
     void visit(DecorateurSelectionnable b);
     void visit(DecorateurLance b);
     void visit(DecorateurAttraper b);
-    void visit(DecorateurLorentz b);
     void visit(DecorateurBille b);
 
 }

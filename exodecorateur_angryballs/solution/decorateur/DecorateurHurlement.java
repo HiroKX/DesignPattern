@@ -1,20 +1,16 @@
 package exodecorateur_angryballs.solution.decorateur;
 
-import exodecorateur_angryballs.maladroit.vues.BoutonChoixHurlement;
 import exodecorateur_angryballs.solution.modele.Bille;
 import exodecorateur_angryballs.solution.vues.VueBillard;
 import mesmaths.geometrie.base.Vecteur;
 import musique.SonLong;
-
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 /**
     Ce decorateur gere le hurlement (son) de la bille
  */
 public class DecorateurHurlement extends DecorateurBille{
     /** Delai minimum de rafraichissement du son en millisecondes */
-    private static final int DELAI_MIN = 10;
+    private static final int DELAI_MIN = 5;
     /** Delai maximum de rafraichissement du son en millisecondes */
     public static final int DELAI_MAX = 150;
     /** bande son e diffuser */
